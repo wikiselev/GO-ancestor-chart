@@ -1,0 +1,49 @@
+<html xmlns:widgets='java:uk.ac.ebi.interpro.jxbp2.Widgets'
+  
+      xmlns:term='java:uk.ac.ebi.quickgo.web.data.Term'
+        >
+  <head>
+    <title></title>
+  </head>
+  <body>
+
+  <widgets:define name='helpicon'>
+      <span class='reference'>
+          <a style='white-space:nowrap;' class='popup' href='reference.html?section={widgets:parameter:section}'>
+              <i class='popup'>
+ <!--         <a style='white-space:nowrap;' onclick='popupClick(this,popupAuto(this,findPopup(this.parentNode)),event);return false;' href='reference.html#{widgets:parameter:section}' target='help'>-->
+              <img src='image/information.png'/>
+              <widgets:content/>
+              </i>
+          </a>
+<!--          <div class='popup' style='width:400px'>
+              <div class='loading'>Loading...<img src='image/ajax-loader-eef5f5.gif'/></div>
+              <div class='target'></div>
+              <iframe style='visibility:hidden;' onload='refreshDivName(this,"popup","target","loading")' xsrc='reference.html?section={widgets:parameter:section}'></iframe>
+          </div>-->
+      </span>
+  </widgets:define>
+
+  
+  <widgets:define name='help'>
+      <span class='reference'>
+          <a style='white-space:nowrap;' class='popup' href='reference.html?section={widgets:parameter:section}'>
+              <i class='popup'>
+          <!--<a onclick='popupClick(this,popupAuto(this,findPopup(this.parentNode)),event);return false;' href='reference.html#{widgets:parameter:section}' target='help'>-->
+              <widgets:content/>
+              </i>
+          </a>
+          <!--<div class='popup' style='width:400px'>
+              <div class='loading'>Loading...<img src='image/ajax-loader-eef5f5.gif'/></div>
+              <div class='target'></div>
+              <iframe style='visibility:hidden;' onload='refreshDivName(this,"popup","target","loading")' xsrc='reference.html?section={widgets:parameter:section}'></iframe>
+          </div>-->
+      </span>
+  </widgets:define>
+
+
+  <widgets:define name='term'>
+      <a href='Selection?id={term:id}' target='selection-frame'><img src='image/add-eef5f5.png'/></a><a href='GTerm?id={term:id}'>{term:id}</a> {term:name}
+  </widgets:define>
+  </body>
+</html>

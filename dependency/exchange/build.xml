@@ -1,0 +1,80 @@
+<project name="exchange" default="jar" basedir=".">
+
+    <target name="init">
+        <tstamp/>
+        <property name="stamp" value="${DSTAMP}-${TSTAMP}"/>
+        <mkdir dir='build'/>
+    </target>
+
+
+    <target name="get-dependencies" description='Checkout all dependencies from CVS'>
+        <property name="cvsroot" value=':pserver:${user.name}@cvsebi.ebi.ac.uk:/ebi/cvs/interpro'/>
+
+        <echo message="cvsroot=${cvsroot}"/>
+        
+        <mkdir dir="dependency"/>
+        <cvs command='co -d dependency/common' cvsroot='${cvsroot}' package='tools/library/common'/>        
+    </target>
+
+    <target name="tag" description='Tag'>
+        <property name="tag" value="interpro_web_${stamp}"/>
+        <echo message='CVS Tag - ${tag}'/>
+        <cvs command='tag -c ${tag}' failonerror="true"/>
+    </target>
+
+    <target name="clean" description='Remove built classes'>
+        <delete dir="build"/>
+    </target>
+
+
+
+    <path id="sources">
+        <pathelement location="src"/>
+        <pathelement location="dependency/common/src"/>        
+    </path>
+
+    <path id="classpath">
+<!--        <fileset dir="devlib">
+            <include name="*.jar"/>
+        </fileset>-->
+    </path>
+
+
+    <target name='compile' depends="init">
+        <mkdir dir="build/classes"/>
+        <echo file="build/classes/version.txt" message="${stamp}"/>
+        <javac destdir="build/classes" classpathref="classpath" debug="true" debuglevel="lines,source">
+            <src refid="sources"/>
+        </javac>
+        <copy todir="build/classes" filtering="on">
+            <fileset dir="src"/>
+            <fileset dir="dependency/common/src"/>            
+        </copy>
+    </target>
+
+    <target name='javadoc'>
+        <mkdir dir="build/javadoc"/>
+        <javadoc packagenames="uk.ac.ebi.*" destdir="build/javadoc" sourcepathref="sources" classpathref="classpath" linksource="true">
+        </javadoc>
+    </target>
+
+    <target name="jar" depends='init,compile,javadoc' description='Make deployable war file'>
+        <jar jarfile="build/${ant.project.name}.jar">
+            <zipfileset dir="build/classes">
+            </zipfileset>
+            <manifest>
+                <attribute name="Main-Class" value="uk.ac.ebi.interpro.exchange.Script"/>
+            </manifest>
+        </jar>
+    </target>
+
+    <target name="zip" depends='jar' description='Make a zip file for distribution'>
+        <zip zipfile="build/${ant.project.name}-${stamp}.zip">
+            <fileset dir=".">
+                <exclude name='build/*.zip'/>
+                <exclude name='**/CVS'/>
+            </fileset>
+        </zip>
+    </target>
+
+</project>

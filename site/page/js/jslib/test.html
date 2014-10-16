@@ -1,0 +1,101 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+
+    <link href="style.css" rel="Stylesheet" type="text/css" />
+    <script src="jslib.js"> </script>
+    <script src="test.js"> </script>
+
+<style>
+    table {border-collapse:collapse;}
+    body {height:100%;width:100%;}
+</style>
+
+</head><body>
+<div name='tab'><i class='tabs'></i>
+
+<h2 name='popups'>Popups</h2>
+    
+    <p><a href='test.xml'><i class='dynamic'></i>Dynamic popup</a></p>
+    <div class="holder"><p><a href='test.xml'><i class='popup'></i>Static popup</a></p>
+        <div class="popup">Popup<table><tr><td>Q</td></tr></table></div></div>
+
+
+
+<h2 name='suggest'>Autosuggest</h2>
+    <div><form action='test.xml'><i class='suggest'></i><input type='text' name='loofah'/></form></div>
+<h2 name='dynamic'>Dynamic table</h2>
+<div>
+        <i class="dynamic-table"></i>
+    <br/>
+        <table>
+
+            <tr>
+                <td name='x'>X miniature penguins<input type="checkbox" class='show' name="col" value='x' checked='checked'/></td>
+                <td name='y'>Y small kittens<input type="checkbox" class='show' name="col" value="y" checked='checked'/></td>
+            </tr>
+
+            
+            <tr>
+                <td>X boppit</td>
+                <td>Y lambs</td>
+            </tr>
+
+        </table>
+        <form>
+        </form>
+</div>
+
+<h2 name='lightbox'>Lightbox</h2>
+<div>
+    <div>
+        <i class="lightbox"></i>
+        <span class="open">Lightbox</span>
+        <div class="title">Sample lightbox</div>
+        <div class="content">
+        <h1>This is a lightbox</h1>
+        </div>
+    </div>
+</div>
+
+<h2 name='lists'>Lists</h2>
+<div>
+    <i class='list'></i>
+    <ul>
+        <li>Everything (13 architectures, 54 proteins)
+            <ul>
+                <li>Eukaryotes ()
+                    <ul>
+                        <li>Mammals
+                            <ul>
+                                <li>Human</li>
+                            </ul>
+                        </li>
+                        <li>Reptiles</li>
+                    </ul>
+                </li>
+                <li>Prokaryotes
+                    <ul>
+                        <li>Nasty
+                            <ul>
+                                <li>E. coli</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+    </ul>
+
+</div>
+    </div>
+<div>
+    <i class="switchJS"></i>
+    Javascript: <a id='jsEnable' onclick='jsEnable("on")'>ON</a>|
+                <a style='background-color:#066;color:#fff;text-decoration:none;' id='jsDisable' onclick='jsEnable("off")'>OFF</a>
+
+</div>
+
+
+
+    </body></html>

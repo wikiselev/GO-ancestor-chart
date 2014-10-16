@@ -1,0 +1,244 @@
+<html xmlns:widgets='java:uk.ac.ebi.interpro.jxbp2.Widgets'
+      xmlns:sample='java:uk.ac.ebi.quickgo.web.servlets.annotation.GAnnotationServlet.SampleAnnotation'
+      xmlns:ann='java:uk.ac.ebi.quickgo.web.servlets.annotation.Annotation'
+      xmlns:list='java:uk.ac.ebi.interpro.jxbp2.ListContent'
+      xmlns:tc='java:uk.ac.ebi.interpro.jxbp2.TextContent'
+      xmlns:c='java:uk.ac.ebi.quickgo.web.servlets.annotation.GAnnotationServlet.Column'
+      xmlns:para='java:uk.ac.ebi.quickgo.web.servlets.annotation.GAnnotationServlet.AnnotationParameters'
+      xmlns:ref='java:uk.ac.ebi.quickgo.web.servlets.annotation.Reference'
+      xmlns:ws='java:uk.ac.ebi.quickgo.web.servlets.annotation.WithString'
+      xmlns:term='java:uk.ac.ebi.quickgo.web.data.Term'
+	  xmlns:use='java:uk.ac.ebi.interpro.jxbp2.render.Use'
+>
+
+
+	<head>
+		<title>Annotation sample</title>
+	</head>
+
+	<body>
+		<widgets:define name='group' xmlns:group='java:uk.ac.ebi.quickgo.web.servlets.annotation.GAnnotationServlet.Group'>
+			<group:groups xmlns:key='java:uk.ac.ebi.quickgo.web.servlets.annotation.GAnnotationServlet.Key'>
+				<tr class='divider'>
+					<td class='goID' colspan='{para:columnCount}'>
+						<div style='font-weight:bold;text-align:center;background-color:#ccc'>{key:name}</div>
+					</td>
+				</tr>
+				<widgets:invoke name='group'/>
+			</group:groups>
+
+			<tr class="hidden">
+				<td colspan='{para:columnCount}'>
+					<span class="sample-none">{sample:none}</span>
+					<span class="sample-prior">{sample:prior}</span>
+					<span class="sample-begin">{sample:begin}</span>
+					<span class="sample-end">{sample:end}</span>
+					<span class="sample-more">{sample:more}</span>
+					<span class="sample-previous">{sample:previous}</span>
+					<span class="sample-rowcount">{sample:rowcount}</span>
+					<span class="sample-url">{para:url}</span>
+				</td>
+			</tr>
+
+			<group:annotation>
+				<tr class='data'>
+			        <para:columns>
+						<td class="{c:name}">
+							<div class='info-definition'>
+								<c:proteinDB>{ann:db}
+									<div class='supplementary-info'>
+										<div class="info-topic">{ann:db}</div>
+										<div class="info-content">
+											<div>{ann:dbDescription}</div>
+											<div><a class="lb-dismiss" href='{ann:dbURL}' target='_blank'>{ann:dbURL}</a></div>
+										</div>
+									</div>
+								</c:proteinDB>
+								<c:proteinID>{ann:proteinAc}
+									<div class='supplementary-info'>
+										<div class="info-topic">{ann:proteinAc}</div>
+										<div class="info-content">
+											<div>{ann:name}</div>
+											<div><a class="lb-dismiss" href='{ann:proteinURL}' target='_blank'>{ann:db}:{ann:proteinAc}</a></div>
+											<div><a class="lb-dismiss" href='GProtein?ac={ann:proteinAc}' target='_blank'>View in QuickGO</a></div>
+										</div>
+									</div>
+								</c:proteinID>
+								<c:splice>{ann:splice}</c:splice>
+								<c:proteinSymbol>{ann:symbol}</c:proteinSymbol>
+								<c:qualifier>{ann:qualifier}
+									<div class='supplementary-info'>
+										<div class="info-topic">{ann:qualifier}</div>
+										<div class="info-content">
+											<div>{ann:qualifierDesc}</div>
+											<div><a class="lb-dismiss" href="http://www.geneontology.org/GO.annotation.conventions.shtml#{ann:qualifier}"  target='_blank'>GOC Documentation</a></div>
+										</div>
+									</div>
+								</c:qualifier>
+								<c:goID><ann:term><a name="as-{term:id}">{term:id}</a></ann:term>
+									<div class='supplementary-info'>
+										<div class="info-topic"><ann:term>{term:id}</ann:term></div>
+										<div class="info-content">											
+											<div><ann:term><use:use name="term" file="use/Common.xhtml"/></ann:term></div>
+											<div>
+												<i class='ancestrychart'></i>
+												<div>
+													<form action="GMultiTerm" class="dynamic">
+														<input type="hidden" name="format" value="chart"/>
+														<ann:term><input type="text" name="id" value="{term:id}"/></ann:term>
+														<ann:originalTerm><input type="text" name="id" value="{term:id}"/></ann:originalTerm>
+													</form>
+												</div>
+												<div class="results"/>
+												<br style="clear:both"/>
+											</div>
+										</div>
+									</div>
+								</c:goID>
+								<c:originalTermID><ann:originalTerm>{term:id}</ann:originalTerm>
+									<div class='supplementary-info'>
+										<div class="info-topic"><ann:term>{term:id}</ann:term></div>
+										<div class="info-content">
+										<ann:originalTerm><use:use name="term" file="use/Common.xhtml"/></ann:originalTerm>
+										</div>
+									</div>									
+								</c:originalTermID>
+								<c:ref><ann:ref>{ref:text}</ann:ref>
+									<div class='supplementary-info'>
+										<div class="info-topic"><ann:ref>{ref:text}</ann:ref></div>
+										<div class="info-content">
+											<ann:ref>
+												<div>{ref:dbName}</div>
+												<div>{ref:description}</div>
+												<div><a class="lb-dismiss" href='{ref:idURL}' target='_blank'>{ref:text}</a></div>
+											</ann:ref>
+										</div>
+									</div>
+								</c:ref>
+								<c:evidence>{ann:evidence}
+									<div class='supplementary-info'>
+										<div class="info-topic">Evidence code {ann:evidence}</div>
+										<div class="info-content">
+											<div>{ann:evidenceDescription}</div>
+											<div><a class="lb-dismiss" href="{ann:evidenceDocURL}" target='_blank'>Documentation</a></div>
+										</div>
+									</div>
+								</c:evidence>
+								<c:with>
+									<ann:with>
+										{ws:withString}
+										<div class='supplementary-info'>
+											<div class="info-topic"><ann:with>With / From</ann:with></div>
+											<div class="info-content">
+												<ws:components list:body='any'>
+													<table>
+														<ws:components xmlns:wc='java:uk.ac.ebi.quickgo.web.servlets.annotation.WithString.WithComponent'>
+															<tr>
+																<td><a href='{wc:dbURL}' target='_blank' title='{wc:dbName}'>{wc:db}</a>:<a href='{wc:idURL}' target='_blank' title='{wc:proteinSymbol} {wc:proteinName}'>{wc:id}</a></td>
+																<td>
+																	<span style="margin-left:10px">{wc:description}</span><span style="margin-left:10px;font-style:italic">{wc:proteinShortTaxonomy}</span>
+																</td>
+															</tr>
+														</ws:components>
+													</table>
+												</ws:components>
+											</div>
+										</div>
+									</ann:with>
+								</c:with>
+								<c:aspect><ann:term><term:aspect xmlns:aspect='java:uk.ac.ebi.quickgo.web.data.Term.Ontology'>{aspect:name}</term:aspect></ann:term>
+									<div class='supplementary-info'>
+									</div>
+								</c:aspect>
+								<c:proteinName>{ann:name}
+									<div class='supplementary-info'>
+									</div>
+								</c:proteinName>
+								<c:proteinSynonym>{ann:synonym}
+									<div class='supplementary-info'>
+									</div>
+								</c:proteinSynonym>
+								<c:proteinType>{ann:type}
+									<div class='supplementary-info'>
+									</div>
+								</c:proteinType>
+								<c:proteinTaxon>{ann:taxId}<ann:hasExtraTax>|{ann:extraTaxId}</ann:hasExtraTax>
+									<div class='supplementary-info'>
+										<div class="info-topic">Taxon:{ann:taxId}</div>
+										<div class="info-content">
+											<div>{ann:taxName}</div>
+											<ann:hasExtraTax><div>{ann:extraTaxName}</div></ann:hasExtraTax>
+										</div>
+									</div>
+								</c:proteinTaxon>
+								<c:proteinTaxonName>{ann:taxName}
+									<div class='supplementary-info'>
+									</div>
+								</c:proteinTaxonName>
+								<c:date>{ann:date}
+									<div class='supplementary-info'>
+										<div class="info-topic">Info</div>
+										<div class="info-content">
+											<div>{ann:date}</div>
+											<div>Row: {ann:rowId}</div>
+											<div>VGI: {ann:virtualGroupingId}</div>
+										</div>
+									</div>
+								</c:date>
+								<c:from>{ann:source}
+									<div class='supplementary-info'>
+										<div class="info-topic">{ann:source}</div>
+										<div class="info-content">
+											<div>{ann:sourceDatabase}</div>
+											<div><a class="lb-dismiss" href='{ann:sourceURL}' target='_blank'>{ann:source}</a></div>
+										</div>
+									</div>
+								</c:from>
+								<c:goName><ann:term>{term:name}</ann:term>
+									<div class='supplementary-info'>
+									</div>
+								</c:goName>
+								<c:originalGOName><ann:originalTerm>{term:name}</ann:originalTerm>
+									<div class='supplementary-info'>
+									</div>
+								</c:originalGOName>
+								<c:rowId>{ann:rowId}
+									<div class='supplementary-info'>
+									</div>
+								</c:rowId>
+								<c:sequence>{ann:sequenceLength}aa
+									<div class='supplementary-info'>
+										<div class="info-topic">Sequence</div>
+										<div class="info-content">
+											<div>{ann:sequence}</div>
+										</div>
+									</div>
+								</c:sequence>
+							</div>
+						</td>
+					</para:columns>
+				</tr>
+			</group:annotation>
+		</widgets:define>
+
+		<div id='results'>
+			<table class='annotation'>
+				<sample:parseException xmlns:exception='java:uk.ac.ebi.quickgo.web.servlets.annotation.AdvancedRequest.ParseException'>
+					<tr class='data'>
+						<td class='label'>
+							<div style='background-color:#fcc'>Error</div>
+						</td>
+						<td class='label' colspan='{para:columnCount}'>
+							<div style='background-color:#fcc'>{exception:error}</div>
+							<div>{exception:prefix}<span style='background-color:#fcc'>{exception:postfix}</span></div>
+						</td>
+					</tr>
+				</sample:parseException>
+
+				<sample:root>
+					<widgets:invoke name='group'/>
+				</sample:root>
+			</table>
+		</div>
+	</body>
+</html>

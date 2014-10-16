@@ -1,0 +1,743 @@
+<html xmlns:use='java:uk.ac.ebi.interpro.jxbp2.render.Use'
+      xmlns:c='java:uk.ac.ebi.quickgo.web.servlets.annotation.GAnnotationServlet.Column'
+      xmlns:para='java:uk.ac.ebi.quickgo.web.servlets.annotation.GAnnotationServlet.AnnotationParameters'
+      xmlns:data='java:uk.ac.ebi.quickgo.web.configuration.DataFiles'
+      xmlns:list='java:uk.ac.ebi.interpro.jxbp2.ListContent'
+>
+
+<head>
+	<title />
+</head>
+
+<body>
+	<use:define name='chart'
+		xmlns:cat='java:uk.ac.ebi.quickgo.web.servlets.annotation.Summary.Category'
+		xmlns:b='java:uk.ac.ebi.quickgo.web.servlets.annotation.Summary.Bucket'>
+
+		<table class="quickgo-standard">
+			<tr class="column-header">
+				<td class="column-header">Code</td>
+				<cat:namedBuckets><td>Name</td></cat:namedBuckets>
+				<td class="column-header-right">%</td>
+				<td class="column-header-right">Count</td>
+				<td />
+			</tr>
+			<cat:buckets>
+				<tr>
+					<td class="bucket-code">{b:code}</td>
+					<b:hasName><td>{b:name}</td></b:hasName>
+					<td class="bucket-percent">{b:percentage}</td>
+					<td class="bucket-count">{b:count}</td>
+					<!--<td><div style="height:16px;width:{b:scale}px;background-color:{b:colour}"></div></td>-->
+					<td><div style="height:16px;width:{b:scale}px;background-color:#000"></div></td>
+				</tr>
+			</cat:buckets>
+		</table>
+	</use:define>
+
+	<use:define name='columns'>
+		<tr class='column-heading'>
+			<para:allColumns>
+				<td class="{c:name}">
+					<div class='content'>
+						<c:name><span class="context-help" topic="annotation-column-{c:name}">{c:displayName}</span></c:name>
+					</div>
+				</td>
+			</para:allColumns>
+		</tr>
+	</use:define>
+
+	<use:define name='helpicon'>
+	    <span class='reference'>
+	        <a style='white-space:nowrap' class='popup' href='reference.html?section={use:parameter:section}'>
+	            <i class='popup'>
+	                <img src='image/information.png'/>
+	                <use:content/>
+	            </i>
+	        </a>
+	    </span>
+	</use:define>
+
+	<use:define name="filter_params">
+		<div class="text-block">
+			<div class="user-guidance">Currently selected additional filtering parameters:</div>
+			<div class="filter-params"/>
+		</div>
+	</use:define>
+
+	<use:define name='annotation'>
+		<div class="jsonly">
+			<use:use file='use/Toolbars.xhtml' name='pagination_controls'/>
+		</div>
+
+		<div>
+			<form method='POST' action='GAnnotation' class='annotation-table'>
+
+				<div style="clear:both"/>
+                
+				<para:input xmlns:input='java:uk.ac.ebi.quickgo.web.render.Input'>
+<!--
+					<para:aspectSorter><input type='hidden' name='aspectSorter' value=''/></para:aspectSorter>
+-->
+					<div class="jsonly">
+						<table class='annotation'>
+							<thead>
+								<use:use name='columns'/>
+							</thead>
+							<tbody class='stats'/>
+							<tbody class='annotation'/>
+						</table>
+					</div>
+				</para:input>
+
+				<div class="dynamic">
+                    <h3>Export</h3>
+					<div class="export-form">
+						<table class="lightbox-content" >
+							<tbody>
+								<tr>
+									<td><h1>Format:</h1></td>
+									<td colspan="3">
+										<select class="download-format" name="download-format">
+											<option value="gaf">Gene Association File (GAF)</option>
+											<option value="gpa">Gene Product Association Data (GPAD)</option>
+											<option value="gene2go">gene2go</option>
+											<option value="proteinList">proteinList</option>
+											<option value="fasta">fasta</option>
+											<option value="tsv">Tab-separated Values</option>
+										</select>
+										<use:use name='helpicon' section='download_formats' />
+									</td>
+								</tr>
+								<tr>
+									<td><h1>Limit:</h1></td>
+									<td colspan="3">
+										<input type="text" class="download-limit" name="limit" id="option-limit" value="10000" maxlength="9" size="8"/>
+									</td>
+								</tr>
+								<tr>
+									<td><h1>Gzip results:</h1></td>
+									<td colspan="3"><input type="checkbox" class="download-gzip" name="gz" id="option-gz"/></td>
+								</tr>
+								<tr>
+									<td><h1 style="color:red">Note:</h1></td>
+									<td colspan="3">Your current filter returns <span class="annotation-count" style="font-weight:bold">(annotationCount)</span> annotations for <span class="protein-count" style="font-weight:bold">(proteinCount)</span> proteins.</td>
+								</tr>
+								<tr>
+									<td></td>
+									<td colspan="3"><span>You may need to adjust the </span><span style="font-weight:bold">Limit</span><span> value above if it is not sufficient.</span></td>
+								</tr>
+							</tbody>
+							<tbody style="display:none">
+								<tr>
+									<td><input type="text" class="annotation-count" name="annotation-count" id="annotation-count"/></td>
+									<td><input type="text" class="protein-count" name="protein-count" id="protein-count"/></td>
+									<td><input type="text" class="annotation-total" name="annotation-total" id="annotation-total"/></td>
+									<td><input type="text" class="protein-total" name="protein-total" id="protein-total"/></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+
+				<div class="dynamic">
+                    <h3>Display options</h3>
+					<div class="display-options-form">
+						<div name="display-options-form">
+							<div class="lightbox-content">
+								<div>Use this filter to ensure that the annotation table display provides the information you require.</div>
+								<br/>
+								<div>Columns that are currently displayed in the annotation table are indicated in the list below by a checked tick box.</div>
+								<div>You can tailor the annotation table display to your requirements by selecting or deselecting individual columns.</div>
+								<br/>
+								<para:input xmlns:input='java:uk.ac.ebi.quickgo.web.render.Input'>
+									<table>
+										<th colspan="2">Display columns:</th>
+
+										<para:allColumns>
+											<tr>
+												<td><input:check type="checkbox" class="display-column" name="col" value="{c:name}"/></td>
+												<td>{c:displayName}</td>
+											</tr>
+										</para:allColumns>
+									</table>
+
+									<br/>
+									<div>You can use the options below to choose whether to be shown an annotation set or a protein list.</div>
+									<br/>
+									
+									<table>
+										<th colspan="2">Show:</th>
+
+										<tr>
+											<td><input:check type="radio" class="display-mode" name="select" value="normal" checked="true"/></td>
+											<td>Annotations that match the current filter criteria</td>
+										</tr>
+										<tr>
+											<td><input:check type="radio" class="display-mode" name="select" value="proteins"/></td>
+											<td>Proteins with annotations that match the current filter criteria</td>
+										</tr>
+										<tr>
+											<td><input:check type="radio" class="display-mode" name="select" value="extend"/></td>
+											<td>All annotations to proteins with annotations that match the current filter criteria</td>
+										</tr>
+										<tr>
+											<td>
+												<para:aspectSorter><input type='hidden' name='aspectSorter' value=''/></para:aspectSorter>
+											</td>
+										</tr>
+									</table>
+								</para:input>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class ="dynamic">
+                    <h3>ID Mapping</h3>
+					<div class="idmapping-form">
+						<div class="lightbox-content">
+							<para:system>
+								<para:input xmlns:input='java:uk.ac.ebi.quickgo.web.render.Input'>
+									<div>Use this filter to change between different sequence identifier types.</div>
+									<div>QuickGO's default is to show annotations to UniProtKB (Swiss-Prot and TrEMBL) accession numbers.</div>
+									<br/>
+									<table class="info">
+										<thead>
+											<tr class="label">
+												<td>Database Code</td><td>Database Name</td>
+											</tr>
+										</thead>
+										<tbody>
+											<data:proteinIDCodes xmlns:cv='java:uk.ac.ebi.quickgo.web.data.CV'>
+												<cv:vocabulary xmlns:item='java:uk.ac.ebi.quickgo.web.data.CV.Item'>
+													<tr class="movable">
+														<td style="font-weight:bold"><input:check type='checkbox' name='db' value='{item:code}' style="vertical-align:middle"/>{item:code}</td>
+														<td>{item:description}</td>
+													</tr>
+												</cv:vocabulary>
+											</data:proteinIDCodes>
+										</tbody>
+									</table>
+									<br/>
+								</para:input>
+							</para:system>
+						</div>
+						<div class="dialog-help">
+							<div>QuickGO maps between different identifier types by using a combination of mapping files provided by the databases, and using identifier cross-references supplied by UniProtKB.</div>
+							<br/>
+							<div>If more than one identifier type needs to be used to map all required sequences, drag the selected databases to change the order in which identifiers are found.</div>
+						</div>
+					</div>
+				</div>
+
+				<div class ="dynamic">
+                    <h3>Filter</h3>
+					<div class="filter-form">
+						<div class="lightbox-content">
+							<para:system>
+								<para:input xmlns:input='java:uk.ac.ebi.quickgo.web.render.Input'>
+									<div class="filter-column">
+										<div class="tab-definition">
+											<div class="tab-caption">Summary</div>
+											<div class="tab-id">summary</div>
+											<div class="tab-content">
+												<div class="text-block">
+													The tabs in this dialog allow you to filter the set of GO annotations that QuickGO displays.
+													<br/>
+													You can apply multiple filtering parameters to restrict the set of annotations to those that match, for example:
+													<ul>
+														<li>a list of gene/protein identifiers (ID)</li>
+														<li>gene products from specified taxonomic groups (Taxon)</li>
+														<li>annotations that apply certain Qualifier types</li>
+														<li>those that are supported by a particular Reference or Evidence type</li>
+														<li>those that use a particular source of external annotation data</li>
+														<li>annotations that have been supplied by a particular GO annotation group</li>
+													</ul>
+												</div>
+												<hr/>
+												<use:use name='filter_params'/>
+											</div>
+										</div>
+									</div>
+
+									<para:columns>
+										<div class="filter-column">
+											<c:proteinID>
+												<div class="tab-definition">
+													<div class="tab-caption">{c:displayName}</div>
+													<div class="tab-id">{c:name}</div>
+													<div class="tab-content">
+														<use:use name='filter_params'/>
+														<hr/>
+														<div class="text-block">
+															<div class="boxtitle">
+																<div class="user-guidance">Find annotations for a defined set of gene or protein identifiers:</div>
+															</div>
+															<p>
+																To restrict the annotations to a set of gene or protein identifiers, enter a list of IDs in the text box below, separated by commas, spaces or newlines. There is no limit on the number of identifers that can be entered into this box.
+															</p>
+															<p>
+																You can use identifier types other than UniProtKB accessions (for the full range of acceptable ID types, please see the ID Mapping tab on the Annotation Tool Bar).
+																However please note that QuickGO will automatically map the identifiers to UniProtKB accessions, and unless you have additionally selected a specific Identifier Type to be returned in the annotation set, the default behaviour of this tool will be to display the filtered set of annotations with their corresponding UniProtKB accession numbers.
+															</p>
+															<p>
+																<input:text name='protein' id='proteinList' style="width:50%;height:50%" />
+															</p>
+															<p/>
+															<div class="boxtitle">
+																<div class="user-guidance">OR select a list of proteins:</div>
+															</div>
+															<table class='layout'>
+																<data:proteinIDSets xmlns:cve='java:uk.ac.ebi.quickgo.web.data.CVExt'>
+																	<cve:vocabulary xmlns:item='java:uk.ac.ebi.quickgo.web.data.CVExt.Item'>
+																		<tr>
+																			<td><input:check type='checkbox' name='proteinset' value='{item:code}'/></td>
+																			<td style="font-weight:bold"><a href="GProteinSet?id={item:code}" target="_blank" title="Click to display contents of the {item:code} protein set">{item:code}</a></td>
+																			<td>{item:description}</td>
+																			<td><a href="{item:extra}" target="_blank">{item:extra}</a></td>
+																		</tr>
+																	</cve:vocabulary>
+																</data:proteinIDSets>
+															</table>
+														</div>
+													</div>
+												</div>
+											</c:proteinID>
+											<c:qualifier>
+												<div class="tab-definition">
+													<div class="tab-caption">{c:displayName}</div>
+													<div class="tab-id">{c:name}</div>
+													<div class="tab-content">
+														<use:use name='filter_params'/>
+														<hr/>
+														<div class="text-block">
+															<p>
+																The Qualifier column in a GO annotation is used for flags that modify the interpretation of an annotation. Allowable values are NOT, contributes_to, and colocalizes_with.
+															</p>
+															<p>
+																Further details on the usage of the qualifier column can be found <a href="http://www.geneontology.org/GO.annotation.conventions.shtml#qual">here</a>.
+															</p>
+															<p>
+																<table class='layout'>
+																	<data:qualifiers xmlns:cv='java:uk.ac.ebi.quickgo.web.data.CV'>
+																		<cv:vocabulary xmlns:item='java:uk.ac.ebi.quickgo.web.data.CV.Item'>
+																			<tr>
+																				<td><input:check type='checkbox' name='qualifier' value='{item:code}' /></td>
+																				<td style="font-weight:bold">{item:code}</td>
+																				<td>{item:description}</td>
+																			</tr>
+																		</cv:vocabulary>
+																	</data:qualifiers>
+																</table>
+																<textarea name='qualifier' />
+															</p>
+														</div>
+													</div>
+												</div>
+											</c:qualifier>
+											<c:goID>
+												<div class="tab-definition">
+													<div class="tab-caption">{c:displayName}</div>
+													<div class="tab-id">{c:name}</div>
+													<div class="tab-content">
+														<use:use name='filter_params'/>
+														<hr/>
+														<div class="text-block">
+															<input type='hidden' name='a' class="selected-terms" value='' />
+
+															<div class="boxtitle">
+																<div class="user-guidance">Select the terms that you wish to use</div>
+															</div>
+															<div class="choose-terms">
+																<para:terms list:body='any'>
+																	<p>
+																		Terms supplied in request:
+																		<table class='layout'>
+																			<para:terms xmlns:g='java:uk.ac.ebi.quickgo.web.data.Term'>
+																				<tr>
+																					<td><input type='checkbox' name='goid' checked='checked' value='{g:id}' /></td>
+																					<td>{g:id}</td>
+																					<td>{g:name}</td>
+																				</tr>
+																			</para:terms>
+																		</table>
+																	</p>
+																</para:terms>
+
+																<p>
+																	<div><i class="selectionFilter"/></div>
+																</p>
+
+																<p>
+																	<div>Predefined GO term sets:</div>
+																	<div>
+																		<select name="a">
+																			<option value="">None</option>
+																			<para:sets xmlns:set='java:uk.ac.ebi.quickgo.web.data.Terms'>
+																				<option value="{set:getCompressed}">{set:name} ({set:count})</option>
+																			</para:sets>
+																		</select>
+																	</div>
+																</p>
+
+																<p>
+																	<div>Enter a list of GO identifiers (GO:nnnnnnn), separated by space, comma or newline characters:</div>
+																	<div style="position:relative;margin:0 10px"><textarea style="width:100%" name='goid' id='termList' /></div>
+																</p>
+															</div>
+
+															<p/>
+															<div>
+																<div class="boxtitle">
+																	<div class="user-guidance">Select how you want to use the terms that you have chosen</div>
+																</div>
+																<div>
+																	<div><input:check type="radio" name="termUse" class="termUseSlim" id="termUseSlim" value='slim' />Use these terms as a GO slim</div>
+																	<div><input:check type="radio" name="termUse" value='ancestor' />Find annotations to descendants of these terms (annotations will display the original GO terms applied)</div>
+																	<div style="margin-left:20px">
+																		<table class='layout'>
+																			<thead>Select which relationship an annotated term should have to the terms above:</thead>
+																			<tbody>
+																				<tr><td><input:check type="radio" name="relType" value="IPO=" checked="true"/>Default behaviour (is_a, part_of and occurs_in relationships only)</td></tr>
+																				<tr><td><input:check type="radio" name="relType" value="=" />exact match</td></tr>
+																				<tr><td><input:check type="radio" name="relType" value="I=" />is_a only</td></tr>
+																				<tr><td><input:check type="radio" name="relType" value="IPOR+-=" />is_a, part_of, occurs_in, regulates, positively_regulates and negatively_regulates</td></tr>
+																				<tr><td><input:check type="radio" name="relType" value="IPOR+-?=" />Use all relationships <use:use name='helpicon' section='slim_all' /></td></tr>
+																				<tr><td><input:check type="radio" name="relType" value="Custom" />Custom <input type="text" name="customRelType" value="IPOR+-?="/><use:use name='helpicon' section='slim_custom' /></td></tr>
+																			</tbody>
+																		</table>
+																	</div>
+																</div>
+																<br/>
+															</div>
+															<div>
+
+															</div>
+														</div>
+													</div>
+												</div>
+											</c:goID>
+											<c:aspect>
+												<div class='tab-definition'>
+													<div class="tab-caption">{c:displayName}</div>
+													<div class="tab-id">{c:name}</div>
+													<div class="tab-content">
+														<use:use name='filter_params'/>
+														<hr/>
+														<div class="text-block">
+															<div class="user-guidance">You can use the check boxes below to limit the scope of the returned annotation set to terms from one or more specific ontologies:</div>
+															<table class='layout'>
+																<tr>
+																	<td><input:check type='checkbox' name='aspect' value='F' /></td>
+																	<td>Molecular Function</td>
+																</tr>
+																<tr>
+																	<td><input:check type='checkbox' name='aspect' value='P' /></td>
+																	<td>Biological Process</td>
+																</tr>
+																<tr>
+																	<td><input:check type='checkbox' name='aspect' value='C' /></td>
+																	<td>Cellular Component</td>
+																</tr>
+															</table>
+														</div>
+													</div>
+												</div>
+											</c:aspect>
+											<c:ref>
+												<div class="tab-definition">
+													<div class="tab-caption">{c:displayName}</div>
+													<div class="tab-id">{c:name}</div>
+													<div class="tab-content">
+														<use:use name='filter_params'/>
+														<hr/>
+														<div class="text-block">
+															<p>
+																<div>If you want to find annotations that cite one or more specific references, you can enter them in this text box (with or without a database prefix):</div>
+																<div><input:text name='ref' /></div>
+															</p>
+															<p>
+																<div>
+																	Alternatively (or in addition), you can find annotations that cite a particular type of reference by selecting the appropriate check box(es) below:
+																</div>
+															</p>
+															<table class='layout'>
+																<data:referenceCodes xmlns:cv='java:uk.ac.ebi.quickgo.web.data.CV'>
+																	<cv:vocabulary xmlns:item='java:uk.ac.ebi.quickgo.web.data.CV.Item'>
+																		<tr>
+																			<td><input type='checkbox' name='ref' value='{item:code}:'/></td>
+																			<td style="font-weight:bold">{item:code}:*</td>
+																			<td>{item:description}</td>
+																		</tr>
+																	</cv:vocabulary>
+																</data:referenceCodes>
+																<data:goRefs xmlns:cv='java:uk.ac.ebi.quickgo.web.data.CV'>
+																	<cv:vocabulary xmlns:item='java:uk.ac.ebi.quickgo.web.data.CV.Item'>
+																		<tr>
+																			<td><input type='checkbox' name='ref' value='GO_REF:{item:code}'/></td>
+																			<td style="font-weight:bold">GO_REF:{item:code}</td>
+																			<td>{item:description}</td>
+																		</tr>
+																	</cv:vocabulary>
+																</data:goRefs>
+															</table>
+														</div>
+													</div>
+												</div>
+											</c:ref>
+											<c:with>
+												<div class="tab-definition">
+													<div class="tab-caption">{c:displayName}</div>
+													<div class="tab-id">{c:name}</div>
+													<div class="tab-content">
+														<use:use name='filter_params'/>
+														<hr/>
+														<div class="text-block">
+															<table class='layout'>
+																<data:withCodes xmlns:cv='java:uk.ac.ebi.quickgo.web.data.CV'>
+																	<cv:vocabulary xmlns:item='java:uk.ac.ebi.quickgo.web.data.CV.Item'>
+																		<tr>
+																			<td><input type='checkbox' name='with' value='{item:code}:'/></td>
+																			<td style="font-weight:bold">{item:code}:*</td>
+																			<td>{item:description}</td>
+																		</tr>
+																	</cv:vocabulary>
+																</data:withCodes>
+															</table>
+															<p>
+																<div>Annotated with (with or without a database prefix):</div>
+																<input:text name='with' />
+															</p>
+														</div>
+													</div>
+												</div>
+											</c:with>
+											<c:evidence>
+												<div class="tab-definition">
+													<div class="tab-caption">{c:displayName}</div>
+													<div class="tab-id">{c:name}</div>
+													<div class="tab-content">
+														<use:use name='filter_params'/>
+														<hr/>
+														<div class="text-block">
+															<p>
+																A full description of evidence codes and their usage can be found <a href="http://www.geneontology.org/GO.evidence.shtml" target="_blank">here</a>.
+															</p>
+															<p>
+																<table class='layout'>
+																	<tr>
+																		<td><input type='checkbox' name='evidence' value='IMP,IGI,IPI,IDA,IEP,EXP'/></td>
+																		<td style="font-weight:bold">IMP,IGI,IPI,IDA,IEP,EXP</td>
+																		<td>Manual Experimental</td>
+																	</tr>
+																	<tr>
+																		<td><input type='checkbox' name='evidence' value='IMP,IGI,IPI,IDA,IEP,EXP,ISS,NAS,TAS,ND,IC,RCA,IBA,IBD,IKR,IRD,ISA,ISM,ISO,IGC'/></td>
+																		<td style="font-weight:bold">IMP,IGI,IPI,IDA,IEP,EXP,ISS,TAS,NAS,ND,IC,RCA,IBA,IBD,IKR,IRD,ISA,ISM,ISO,IGC</td>
+																		<td>Manual All</td>
+																	</tr>
+																	<data:evidences xmlns:cv='java:uk.ac.ebi.quickgo.web.data.CV'>
+																		<cv:vocabulary xmlns:item='java:uk.ac.ebi.quickgo.web.data.CV.Item'>
+																			<tr>
+																				<td><input:check type='checkbox' name='evidence' value='{item:code}'/></td>
+																				<td style="font-weight:bold">{item:code}</td>
+																				<td>{item:description}</td>
+																			</tr>
+																		</cv:vocabulary>
+																	</data:evidences>
+																</table>
+															</p>
+															<p>
+																<textarea name='evidence' />
+															</p>
+														</div>
+													</div>
+												</div>
+											</c:evidence>
+											<c:proteinTaxon>
+												<div class="tab-definition">
+													<div class="tab-caption">{c:displayName}</div>
+													<div class="tab-id">{c:name}</div>
+													<div class="tab-content">
+														<use:use name='filter_params'/>
+														<hr/>
+														<div class="text-block">
+															<div class="user-guidance">To filter by species/taxonomic group, list taxon identifiers in the text box or select one or more of the pre-defined taxonomic groups below.</div>
+															<input:text name='tax' />
+															<table class='layout'>
+																<tr>
+																	<td><input type="checkbox" name="tax" value="9606"/></td>
+																	<td>9606</td>
+																	<td>Human</td>
+																</tr>
+																<tr>
+																	<td><input type="checkbox" name="tax" value="10090"/></td>
+																	<td>10090</td>
+																	<td>Mouse</td>
+																</tr>
+																<tr>
+																	<td><input type="checkbox" name="tax" value="40674"/></td>
+																	<td>40674</td>
+																	<td>Mammalia</td>
+																</tr>
+																<tr>
+																	<td><input type="checkbox" name="tax" value="3398"/></td>
+																	<td>3398</td>
+																	<td>Magnoliophyta (flowering plants)</td>
+																</tr>
+																<tr>
+																	<td><input type="checkbox" name="tax" value="2759"/></td>
+																	<td>2759</td>
+																	<td>Eukaryota</td>
+																</tr>
+																<tr>
+																	<td><input type="checkbox" name="tax" value="1117"/></td>
+																	<td>1117</td>
+																	<td>Cyanobacteria</td>
+																</tr>
+															</table>
+															<p>
+																<div>Visit <a href='http://www.uniprot.org/taxonomy'>UniProt Taxonomy</a> to find identifiers for other taxonomic groups</div>
+															</p>
+														</div>
+													</div>
+												</div>
+											</c:proteinTaxon>
+											<c:from>
+												<div class="tab-definition">
+													<div class="tab-caption">{c:displayName}</div>
+													<div class="tab-id">{c:name}</div>
+													<div class="tab-content">
+														<use:use name='filter_params'/>
+														<hr/>
+														<div class="text-block">
+															<div class="user-guidance">Select annotation from:</div>
+															<table class='layout'>
+																<data:sources xmlns:cv='java:uk.ac.ebi.quickgo.web.data.CV'>
+																	<cv:vocabulary xmlns:item='java:uk.ac.ebi.quickgo.web.data.CV.Item'>
+																		<tr>
+																			<td><input:check type='checkbox' name='source' value='{item:code}'/></td>
+																			<td style="font-weight:bold">{item:code}</td>
+																			<td>{item:description}</td>
+																		</tr>
+																	</cv:vocabulary>
+																</data:sources>
+															</table>
+															<p>
+																<textarea name='source' />
+															</p>
+														</div>
+													</div>
+												</div>
+											</c:from>
+										</div>
+									</para:columns>
+
+									<div class="filter-column">
+										<div class="tab-definition">
+											<div class="tab-caption">Advanced</div>
+											<div class="tab-id">advanced</div>
+											<div class="tab-content">
+												<use:use name='filter_params'/>
+												<hr/>
+												<div class="text-block">
+													<div class="user-guidance">Enter query parameters in the text box below. The format of advanced annotation queries is described <a target="_blank" href="reference.html#advanced_annotation">here</a>.</div>
+													<div>
+														<textarea name='q' style='width:99%' rows='5'>{para:advanced}</textarea>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</para:input>
+							</para:system>
+						</div>
+					</div>
+				</div>
+				
+				<!-- Form for downloading statistics -->
+
+				<div class="dynamic">
+					<h3>Select</h3>
+					<div id="stats-options-form" class="stats-options-form">
+						<table class='lightbox-content'>
+							<tbody>
+							<tr>
+								<td colspan="2">Categories</td>
+							</tr>
+							<tr id="protein-row" style='display:table-row'>
+								<td><input type="checkbox" id="protein-option"
+									name="protein-option" value="download_protein" checked="checked"/></td>
+								<td>Protein</td>
+							</tr>
+							<tr>
+								<td><input type="checkbox" id="goid-option"
+									name="goid-option" value="download_goid" checked="checked" /></td>
+								<td>GO ID</td>
+							</tr>
+							<tr>
+								<td><input type="checkbox" id="aspect-option"
+									name="aspect-option" value="download_aspect" checked="checked" /></td>
+								<td>Aspect</td>
+							</tr>
+							<tr>
+								<td><input type="checkbox" id="evidence-option"
+									name="evidence-option" value="download_evidence"
+									checked="checked" /></td>
+								<td>Evidence</td>
+							</tr>
+							<tr>
+								<td><input type="checkbox" id="reference-option"
+									name="reference-option" value="download_reference"
+									checked="checked" /></td>
+								<td>Reference</td>
+							</tr>
+							<tr>
+								<td><input type="checkbox" id="taxon-option"
+									name="taxon-option" value="download_taxon" checked="checked" /></td>
+								<td>Taxon</td>
+							</tr>
+							<tr>
+								<td><input type="checkbox" id="assigned-option"
+									name="assigned-option" value="download_assigned"
+									checked="checked" /></td>
+								<td>Assigned by</td>
+							</tr>
+							</tbody>
+						</table>
+						<table>
+						<tbody>
+							<tr>
+								<td colspan="2">Grouped by</td>
+							</tr>
+							<tr>
+								<td><input type="radio" id="annotation-radio"
+									class="display-mode" name="stats-select"
+									value="download_byannotation" /></td>
+								<td>Annotation count</td>
+							</tr>
+							<tr>
+								<td><input type="radio" id="protein-radio"
+									class="display-mode" name="stats-select"
+									value="download_byprotein" /></td>
+								<td>Protein count</td>
+							</tr>
+							<tr>
+								<td><input type="radio" id="both-radio"
+									class="display-mode" name="stats-select"
+									value="download_byboth" checked="checked" /></td>
+								<td>Both</td>
+							</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+				
+			</form>
+		</div>
+
+		<div style='visibility:hidden' id="dump" />
+	</use:define>
+</body>
+
+</html>

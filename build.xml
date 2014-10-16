@@ -1,0 +1,186 @@
+<project name='QuickGO5.1' basedir='.' default='jar'>
+	<property name="cvstag" value='quickgo' />
+
+	<target name="init">
+		<tstamp />
+		<property name="stamp" value="${DSTAMP}-${TSTAMP}" />
+		<mkdir dir='build' />
+	</target>
+
+	<target name="get-dependencies" description='Checkout all dependencies from CVS for production'>
+		<property name="cvsroot-goa" value=':pserver:${user.name}@cvsebi.ebi.ac.uk:/ebi/cvs/goa' />
+
+		<mkdir dir="dependency" />
+
+		<cvs dest="dependency" command='co -r ${cvstag} -d common' cvsroot='${cvsroot-goa}' package='web/shared/common' />
+		<cvs dest="dependency" command='co -r ${cvstag} -d jxbp2' cvsroot='${cvsroot-goa}' package='web/shared/jxbp2' />
+		<cvs dest="dependency" command='co -r ${cvstag} -d webutil' cvsroot='${cvsroot-goa}' package='web/shared/webutil' />
+		<cvs dest="dependency" command='co -r ${cvstag} -d exchange' cvsroot='${cvsroot-goa}' package='web/shared/exchange' />
+
+		<cvs dest="site/page/js" command='co -r ${cvstag} -d jslib' cvsroot='${cvsroot-goa}' package='web/jslib-1.0' />
+	</target>
+
+	<target name="tag" description='Tag'>
+		<echo message='CVS Tag - ${cvstag}' />
+
+		<cvs dest='dependency/common' command='tag -F -c ${cvstag}' failonerror="true" />
+		<cvs dest="dependency/exchange" command='tag -F -c ${cvstag}' failonerror="true" />
+		<cvs dest='dependency/jxbp2' command='tag -F -c ${cvstag}' failonerror="true" />
+		<cvs dest='dependency/webutil' command='tag -F -c ${cvstag}' failonerror="true" />
+
+		<cvs dest='site/page/js/jslib' command='tag -F -c ${cvstag}' failonerror="true" />
+
+		<cvs command='tag -F -c ${cvstag}' failonerror="true" />
+	</target>
+
+	<target name="clean" description='Remove built classes'>
+		<delete dir="build" />
+	</target>
+
+	<path id="sources">
+		<pathelement location="src" />
+		<pathelement location="dependency/common" />
+		<pathelement location="dependency/webutil" />
+		<pathelement location="dependency/jxbp2" />
+		<pathelement location="dependency/exchange" />
+	</path>
+
+	<path id="classpath">
+		<fileset dir="lib">
+			<include name="*.jar" />
+			<include name="*/*.jar" />
+		</fileset>
+	</path>
+
+	<target name='compile' depends="init">
+		<mkdir dir="build/classes" />
+		<echo file="build/classes/version.txt" message="${stamp}" />
+		<javac destdir="build/classes" classpathref="classpath" debug="true" debuglevel="lines,source">
+			<src refid="sources" />
+		</javac>
+		<copy todir="build/src" filtering="on">
+			<fileset dir="src" />
+			<fileset dir="dependency/common" />
+			<fileset dir="dependency/webutil" />
+			<fileset dir="dependency/jxbp2" />
+			<fileset dir="dependency/exchange" />
+		</copy>
+	</target>
+
+	<target name='javadoc'>
+		<mkdir dir="build/javadoc" />
+		<javadoc packagenames="uk.ac.ebi.*" destdir="build/javadoc" sourcepathref="sources" classpathref="classpath" linksource="true">
+		</javadoc>
+	</target>
+
+	<pathconvert property="class-path" dirsep="/" pathsep=" " refid="classpath">
+		<map from="${basedir}${file.separator}" to="" />
+	</pathconvert>
+
+	<target name="jar" depends='init,compile' description='Make jar file'>
+		<jar jarfile="build/${ant.project.name}.jar">
+			<zipfileset dir="build/classes" />
+			<manifest>
+				<attribute name="Main-Class" value="uk.ac.ebi.quickgo.web.QuickGO" />
+				<attribute name="Class-Path" value="${class-path}" />
+			</manifest>
+		</jar>
+		<copy tofile="${ant.project.name}-${stamp}.jar" file="build/${ant.project.name}.jar" />
+		<copy tofile="${ant.project.name}.jar" file="build/${ant.project.name}.jar" />
+	</target>
+
+	<target name="war" depends='init,compile' description='Make deployable war file'>
+		<jar jarfile="build/${ant.project.name}.war">
+			<fileset dir="web" />
+			<zipfileset dir="lib" prefix="WEB-INF/lib">
+				<exclude name="servlet-api.jar" />
+			</zipfileset>
+			<zipfileset dir="build/classes" prefix="WEB-INF/classes">
+			</zipfileset>
+		</jar>
+		<copy tofile="${ant.project.name}-${stamp}.war" file="build/${ant.project.name}.war" />
+		<copy tofile="${ant.project.name}.war" file="build/${ant.project.name}.war" />
+	</target>
+
+	<!--<target name="zip" depends="war,jar,javadoc" description='Make a zip file for distribution' >-->
+	<target name="zip" depends="war,jar" description='Make a zip file for distribution'>
+		<zip zipfile="${ant.project.name}.zip">
+			<zipfileset dir="src" excludes="**/CVS" prefix="src" />
+			<zipfileset dir="dependency" excludes="**/CVS" prefix="dependency" />
+			<zipfileset dir="site" excludes="**/CVS" prefix="site" />
+			<!--<zipfileset dir="site-newlook" excludes="**/CVS" prefix="site-newlook"/>-->
+			<!--<zipfileset dir="build/javadoc" excludes="**/CVS" prefix="site/javadoc"/>-->
+			<zipfileset dir="build/src" excludes="**/CVS" prefix="site/page/src" />
+			<zipfileset dir="lib" excludes="**/CVS" prefix="lib" />
+			<zipfileset dir="." includes='QuickGO5.1.jar,QuickGO5.1.war,*.xml,*.sh,*.bat'>
+				<exclude name='*EBI*' />
+			</zipfileset>
+		</zip>
+	</target>
+
+	<!-- Tests -->
+
+	<property name="tests.classes.dir" location="./testsclasses" />
+
+	<target name="__tests_init">
+		<mkdir dir="${tests.classes.dir}" />
+	</target>
+
+	<property name="quickgo.src.tests" location="./tests" />
+	<property name="quickgo.javac.debug" value="true" />
+	<property name="quickgo.javac.nowarn" value="true" />
+
+	<!--Needs to be included for the test code now in this ant script-->
+	<path id="classpath.test">
+		<path refid="classpath" />
+		<pathelement location="build/classes" />
+	</path>
+
+
+	<target name="__tests_compile_only">
+		<echo level="info">
+            target = __tests_compile_only
+            ant.file = ${ant.file}
+            ant.project.name = ${ant.project.name}
+            basedir = ${basedir}
+            &lt;javac
+            classpathref = "classpath"
+            debug = "${datamining.javac.debug}"
+            srcdir = "${datamining.src.tests}"
+            destdir = "${tests.classes.dir}"
+            nowarn = "${datamining.javac.nowarn}"/&gt;
+        </echo>
+		<javac classpathref="classpath.test" debug="${datamining.javac.debug}" srcdir="${quickgo.src.tests}" destdir="${tests.classes.dir}" nowarn="${quickgo.javac.nowarn}" />
+	</target>
+
+	<property name="quickgo.report.tests" value="reports" />
+
+
+	<target name="__tests_run_and_reports">
+
+		<mkdir dir="${quickgo.report.tests}" />
+
+		<junit printsummary="yes" haltonfailure="no">
+			<classpath>
+				<path refid="classpath" />
+				<pathelement location="build/classes" />
+				<pathelement location="${tests.classes.dir}" />
+			</classpath>
+
+			<formatter type="plain" />
+			<formatter type="xml" />
+
+			<batchtest fork="yes" todir="${quickgo.report.tests}">
+				<fileset dir="${quickgo.src.tests}">
+					<include name="**/*Test*.java" />
+				</fileset>
+			</batchtest>
+
+		</junit>
+
+	</target>
+
+	<target name="test" depends="__tests_init, get-dependencies, compile,__tests_compile_only, __tests_run_and_reports" />
+
+
+</project>

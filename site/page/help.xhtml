@@ -1,0 +1,128 @@
+<html xmlns:widgets='java:uk.ac.ebi.interpro.jxbp2.Widgets'>
+
+  <head>
+    <title>QuickGO Help</title>
+  </head>
+  <body>
+  <h2>Introduction</h2>
+  <p>
+      QuickGO is a fast web-based browser of the <a href="http://www.geneontology.org">Gene Ontology</a> and Gene Ontology
+      annotation data. It is maintained and developed by the UniProt-GOA project based at the EBI.</p>
+
+  <p>
+      Inline help is available by clicking the link wherever the <img src='image/information.png'/> is found and
+      consists of sections from the <a href='reference.html'>Reference Manual</a>. </p>
+  
+  <p>If you have a specific query, check our FAQ page. If you cannot find the help you need in any of these pages, please
+      contact us via our <a href="http://www.ebi.ac.uk/GOA/contactus">webform</a></p>
+
+
+       <h2>Home Page</h2>
+                <p>On the home page of QuickGO you will find five search options;
+                </p>
+
+        <section title="Search">
+                <p><b>General Searching</b><br />
+                    In the general search box located at the top of the QuickGO home page you can enter any
+                    keyword, GO:ID or UniProtKB protein accession, a pop-up box will appear containing five tabbed categories and a count in brackets
+                    signifying how many instances of each category were found. The categories are labelled as follows;<br />
+                    <ul>
+                    <li><b>Protein:</b> gives a list of protein identifiers and names matching the search input </li>
+                    <li><b>GO:</b> gives a list of all GO terms matching the search input</li>
+                    <li><b>Function:</b> gives a list of GO Molecular Function terms matching the search input</li>
+                    <li><b>Process:</b> gives a list of GO Biological Process terms matching the search input</li>
+                    <li><b>Component:</b> gives a list of GO Cellular Component terms matching the search input</li>
+
+                    </ul>
+
+                    Note that QuickGO will attempt to match your search input to one of the above categories by showing one category by default,
+                    to access the other categories click on the tab header. To view any of the search results click on the highlighted link.
+
+                </p>
+            </section>
+
+       <section title="Search for a GO term">
+                <p><b>"Search for a GO term"</b><br />
+                Enter a keyword (e.g. dimerization) or a GO:ID (e.g. GO:0003870) into the search box and
+                click the arrow to start the search. If a GO:ID was searched, the GO term page for that GO:ID will be displayed.
+                    If a keyword was entered a results page will appear containing four tabbed categories and a count in brackets
+                    signifying how many instances of each category were found. The categories are labelled as follows;<br />
+                    <ul>
+                        <li><b>GO:</b> gives a list of all GO terms matching the search input</li>
+                    <li><b>Function:</b> gives a list of GO Molecular Function terms matching the search input</li>
+                    <li><b>Process:</b> gives a list of GO Biological Process terms matching the search input</li>
+                    <li><b>Component:</b> gives a list of GO Cellular Component terms matching the search input</li>
+                         </ul>
+                The results show the GO:ID, term name and any synonym or definition associated with that term.
+                Clicking on the GO:ID link will take you to the GO term page.
+                Clicking on a "synonym" or "definition" link will open a pop-up window showing the synonym or definition for that term, respectively.
+                </p>
+            </section>
+
+    <section title="Search for a Protein">
+            <p><b>"Search for a Protein"</b><br />
+                Enter a keyword (e.g. haemagglutinin) or a UniProtKB protein accession (e.g. A0A000) into the search
+                box and click the arrow to start the search. If a UniProtKB protein accession was searched, a page of GO annotations associated with that protein will be displayed.
+                If a keyword was searched, a list of UniProtKB protein accessions will be displayed together with the name and description of the protein.
+                To display a particular protein from this list, click on the UniProtKB accession.</p>
+   </section>
+
+    <section title="Compare GO terms">
+            <p><b>"Compare GO terms"</b><br />
+                Enter two or more GO:IDs separated by commas (e.g. GO:0000122,GO:0000001) into the search
+                box and click the arrow to start the search. This results in a Term Comparison page containing the relevant part
+            of the ontology with the input terms highlighted. From this page you can remove or add GO terms to your selection. You can use your selection
+                of terms as a GO slim by checking the box in the "Find annotation" section. This will find annotation to any child of any of the selected
+                GO Terms. In addition to creating your own GO slim, there are several predefined GO term sets shown as links at the bottom of the Term Comparison page.</p>
+   </section>
+
+        <section title="Find, view and download GO annotation">
+            <p><b>"Find, view and download GO annotation"</b><br />
+                Clicking on the link will take you to a page containing all GO annotations in UniProtKB.  Almost everything in the table can be clicked either for further explanation of its contents or for links to other data.
+                    To filter the data click in the blue boxes in the "Filter" row to enter your criteria. To view statistics for each column, click on
+                    the blue boxes in the "Statistics" row. Advanced querying can be done in the "Advanced" box, click inside the white box for further explanation. See also the Annotation Download documentation.</p>
+   </section>
+
+                <section title="Viewing your results">
+       <h2>Viewing your results</h2>
+
+        <section title="GO term page">
+                <p><b>GO term page</b><br />
+                   From this page you can access all the information about the term and details of all proteins annotated to it.
+                   The GO term page has six tabbed sections as follows;<br />
+                    <ul>
+                    <li><b>Term Information:</b> including GO:ID, term name, definition, synonyms and cross-references to other databases.</li>
+                    <li><b>Ancestor Chart:</b> view the ancestors of the displayed term in a graphical format, the components of the chart are clickable to view information on
+                    the ancestral terms.</li>
+                    <li><b>Ancestor Table:</b> view the ancestors of the displayed term in a tabular format, clicking on a GO:ID in the table will
+                    take you to the GO term page for that term.</li>
+                    <li><b>Child Terms:</b> view all the children of the displayed term, clicking on a GO:ID of a child term will take you to the
+                    GO term page for that term.</li>
+                    <li><b>Protein Annotation:</b> shows a table of annotations made to proteins using the displayed term or any of it's children. Almost everything in this
+                    table can be clicked either for further explanation of its contents or for links to other data. To filter the data click in the blue boxes in the "Filter" row to enter your criteria. To view statistics for each column, click on
+                    the blue boxes in the "Statistics" row. Advanced querying can be done in the "Advanced" box, click inside the white box for further explanation.</li>
+                    <li><b>Statistics:</b> the co-occurence table shows GO terms annotated to the same proteins as the displayed term. You can click
+                    on the links for explanations of the columns or for links to other data. </li>
+
+                    </ul> </p>
+             </section>
+
+                     <section title="Protein annotation page">
+                <p><b>Protein annotation page</b><br />
+                   This page shows all the annotation made to the displayed protein, separated into Process, Function and Component sections.<br />
+                    Almost everything in the table can be clicked either for further explanation of its contents or for links to other data.
+                    To filter the data click in the blue boxes in the "Filter" row to enter your criteria. To view statistics for each column, click on
+                    the blue boxes in the "Statistics" row. Advanced querying can be done in the "Advanced" box, click inside the white box for further explanation.
+
+
+                </p>
+            </section>
+
+   </section>
+
+
+  <ul>
+      <a href='reference.html'></a>
+  </ul>
+  </body>
+</html>

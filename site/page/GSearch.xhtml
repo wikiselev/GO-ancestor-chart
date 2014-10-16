@@ -1,0 +1,321 @@
+<html
+        xmlns:rq='java:uk.ac.ebi.quickgo.web.Request'
+        xmlns:data='java:uk.ac.ebi.quickgo.web.configuration.DataFiles'
+        xmlns:sp='java:uk.ac.ebi.quickgo.web.servlets.GSearchServlet.SearchPage'
+        xmlns:sq='java:uk.ac.ebi.quickgo.web.servlets.GSearchServlet.Query'
+        xmlns:h='java:uk.ac.ebi.quickgo.web.servlets.GSearchServlet.SearchHit'
+        xmlns:t='java:uk.ac.ebi.quickgo.web.servlets.GSearchServlet.Text'
+		xmlns:use='java:uk.ac.ebi.interpro.jxbp2.render.Use'
+        xmlns:r='java:uk.ac.ebi.quickgo.web.servlets.GSearchServlet.Reason'
+        xmlns:tab='java:uk.ac.ebi.quickgo.web.servlets.GSearchServlet.SearchTab'
+        xmlns:text='java:uk.ac.ebi.interpro.jxbp2.TextContent'
+        xmlns:list='java:uk.ac.ebi.interpro.jxbp2.ListContent'
+		xmlns:st='java:uk.ac.ebi.quickgo.web.servlets.GSearchServlet.SearchTerm'
+		xmlns:tl='java:uk.ac.ebi.quickgo.web.servlets.GSearchServlet.TextList'
+		xmlns:term='java:uk.ac.ebi.quickgo.web.data.Term'
+		>
+
+	<head>
+		<title>Search: {sq:text}</title>
+	</head>
+
+	<body class='wide'>
+		<use:use file='use/Toolbars.xhtml' name='global_toolbar'/>
+		<div style="clear:both"/>
+		<div id='results'>
+			<use:define name='hilite'>
+				<tl:components>
+					<t:hilite><span style='background-color:{t:colour}'>{t:text}</span></t:hilite>
+					<t:plain>{t:text}</t:plain>
+				</tl:components>
+			</use:define>
+
+			<use:define name='reasons'>
+				<h:reasons>
+					<i class="info-popup">
+						<img src='image/information.png'/>
+						<span>{r:reason}</span>
+						<div class="info">
+							<h:term>
+								<div class="info-topic">{st:id} - {r:reason}</div>
+							</h:term>
+							<div class="info-content">
+								<table>
+									<r:explanation>
+										<tr><td><use:use name='hilite'/></td></tr>
+									</r:explanation>
+								</table>
+							</div>
+						</div>
+					</i>
+				</h:reasons>
+			</use:define>
+
+			<use:define name='termTabs'>
+				<sp:termTabs>
+					<h3>{tab:name} ({tab:count})</h3>
+					<div>
+						<tab:something>
+							<table class='quickgo-standard' style='width:95%'>
+								<tr class='column-header'>
+									<td>Aspect</td>
+									<td>ID</td>
+									<td>Name</td>
+									<td>Other Matches</td>
+								</tr>
+								<tab:hits>
+									<tr>
+										<h:term xmlns:st='java:uk.ac.ebi.quickgo.web.servlets.GSearchServlet.SearchTerm'>
+											<td>{st:ontology}</td>
+											<st:notObsolete>
+												<td style='white-space:nowrap'><a href='Selection?id={st:id}'><i class="selection"><img src='image/basket_add.png'/></i></a> <a href='GTerm?id={st:id}'>{st:id}</a></td>
+											</st:notObsolete>
+											<st:obsolete>
+												<td>
+													<div>
+														<i class="info-popup">
+															<i class ="obsolete"><img src='image/exclamation.png'/></i>
+															<div class="info">
+																<div class="info-topic">Obsolete Term {st:id}</div>
+																<div class="info-content">
+																	<st:term>
+																		<term:replacements list:body='any'>
+																			<div>Suggested replacements for this term:</div>
+																			<table class="quickgo-standard">
+																				<term:replacedBy list:body='any'>
+																					<term:replacedBy>
+																						<tr>
+																							<td>Replaced by</td>
+																							<td style="white-space:nowrap"><a href='Selection?id={term:id}'><i class="selection"><img src='image/basket_add.png'/></i></a> <a class="lb-dismiss" href='GTerm?id={term:id}'>{term:id}</a></td>
+																							<td>{term:name}</td>
+																						</tr>
+																					</term:replacedBy>
+																				</term:replacedBy>
+																				<term:consider list:body='any'>
+																					<term:consider>
+																						<tr>
+																							<td>Consider</td>
+																							<td style="white-space:nowrap"><a href='Selection?id={term:id}'><i class="selection"><img src='image/basket_add.png'/></i></a> <a class="lb-dismiss" href='GTerm?id={term:id}'>{term:id}</a></td>
+																							<td>{term:name}</td>
+																						</tr>
+																					</term:consider>
+																				</term:consider>
+																			</table>
+																		</term:replacements>
+																		<term:replacements list:body='none'>
+																			<div>There are no suggested replacements for this term.</div>
+																		</term:replacements>
+																	</st:term>
+																</div>
+															</div>
+														</i>
+														<a href='GTerm?id={st:id}'>{st:id}</a>
+													</div>
+												</td>
+											</st:obsolete>
+											<td>
+												<span class='obsolete_{st:obsolete}'><st:name><use:use name='hilite'/></st:name></span>
+											</td>
+											<td>
+												<use:use name='reasons'/>
+											</td>
+										</h:term>
+									</tr>
+								</tab:hits>
+							</table>
+							<tab:more>
+								<a href='GSearch?q={sq:text}&amp;what={tab:name}&amp;limit={tab:upper}'>more...</a>
+							</tab:more>
+						</tab:something>
+						<tab:nothing>
+							<div>Nothing found</div>
+						</tab:nothing>
+					</div>
+				</sp:termTabs>
+			</use:define>
+
+			<use:define name='proteinTabs'>
+				<sp:proteinTabs>
+					<h3>{tab:name}<!-- ({tab:count})--></h3>
+					<div>
+						<tab:something>
+							<table class='quickgo-standard' style='width:95%'>
+								<tr class='column-header'>
+									<td><span class="context-help" topic="protein_ac">DB</span></td>
+									<td><span class="context-help" topic="protein_ac">AC/ID</span></td>
+									<td><span class="context-help" topic="gene_symbol">Gene</span></td>
+									<td><span class="context-help" topic="taxonomy">Species</span></td>
+									<td><span class="context-help" topic="protein_name">Description</span></td>
+								</tr>
+								<tab:hits>
+									<tr>
+										<h:protein xmlns:p='java:uk.ac.ebi.quickgo.web.servlets.GSearchServlet.SearchProtein'>
+											<td>{p:db}</td>
+											<td><a href='GProtein?ac={p:ac}'>{p:ac}</a></td>
+											<td>{p:symbol}</td>
+											<td>{p:species}</td>
+											<td>
+												<use:use name='reasons'/>
+												<p:description><use:use name='hilite'/></p:description>
+											</td>
+										</h:protein>
+									</tr>
+								</tab:hits>
+							</table>
+							<tab:more>
+								<a href='GSearch?q={sq:text}&amp;what={tab:id}&amp;limit={tab:upper}'>more...</a>
+							</tab:more>
+						</tab:something>
+						<tab:nothing>
+							<div>Nothing found</div>
+						</tab:nothing>
+					</div>
+				</sp:proteinTabs>
+				<sp:taxTabs>
+					<h3>{tab:name} ({tab:count})</h3>
+					<div>
+						<tab:something>
+							<table class='quickgo-standard' style='width:95%'>
+								<tr class='column-header'>
+									<td>NCBI ID</td>
+									<td>Name</td>
+								</tr>
+								<tab:hits>
+									<tr>
+										<h:ref xmlns:r='java:uk.ac.ebi.quickgo.web.servlets.GSearchServlet.SearchRef'>
+											<td><a href='GAnnotation?tax={r:id}'>{r:id}</a></td>
+											<td><r:name><use:use name='hilite'/></r:name></td>
+										</h:ref>
+									</tr>
+								</tab:hits>
+							</table>
+							<tab:more>
+								<a href='GSearch?q={sq:text}&amp;what={tab:id}&amp;limit={tab:upper}'>more...</a>
+							</tab:more>
+						</tab:something>
+						<tab:nothing>
+							<div>Nothing found</div>
+						</tab:nothing>
+					</div>
+				</sp:taxTabs>
+			</use:define>
+
+			<use:define name='refTabs'>
+				<sp:refTabs>
+					<h3>{tab:name} ({tab:count})</h3>
+					<div>
+						<tab:something>
+							<table class='quickgo-standard' style='width:95%'>
+								<tr class='column-header'>
+									<td>ID</td>
+									<td>Title</td>
+								</tr>
+								<tab:hits>
+									<tr>
+										<h:ref xmlns:r='java:uk.ac.ebi.quickgo.web.servlets.GSearchServlet.SearchRef'>
+											<td><a href='GAnnotation?ref={r:id}'>{r:id}</a></td>
+											<td><r:name><use:use name='hilite'/></r:name></td>
+										</h:ref>
+									</tr>
+								</tab:hits>
+							</table>
+							<tab:more>
+								<a href='GSearch?q={sq:text}&amp;what={tab:id}&amp;limit={tab:upper}'>more...</a>
+							</tab:more>
+						</tab:something>
+						<tab:nothing>
+							<div>Nothing found</div>
+						</tab:nothing>
+					</div>
+				</sp:refTabs>
+			</use:define>
+
+			<sp:alternatives list:body='any'>
+				<div>
+					Did you mean:
+					<sp:alternatives>
+						<a href='GSearch?q={text:value}&amp;what={sp:what}'>{text:value}</a>
+					</sp:alternatives>
+				</div>
+			</sp:alternatives>
+
+			<sp:singleTab>
+				<use:use name='termTabs'/>
+				<use:use name='proteinTabs'/>
+				<use:use name='refTabs'/>
+			</sp:singleTab>
+			<sp:multiTab>
+				<div class='tabs-h2'>
+					<sp:termTabs list:body='any'>
+					<h2 class='{sp:goSelected}'>GO</h2>
+					<div class='tabs-h3'>
+						<use:use name='termTabs'/>
+					</div>
+					</sp:termTabs>
+					<sp:proteinTabs list:body='any'>
+					<h2 class='{sp:proteinSelected}'>Proteins</h2>
+					<div class='tabs-h3'>
+						<use:use name='proteinTabs'/>
+<!--
+						<h2>other...</h2>
+						<div>Search proteins in:
+							<rq:dataFiles>
+								<data:proteinDatabases xmlns:cv='java:uk.ac.ebi.quickgo.web.data.CV'>
+									<cv:vocabulary xmlns:item='java:uk.ac.ebi.quickgo.web.data.CV.Item'>
+										<div><a href='GSearch?q={sq:text}&amp;what={item:code}'>{item:description}</a></div>
+									</cv:vocabulary>
+								</data:proteinDatabases>
+							</rq:dataFiles>
+						</div>
+-->
+					</div>
+					</sp:proteinTabs>
+					<sp:refTabs list:body='any'>
+						<h2 class='{sp:refSelected}'>References</h2>
+						<div class='tabs-h3'>
+							<use:use name='refTabs'/>
+						</div>
+
+<!--
+						<sp:parameters>
+							<h2>Annotation</h2>
+							<div>
+								<div class="annotation-page">
+									<i class="auto-annotation-page"/>
+									<use:use file='use/Toolbars.xhtml' name='annotation_toolbar'/>
+									<use:use file='use/Annotation.xhtml' name='annotation'/>
+								</div>
+							</div>
+						</sp:parameters>
+-->
+					</sp:refTabs>
+				</div>
+			</sp:multiTab>
+
+			<hr/>
+
+			<div>
+				Searched for <span class='popupClick'><a>{sq:text}</a>
+					<div class='popup'>
+					<table>
+						<tr>
+							<td>Text</td>
+							<td>Field</td>
+							<td>Score=field+freq</td>
+							<td>Cardinality/Total</td>
+							<td>Stopped</td>
+						</tr>
+						<sp:matches xmlns:m='java:uk.ac.ebi.quickgo.web.data.TextSearch.Match'>
+							<tr><td style='white-space:nowrap'>{m:text}</td><td>{m:fieldName}</td><td>{m:score}={m:fieldScore}*{m:wordCount}+{m:relativeScore} <m:wildcard>{m:frequencyScore}</m:wildcard></td><td>{m:cardinality}/{m:totalCardinality}</td><td>{m:stopped}</td></tr>
+						</sp:matches>
+					</table>
+					<div>
+						<button onclick='showEm()'>Show scores</button>
+					</div>
+				</div>
+				</span>
+				, in {rq:age}<!-- found {sp:hits}, showing top {sp:show}-->
+			</div>
+		</div>
+	</body>
+</html>

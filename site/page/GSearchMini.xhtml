@@ -1,0 +1,58 @@
+<html
+	xmlns:rq='java:uk.ac.ebi.quickgo.web.Request'
+	xmlns:data='java:uk.ac.ebi.quickgo.web.configuration.DataFiles'
+	xmlns:sp='java:uk.ac.ebi.quickgo.web.servlets.GSearchServlet.SearchPage'
+	xmlns:sq='java:uk.ac.ebi.quickgo.web.servlets.GSearchServlet.Query'
+	xmlns:h='java:uk.ac.ebi.quickgo.web.servlets.GSearchServlet.SearchHit'
+	xmlns:t='java:uk.ac.ebi.quickgo.web.servlets.GSearchServlet.Text'
+	xmlns:use='java:uk.ac.ebi.interpro.jxbp2.render.Use'
+	xmlns:r='java:uk.ac.ebi.quickgo.web.servlets.GSearchServlet.Reason'
+	xmlns:tab='java:uk.ac.ebi.quickgo.web.servlets.GSearchServlet.SearchTab'
+	xmlns:tl='java:uk.ac.ebi.quickgo.web.servlets.GSearchServlet.TextList'
+	xmlns:text='java:uk.ac.ebi.interpro.jxbp2.TextContent'
+	xmlns:list='java:uk.ac.ebi.interpro.jxbp2.ListContent'>
+
+	<head>
+		<title>Search: {sq:text}</title>
+	</head>
+	<body class='wide'>
+		<div id='results'>
+			<!--<use:define name='hilite'><t:hilite><span style='background-color:{t:colour}'>{t:text}</span></t:hilite><t:plain>{t:text}</t:plain></use:define>-->
+			<use:define name='hilite'>
+			  <tl:components>
+				  <t:hilite><span style='background-color:{t:colour}'>{t:text}</span></t:hilite>
+				  <t:plain>{t:text}</t:plain>
+			  </tl:components>
+			</use:define>
+
+		    <sp:overall>
+	            <div>
+                    <table class='searchlist' style='width:100%'>
+                        <tab:hits>
+                            <tr class='menuitem'>
+								<h:term xmlns:st='java:uk.ac.ebi.quickgo.web.servlets.GSearchServlet.SearchTerm'>
+									<td style='white-space:nowrap'><a href='Selection?id={st:id}'><i class="selection"><img class="select-{st:id}" src='image/basket_add.png'/></i></a>
+										<a class="link" href='GTerm?id={st:id}'>{st:id}</a></td>
+									<td>
+										<span class='obsolete_{st:obsolete}'><st:name><use:use name='hilite'/></st:name></span>
+									</td>
+								</h:term>
+								<h:protein xmlns:p='java:uk.ac.ebi.quickgo.web.servlets.GSearchServlet.SearchProtein'>
+									<td><a class="link" href='GProtein?ac={p:ac}'>{p:ac}</a></td>
+									<td>{p:symbol}
+										{p:species}
+										<p:description><use:use name='hilite'/></p:description>
+									</td>
+								</h:protein>
+								<h:ref xmlns:r='java:uk.ac.ebi.quickgo.web.servlets.GSearchServlet.SearchRef'>
+									<td><a class="link" href='GAnnotation?ref={r:id}'>{r:id}</a></td>
+									<td><r:name><use:use name='hilite'/></r:name></td>
+								</h:ref>
+							</tr>
+						</tab:hits>
+					</table>
+                </div>
+            </sp:overall>
+		</div>
+	</body>
+</html>

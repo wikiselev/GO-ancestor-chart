@@ -1,0 +1,144 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+    <head>
+        <title>QuickGO Demo</title>        
+		<script src='./js/jslib/jslib.js'></script>
+    	<script src='./js/quickgoDemo.js'></script>
+        <script src='./audio/niftyplayer.js'></script>
+        <style>
+body {
+    background-color: #000;
+    color: #ff0;
+    font-family: sans-serif;
+    font-size:12px;
+}
+a {
+    color:#fff;
+}
+.demotabs span.tab {
+    border:1px solid #fff;
+    border-bottom:none;
+	background-color:#000;
+    color:#fff;
+}
+
+.demotabs span.activetab {
+    border:1px solid #fff;
+    border-bottom:none;
+    background-color:#fff;
+    color:#000;
+}
+
+.demotabs div.tabs{
+    border-bottom: 1px solid #fff;
+    margin:5px 0 0 0;
+}
+
+.demotabs div.tabframe {
+    background-color:#000;
+    border:none;
+    padding:0px;
+}
+
+.demotabs div.tabcontent {
+    background-color:#000;
+    border:none;
+    padding:0px;
+}
+
+.userentry {
+    color: #f00;
+    font-weight: bold;
+}
+
+h3 {
+    font-weight:bold;
+    font-size:130%;
+    margin:0;
+    padding:5px 10px;
+    border:none;
+    float:left;
+}
+div.infobox {
+   font-size: 10px;
+   color:#77f;
+}
+
+        </style>
+    </head>
+    <body>
+
+        <div style="float:right;width:250px">        
+        <div class="player"></div>
+        <div class="infobox"></div>
+        </div>
+<!--  -->
+        <div class="demotabs">
+        <ul class="sections">
+            <li><a class="scroll" href="#form.search"></a><a class="show" href="#input.autosearch" target="target"></a><a class="audio" href="audio/slim/introduction.mp3"></a>
+                <h3>Introduction</h3>
+                <div>Welcome to QuickGO, I'm David Binns, a member of the QuickGO team.</div>
+                <div>GO slims are a collection of high level GO terms which can be used to categorise gene products.</div>
+                <div>Please type <span class="userentry">nucleus</span> into the main search box</div>
+            </li>
+            <li><a class="show" href="#img.select-GO:0005634" target="target"></a><a class="audio" href="audio/slim/add-nucleus.mp3"></a>
+                <h3>Select 'Nucleus' term</h3>
+                <div>To make a custom slim, a set of GO terms are first selected</div>
+                <div>Press the <img src="image/basket_add.png"/> button next to GO:005634 nucleus</div>
+            </li>
+                <li><a class="show" href="#button.Close" target="target"></a><a class="audio" href="audio/slim/selected-cancel.mp3"></a>
+                <h3>This shows your currently selected terms</h3>
+                <div>Press close</div>
+            </li>
+            <li><a class="show" href="#input.autosearch" target="target"></a><a class="audio" href="audio/slim/search-extracellular.mp3"></a>
+                <h3>Find 'Extracellular space' term</h3>
+                <div>Please type <span class="userentry">extracellular</span> into the main search box</div>
+            </li>
+            <li><a class="show" href="#img.select-GO:0005615" target="target"></a><a class="audio" href="audio/slim/add-extracellular.mp3"></a>
+                <h3>Select 'Extracellular space' term</h3>
+                <div>Press the <img src="image/basket_add.png"/> button next to GO:005615 extracellular space</div>
+            </li>
+            <li><a class="show" href="#button.Useterms" target="target"></a><a class="audio" href="audio/slim/useterms.mp3"></a>
+                <h3>Use these terms</h3>
+                <div>Press the 'Use terms' button to use compare terms in your selection and find annotations based on these terms.</div>
+            </li>
+            <li><a class="scroll" href="#form.search"></a><a class="show" href="#a.compare-GO:0005615" target="target"></a><a class="audio" href="audio/slim/compare-extracellular.mp3"></a>
+                <h3>View information about 'extra cellular space'</h3>
+                <div>Click on GO:0005615 to view information about the term 'extracellular space'</div>
+            </li>
+            <li><a class="show" href="#a.compare-GO:0005634" target="target"></a><a class="audio" href="audio/slim/compare-nucleus.mp3"></a>
+                <h3>Compare 'nucleus'</h3>
+                <div>Click on GO:0005634 to compare the term 'nucleus' to the previous term</div>
+            </li>
+            <li><a class="show" href="#span.tab-annotations" target="target"></a><a class="audio" href="audio/slim/findannotations.mp3"></a>
+                <h3>Find annotations</h3>
+                <div>Click on the 'Find annotation' tab to view annotations made to gene products corresponding to the chosen terms.</div>
+            </li>
+            <li><a class="show" href="#i.export-link" target="target"></a><a class="audio" href="audio/slim/open-download.mp3"></a>
+                <h3>Download annotation</h3>
+                <div>Click on the 'Download' icon to obtain a file containing these annotations</div>
+            </li>
+            <li><a class="show" href="#button.Download" target="target"></a><a class="audio" href="audio/slim/confirm-download.mp3"></a>
+                <h3>Start download</h3>
+                <div>Here you can choose what format the file should be in, how many lines it may contain, and if you want it gzipped.</div>
+                <div>Click on the 'Download' button to start the file download.</div>
+            </li>
+            <li><a class="audio" href="audio/slim/finished.mp3"></a>
+                <h3>Completed</h3>
+                <div>Your file should appear in your browser or download directory shortly.</div>
+                <div>Well done, you have completed this tutorial.</div>
+                <div>
+                    You can now:
+                    return to the <a href="demo.html" target="_top">list of tutorials</a>
+                    or go to <a href="index.html" target="_top">QuickGO home</a>
+                </div>
+            </li>
+        </ul>
+        </div>
+        
+        
+
+
+
+    </body>
+</html>

@@ -1,0 +1,960 @@
+/* ------------------------------- site wide --------------------------*/
+
+body {
+    font-family:sans-serif;
+    height:100%;
+    
+}
+
+img {
+    vertical-align:bottom;
+    border:none;
+}
+
+/* ------------------------------- javascript conditional --------------------------*/
+
+
+/* This style for elements which will not appear until enabled by javascript
+The element will be manually displayed by javascript when enhanced.
+*/
+.jsonly {
+	display:none;
+}
+
+
+/* This style is applied by jslib.js if javascript is enabled.
+For elements which have different non-javascript and javascript behaviour.
+The element will be manually displayed by javascript when enhanced.
+Here for documentation purposes only!
+.dynamic {
+    display:none;
+}
+*/
+
+
+/* -------------------------------  --------------------------*/
+
+
+
+table.heading {
+    background:#ccf;
+    border:none;
+    margin:0;
+    padding:0;
+}
+
+table.heading td {
+    border:none;
+    margin:0;
+    padding:5px;
+}
+
+table.searchlist {
+    border-collapse:collapse;
+}
+
+
+table.searchlist td {
+    border-bottom:1px solid #bfbfbf;
+    margin:0;
+    padding:2px;
+}
+
+table.info {
+    border-collapse:collapse;
+}
+
+table.info td {
+    border-left:1px solid #066;
+    padding:2px 5px;
+	vertical-align:top;
+}
+
+table.info td:first-child {
+    border:none;
+}
+
+table.info td.label {	    
+    font-weight:bold;
+	/*text-align:right;*/
+	text-align:left;
+	vertical-align:top;
+}
+
+table.info tr.label td {
+    
+    font-weight:bold;
+	text-align:left;
+	border-bottom:1px solid #066;
+}
+
+
+table.layout {
+    border-collapse:collapse;
+}
+
+table.layout tr td {
+    border:none;
+    padding:2px;
+}
+
+table table.layout tr td {
+    border:none;
+    padding:2px;
+}
+
+table.compact {
+    border-collapse:collapse;
+}
+
+table.compact tr td {
+    border:none;
+    padding:0px;
+}
+
+
+table.grid {
+    border-collapse:collapse;
+    white-space:nowrap;
+    font-size:12px;
+}
+
+table.grid td {
+    border:none;
+    padding:0;    
+}
+
+table.grid td.notgrid {
+    border:none;
+    padding-left:5px;    
+}
+
+tr.formrow {
+    background-color:#ccf;
+    border-top:3px solid #fff;
+}
+
+tr.formrow td {
+    padding:2px;
+}
+
+div.tablist {
+    margin:8px 0;
+    padding:2px 10px;
+    border-bottom:1px solid #70c0c0;    
+}
+
+
+a.tab_inactive {
+    border:1px solid #70c0c0;
+
+    padding:2px 10px;
+    font-weight:bold;
+    font-size:110%;
+    cursor:pointer;
+    margin:3px;
+}
+
+a.tab_active {
+    border-top:1px solid #eef5f5;
+    border-left:1px solid #eef5f5;
+    border-right:1px solid #70c0c0;
+    background-color:#c0e7e7;
+
+    padding:2px 10px;
+    font-weight:bold;
+    font-size:110%;
+    cursor:pointer;
+    margin:3px;
+}
+
+
+div.body {
+    padding:5px;
+}
+
+.link {
+    cursor:pointer;
+    text-decoration:underline;
+    color:#00c;
+}
+
+div.xboxcontent div.popup {
+    width:750px;
+}
+
+span.reference div.popup {
+    width:400px;
+}
+
+div.popup {
+    visibility:hidden;
+    background-color:#eef5f5;
+    border:1px solid #bfbfbf;
+    position:absolute;
+    padding:5px;
+    font-weight:normal;
+    /*overflow:auto;*/
+    white-space:normal;
+}
+
+div.popupheading {
+    font-weight:bold;
+    background-color: #91b3ff;
+    font-size:105%;
+}
+
+div.loading {
+    display:none;
+}
+
+span.loading {
+    display:none;
+}
+
+iframe.data {
+    visibility:hidden;
+    height:10px;
+    width:10px;
+}
+
+input.embedding {
+    display:none;
+}
+
+
+hr {
+    border:none;
+    border-bottom:1px solid black;
+}
+
+.accession {
+    font-family:monospace,sans-serif;
+}
+
+div.popup table {    
+    table-layout:auto;
+}
+
+div.popup table tr td {
+    /*overflow:auto;*/
+    white-space:normal;
+}
+
+table.annotation {
+    border-collapse:collapse;
+	/*table-layout:fixed;*/
+    width:100%;
+    /*cursor:pointer;*/
+}
+
+table.annotation tr td {
+    overflow:hidden;
+    /*white-space:nowrap;*/
+    /*border:1px solid #bfbfbf;*/
+    vertical-align:top;    
+}
+
+div.content {
+    padding:1px;
+	cursor:default;
+}
+
+.hoverclick:hover {
+    text-decoration:underline;
+    border-top:1px solid #eef5f5;
+    border-left:1px solid #eef5f5;
+    border-right:1px solid #70c0c0;
+    border-bottom:1px solid #70c0c0;
+    background-color:#c0e7e7;
+    margin:-1px;
+    cursor:pointer;
+}
+
+
+.raised {
+    border-top:1px solid #eef5f5;
+    border-left:1px solid #eef5f5;
+    border-right:1px solid #70c0c0;
+    border-bottom:1px solid #70c0c0;
+    background-color:#c0e7e7;
+    padding:1px;
+    cursor:pointer;
+    white-space:nowrap;
+}
+
+
+span.index {
+    background:#b00;
+    color:#fff;
+    font-weight:bold;
+    padding:0 2px;
+}
+
+
+table.annotation tr td {
+    padding:1px;
+}
+
+table.annotation tr.divider td {
+    background-color:#eef5f5;
+}
+
+table.annotation tr.column-heading td {
+	border:none;
+	color:white;
+    background-color:#336666;
+}
+
+table.annotation tr.data td.label {
+    background-color:#eef5f5;
+}
+
+table.annotation tr.noshow div {
+    display:none;
+}
+
+div.box {
+    border:1px solid #c0e7e7;
+    margin:10px 0;
+    padding:5px;
+}
+
+div.boxtitle {
+    background-color:#eef5f5;
+    /*margin:-5px -5px 0 -5px;*/
+    padding:5px;
+    font-weight:bold;
+    font-size:medium;
+}
+
+
+div.dataservice {
+    border:2px solid #fc7;
+    margin:10px 0;
+    padding:5px;
+    background-color:#fea;
+}
+
+div.dataservice h3 {
+    background-color:#fc7;
+    margin:-5px -5px 0 -5px;
+    padding:5px;
+    font-weight:bold;
+    font-size:110%;
+}
+
+div.dataservice div.uri {
+    font-family:monospace;
+}
+
+div.dataservice div.uri i {
+    color:#00f;
+}
+
+div.uri {
+	font-family:monospace;
+	font-weight:bold;
+}
+
+span.underline {
+	text-decoration:underline;
+}
+/*
+
+div.ev_imp {
+    background-color:#f00;
+}
+
+div.ev_igi {
+    background-color:#fc0;
+}
+
+div.ev_ipi {
+    background-color:#f00;
+}
+
+div.ev_ida {
+    background-color:#f00;
+}
+
+div.ev_iep {
+    background-color:#f00;
+}
+
+div.ev_iss {
+    background-color:#ff0;
+}
+
+div.ev_ic {
+    background-color:#ff0;
+}
+
+
+div.ev_tas {
+    background-color:#0f0;
+}
+
+div.ev_nas {
+    background-color:#0f0;
+}
+
+div.ev_nr {
+    background-color:#f0f;
+}
+
+div.ev_nd {
+    background-color:#f0f;
+}
+
+div.ev_rca {
+    background-color:#0ff;
+}
+
+
+div.ev_iea {
+    background-color:#00f;
+}
+*/
+
+em {
+    display:none;
+}
+
+i {
+    font-style:normal;
+}
+
+
+
+
+
+
+
+/* */
+
+
+span.reason-normal {
+    font-style:italic;
+}
+
+span.reason-obsolete {
+    font-style:italic;
+    color:#f00;
+}
+
+a {
+    text-decoration:underline;
+    color:#006666;
+    cursor:pointer;
+}
+
+span.obsolete_true {
+    color:#777;
+    font-style:italic;
+}
+
+span.obsolete_false {    
+}
+
+a.reason_Obsolete {
+    color:#f00;    
+}
+
+
+div.reason {
+    float:right;
+    margin:0 1px;
+}
+
+div.toolbar {
+    background:#eef5f5;
+    
+    border-radius:6px;
+    -moz-border-radius:6px;
+    -webkit-border-radius:6px;
+    padding:4px;
+    box-shadow:6px 6px 4px #ccc;
+    /*margin:10px;*/
+	margin-right:20px;
+	margin-bottom:20px;
+	margin-top:10px;
+    -webkit-box-shadow:6px 6px 4px #ccc;
+    -moz-box-shadow:6px 6px 4px #ccc;    
+}
+
+div.shadowbox {
+    background:#eef5f5;
+
+    border-radius:6px;
+    -moz-border-radius:6px;
+    -webkit-border-radius:6px;
+    padding:10px;
+    box-shadow:6px 6px 4px #ccc;
+    /*margin:10px;*/
+	margin-right:20px;
+	margin-top:20px;
+    -webkit-box-shadow:6px 6px 4px #ccc;
+    -moz-box-shadow:6px 6px 4px #ccc;
+}
+
+div.toolbar-button {
+    float:left;
+    text-align:center;
+    margin-left:5px;
+    margin-right:5px;
+}
+
+div.toolbar-button span {
+}
+
+div.toolbar-button img {
+    
+}
+
+div.toolbar-button img.icon {
+    /*display:block;
+    margin-left:auto;
+    margin-right:auto;*/
+    width:32px;
+    height:32px;
+    text-decoration: none;
+}
+
+div.toolbar-button a:link {
+    text-decoration:none;
+}
+
+div.toolbar-button a:hover {
+    text-decoration:none;
+}
+
+div.toolbar-button a:visited {
+    text-decoration:none;
+}
+
+div.helpicon {
+    float:left;
+    text-align:center;
+    margin-left:5px;
+    margin-right:5px;
+	cursor:help;
+}
+
+div.helpicon img {
+    display:block;
+/*  Setting margins to auto causes crash in IE6. David B
+    margin-left:auto;
+    margin-right:auto;
+*/	cursor:help;
+}
+
+div.context-help img {
+    display:block;
+    margin-left:auto;
+    margin-right:auto;
+	cursor:help;
+}
+
+.context-help:hover {
+	text-decoration:underline;
+	cursor:help;
+}
+
+i.selection {
+    visibility:hidden;
+}
+
+i.selectionlink {
+    visibility:hidden;
+}
+
+div.paginator {
+    background:#ffffff;
+    /*padding:4px;*/
+	/*margin-top:5px;*/
+	margin-bottom:5px;
+}
+
+.green-bold {
+	color:#336666;
+	font-weight:bold;
+}
+
+tr.annotation-row-even {
+	background:#add8e6;
+}
+
+tr.annotation-row-even:hover {
+	background:#ff9966;
+}
+
+tr.annotation-row-odd {
+	background:#ffffff;	
+}
+
+tr.annotation-row-odd:hover {
+	background:#ff9966;
+}
+
+div.supplementary-info {
+    font-weight:normal;
+    white-space:normal;
+}
+
+.hidden {
+	display:none;
+}
+
+label.export-format {
+/*
+	background-color: #FDFDF0;
+	color: black;
+	border: 2px outset #8B8378;
+	padding: 0.1em 2ex 0.1em 0.5ex;
+	line-height: 1.6em;
+*/
+}
+
+.tabs-h2 span.tab {
+    border:1px solid #066;
+    border-bottom:none;
+	background-color:#066;
+    color:#fff;
+}
+
+.tabs-h2 span.activetab {
+    border:1px solid #066;
+    border-bottom:none;
+    background-color:#eef5f5;
+    color:#000;
+}
+
+.tabs-h2 div.tabs{
+    border-bottom: 1px solid #066;
+    margin:5px 0 0 0;
+}
+
+.tabs-h2 div.tabframe {
+    background-color:#eef5f5;
+    border:1px solid #066;
+	border-top:none;
+    padding:20px;
+}
+
+.tabs-h2 div.tabcontent {
+    background-color:#fff;
+    border:1px solid #066;
+    padding:0px;
+}
+
+
+.tabs-h3 span.tab {
+    border:1px solid #066;
+    border-bottom:none;
+    background-color:#066;
+    color:#fff;
+}
+
+.tabs-h3 span.activetab {
+    border:1px solid #066;
+    border-bottom:none;
+    background-color:#fff;
+    color:#000;
+}
+
+.tabs-h3 div.tabs {
+    border-bottom: 1px solid #066;
+    margin:5px 0 0 0;
+}
+
+.tabs-h3 div.tabframe {
+    background-color:#fff;
+    border:1px solid #066;
+    border-top:none;
+    padding:20px;
+}
+
+.tabs-h3 div.tabcontent {
+    background-color:#fff;
+    border:1px solid #066;
+    padding:0px;
+}
+
+table.info-table thead {
+	font-weight:bold;
+}
+
+table.info-table td {
+	padding-right:20px;
+}
+
+/* chart lightbox */
+
+/*.chart_lightbox div.lightbox-container {
+	padding:5px;
+}
+
+.chart_lightbox div.lightbox-content {
+	margin:0px;
+}
+
+
+.chart_lightbox div.tabframe {
+    background-color:#eef5f5;
+    border:1px solid #000;
+    border-top:none;
+    padding:1px;
+}
+
+.chart_lightbox div.tabcontent {
+    border:none;
+}
+
+.chart_lightbox div.tabs	{
+    padding-left:20px;
+}
+
+*/
+
+div.lightbox-content {
+	text-align:left;
+	margin:10px;
+}
+
+div.lightbox-content h1 {
+	font-weight:bold;
+	font-size:12px;
+}
+
+div.lightbox-content h2 {
+	font-weight:bold;
+	font-size:10px;
+}
+
+div.lightbox-content h3 {
+	font-weight:bold;
+	font-size:8px;
+}
+
+.selector-link {
+	font-weight:normal;	
+}
+
+.selector-link:hover {
+	text-decoration:underline;
+	cursor:pointer;
+}
+
+div.annotation-column {
+	cursor:default;
+}
+
+div.info-definition {
+	cursor:default;
+}
+
+span.emphasise {
+	font-weight:bold;
+}
+
+div.dlg-instruction {
+	font-weight:bold;
+	background-color: #91b3ff;
+	font-size:105%;
+}
+
+div.user-guidance {
+	/*font-style:italic;*/
+	font-size:medium;
+	margin-bottom:10px;
+	/*background-color: #cceeff;*/
+}
+
+div.error {
+    background-color:#fcc;
+    border:5px solid #f00;
+    border-radius:20px;
+    padding:5px;
+}
+
+div.stats-summary {
+	margin:10px;	
+}
+
+table.quickgo-standard {
+    border-collapse:collapse;
+	margin:10px;
+
+	background-color:#eef5f5;
+	border-radius:6px;
+	-moz-border-radius:6px;
+	-webkit-border-radius:6px;
+	box-shadow:6px 6px 4px #ccc;
+	-webkit-box-shadow:6px 6px 4px #ccc;
+	-moz-box-shadow:6px 6px 4px #ccc;
+}
+
+table.quickgo-standard tr {
+    border:none;
+}
+
+table.quickgo-standard td {
+	border:thin solid green;
+    padding-left:5px;
+	padding-right:5px;
+}
+
+table.quickgo-standard tr.column-header {
+	font-weight:bold;
+	margin-top:5px;
+	border-bottom:thin solid;
+	background-color:#066;
+	color:#fff;
+}
+
+table.quickgo-standard tr.column-header a {
+/*
+	font-weight:bold;
+	margin-top:5px;
+	border-bottom:thin solid;
+	background-color:#066;
+*/
+	color:#fff;
+}
+
+table.quickgo-standard td.column-header-right {
+	text-align:right;
+}
+
+td.bucket-code {
+	font-weight:bold;
+	margin-left:10px;
+}
+
+td.bucket-percent {
+	font-style:italic;
+	text-align:right;
+}
+
+td.bucket-count {
+	text-align:right;
+}
+
+table.tab-holder {
+	margin:10px;
+}
+
+table.tab-holder td.shadowbox {
+	border:thin solid green;
+	background-color:#eef5f5;
+	padding-left:10px;
+	padding-right:10px;
+	font-weight:bold;
+
+	border-radius:6px;
+	-moz-border-radius:6px;
+	-webkit-border-radius:6px;
+	box-shadow:6px 6px 4px #ccc;
+	-webkit-box-shadow:6px 6px 4px #ccc;
+	-moz-box-shadow:6px 6px 4px #ccc;
+}
+
+table.termList {
+	border-collapse:collapse;
+	margin:10px;
+}
+
+table.termList tbody {
+    border-collapse:collapse;
+	margin:10px;
+
+	background-color:#eef5f5;
+	border-radius:6px;
+	-moz-border-radius:6px;
+	-webkit-border-radius:6px;
+	box-shadow:6px 6px 4px #ccc;
+	-webkit-box-shadow:6px 6px 4px #ccc;
+	-moz-box-shadow:6px 6px 4px #ccc;
+}
+
+table.termList tbody.AllOntologies tr {
+    border:none;
+}
+
+table.termList tbody.AllOntologies td {
+	border:thin solid green;
+    padding-left:5px;
+	padding-right:5px;
+}
+
+table.termList tbody.Process tr {
+    border:none;
+}
+
+table.termList tbody.Process td {
+	border:thin solid green;
+    padding-left:5px;
+	padding-right:5px;
+}
+
+table.termList tbody.Function tr {
+    border:none;
+}
+
+table.termList tbody.Function td {
+	border:thin solid green;
+    padding-left:5px;
+	padding-right:5px;
+}
+
+table.termList tbody.Component tr {
+    border:none;
+}
+
+table.termList tbody.Component td {
+	border:thin solid green;
+    padding-left:5px;
+	padding-right:5px;
+}
+
+table.selection {
+    border-collapse:collapse;
+	margin:10px;
+
+	background-color:#eef5f5;
+	border-radius:6px;
+	-moz-border-radius:6px;
+	-webkit-border-radius:6px;
+	box-shadow:6px 6px 4px #ccc;
+	-webkit-box-shadow:6px 6px 4px #ccc;
+	-moz-box-shadow:6px 6px 4px #ccc;
+}
+
+table.selection tr {
+    border:none;
+}
+
+table.selection td {
+	border:thin solid green;
+    padding-left:5px;
+	padding-right:5px;
+}
+
+div.text-block {
+	margin:10px;
+}
+
+div.paragraph {
+	margin-bottom:10px;
+}
+
+div.sub-header {
+	margin-top:10px;
+	margin-bottom:2px;
+	font-style:italic;
+}
+
+area.clickable {
+	cursor:pointer;
+}

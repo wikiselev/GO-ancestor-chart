@@ -1,0 +1,80 @@
+<html
+	xmlns:use="java:uk.ac.ebi.interpro.jxbp2.render.Use"
+	xmlns:ps="java:uk.ac.ebi.quickgo.web.servlets.GProteinSetServlet.ProteinSet"
+	xmlns:pseg="java:uk.ac.ebi.quickgo.web.servlets.GProteinSetServlet.ProteinSetEntryGroup"
+	xmlns:pse="java:uk.ac.ebi.quickgo.web.servlets.GProteinSetServlet.ProteinSetEntry"
+	xmlns:list="java:uk.ac.ebi.interpro.jxbp2.ListContent"
+>
+
+<head>
+	<title>Contents of the {ps:name} protein set</title>
+</head>
+
+<body>
+	<use:use file='use/Toolbars.xhtml' name='global_toolbar'/>
+
+	<div style="clear:both"/>
+
+	<h2>Description</h2>
+	<div style="padding:10px">
+		{ps:description}
+	</div>
+	<div style="padding:10px">
+		<a href="{ps:url}" target="_blank">{ps:url}</a>
+	</div>
+
+	<h2>Contents</h2>
+	<ps:groupList list:body='none'>
+	    <div>This protein set appears to have no contents</div>
+	</ps:groupList>
+
+	<ps:groupList list:body='any'>
+		<table class="quickgo-standard">
+			<a name="top" id="top"/>
+			<thead>
+			  <tr class='column-header'>
+				  <td>Symbol</td>
+				  <td>Accession</td>
+				  <td>Name</td>
+				  <td>Taxon</td>
+				  <td>Taxon Name</td>
+			  </tr>
+			  <tr>
+			    <td colspan="5" style="text-align:center">
+				    <span>| </span>
+				    <ps:groupList>
+			            <span><a href="#{pseg:name}">{pseg:name}</a> | </span>
+				    </ps:groupList>
+			      </td>
+			  </tr>
+			</thead>
+			<tbody>
+				<ps:groupList>
+					<tr>
+						<td colspan="5" style="text-align:center;font-weight:bold"><span><a name="{pseg:name}" id="{pseg:name}"/>{pseg:name}</span><span style="margin-left:15px"><a href="#top">(Top)</a></span></td>
+					</tr>
+					<pseg:proteinList>
+						<tr>
+							<td>{pse:symbol}</td>
+							<td><a href="GProtein?ac={pse:accession}" target="_blank">{pse:accession}</a></td>
+							<td>{pse:name}</td>
+							<td>{pse:taxon}</td>
+							<td>{pse:taxName}</td>
+						</tr>
+					</pseg:proteinList>
+				</ps:groupList>
+			</tbody>
+			<tfoot>
+				<tr>
+				  <td colspan="5" style="text-align:center">
+					  <span>| </span>
+					  <ps:groupList>
+						  <span><a href="#{pseg:name}">{pseg:name}</a> | </span>
+					  </ps:groupList>
+					</td>
+				</tr>
+			</tfoot>
+		</table>
+	</ps:groupList>
+</body>
+</html>

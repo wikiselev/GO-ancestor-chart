@@ -1,0 +1,204 @@
+<html xmlns:use='java:uk.ac.ebi.interpro.jxbp2.render.Use'>
+    <head>
+        <title>QuickGO Web Services</title>
+    </head>
+    <body>
+
+    <use:use file='use/Toolbars.xhtml' name='global_toolbar'/>
+    <div style="clear:both"/>
+
+        <div>
+			QuickGO can supply GO term information and GO annotation data via REST web services. The details of each service can be found below; a <a href="http://wadl.java.net/" target="_blank">WADL</a> description of the services can be found <a href='clients/QuickGO.wadl'>here</a>.
+        </div>
+
+        <div>
+            <a name="term_info"/>
+            <h2>Term information</h2>
+            <div>Use this URI template to access this data as a service:</div>
+            <p/>
+            <div class='uri'>
+                GTerm?id=<span style="font-style:italic">termID</span>&amp;format=<span style="font-style:italic">format</span>
+            </div>
+            <p/>
+            <table>
+	            <thead>
+		            <tr><td><span class="underline">Format</span></td><td><span class="underline">Description</span></td></tr>
+	            </thead>
+	            <tbody>
+					<tr><td><a href='GTerm?id=GO:0003824&amp;format=mini'>mini</a></td><td>Mini HTML, suitable for dynamically embedding in popup boxes</td></tr>
+					<tr><td><a href='GTerm?id=GO:0003824&amp;format=obo'>obo</a></td><td>OBO format snippet</td></tr>
+					<tr><td><a href='GTerm?id=GO:0003824&amp;format=oboxml'>oboxml</a></td><td>OBO XML format snippet</td></tr>
+	            </tbody>
+            </table>
+	        <p/>
+	        <h3>Notes</h3>
+            <ul>
+                <li>Example clients are available in:
+	                <ul>
+		                <li><a href='clients/DownloadTerm.java'>Java</a></li>
+			            <li><a href='clients/download-term.pl'>Perl</a></li>
+	                </ul>
+                </li>
+            </ul>
+        </div>
+
+        <div>
+            <a name="annotation"/>
+            <h2>Annotation</h2>
+            <div>Use this URI template to access this data as a service:</div>
+            <p/>
+            <div class='uri'>
+                GAnnotation?format=<span style="font-style:italic">download-format</span>&amp;limit=<span style="font-style:italic">max-number-of-rows</span><b>{</b>&amp;gz<b>}</b><b>{</b>&amp;<i>field</i>=<i>value</i><b>{</b>,<i>value</i><b>}</b><b>}</b>
+            </div>
+            <p/>
+	        <h3>Notes</h3>
+            <ul>
+                <li>Any number of fields can be specified; they will be AND'ed together.</li>
+                <li>Any number of values can be specified for each field; they will be OR'ed together.</li>
+                <li>Values should be URI encoded.</li>
+                <li>The file will be truncated if more than the specified number of annotations are found.
+                    The file is roughly 170 bytes/annotation (not gzipped).</li>
+                <li>The file will be gzipped if the gz parameter is supplied.</li>
+                <li>Example clients are available in:
+	                <ul>
+						<li><a href='clients/DownloadAnnotation.java'>Java</a></li>
+						<li><a href='clients/download-annotation.pl'>Perl</a></li>
+		                <li><a href='clients/download-annotation.sh'>bash</a></li>
+	                </ul>
+	            </li>
+              </ul>
+
+             <h3>Description of Fields and Values</h3>
+			<p/>
+			<table class='info'>
+				<tr class='label'>
+					<td>Field name</td>
+					<td>Value</td>
+					<td>Examples</td>
+				</tr>
+				<tr style='border-bottom:thin black solid'>
+					<td>format</td>
+					<td>Download file format</td>
+					<td>gaf, gpa, gene2go, proteinList, fasta, tsv</td>
+				</tr>
+				<tr style='border-bottom:thin black solid'>
+					<td>limit</td>
+					<td>Download limit (number of lines). Note that the default limit is 10,000 rows, which may not be sufficient for the data set that you are downloading. To bypass this default, and return the entire data set, specify a limit of -1.</td>
+					<td/>
+				</tr>
+				<tr style='border-bottom:thin black solid'>
+					<td>gz</td>
+					<td>gzips the downloaded file</td>
+					<td/>
+				</tr>
+				<tr style='border-bottom:thin black solid'>
+					<td>goid</td>
+					<td>GO identifiers either directly or indirectly (descendant GO identifiers) applied in annotations</td>
+					<td>GO:0002080</td>
+				</tr>
+				<tr style='border-bottom:thin black solid'>
+					<td>aspect</td>
+					<td>Use this to limit the annotations returned to a specific ontology or ontologies (Molecular Function, Biological Process or Cellular Component)</td>
+					<td>F, P, C</td>
+				</tr>
+				<tr style='border-bottom:thin black solid'>
+					<td>relType</td>
+					<td>By default, QuickGO will display annotations to GO terms that are related to that specified in the goid parameter by is_a, part_of and occurs_in relations; this parameter allows you to override that behaviour.</td>
+					<td>IPO= <br/>See <a href="reference.html#slim_custom">here</a> for the list of available relations.</td>
+				</tr>
+				<tr style='border-bottom:thin black solid'>
+					<td>termUse</td>
+					<td>
+						If you set this parameter to <span style="font-weight:bold">slim</span>, then QuickGO will use the supplied set of GO identifiers as a slim and will map the annotations up to these terms. See <a href="GMultiTerm">here</a> for more details.
+						<br/>
+						The default behaviour (termUse=<span style="font-weight:bold">ancestor</span>) is to not perform this mapping.
+					</td>
+					<td>ancestor (default) or slim</td>
+				</tr>
+				<tr style='border-bottom:thin black solid'>
+					<td>evidence</td>
+					<td>Annotation evidence code (Ev) category</td>
+					<td>IDA, IC, ISS, IEA</td>
+				</tr>
+				<tr style='border-bottom:thin black solid'>
+					<td>source</td>
+					<td>Annotation provider</td>
+					<td>UniProtKB, HGNC</td>
+				</tr>
+				<tr style='border-bottom:thin black solid'>
+					<td>ref</td>
+					<td>PubMed or GO reference supporting annotation. Can refer to a specific reference identifier or category (for category level, use * after ref type)</td>
+					<td>PUBMED:*, GO_REF:0000002, 16262699 </td>
+				</tr>
+				<tr style='border-bottom:thin black solid'>
+					<td>with</td>
+					<td>Additional supporting information supplied in IEA, ISS, IPI, IC evidenced annotations; see: <a class="lb-cancel" href='http://www.geneontology.org/GO.evidence.shtml'>GO documentation</a>. Can refer to a specific identifier or category (for category level, use * after with type)</td>
+					<td>EC:2.5.1.30, IPR000092, HAMAP:*</td>
+				</tr>
+				<tr style='border-bottom:thin black solid'>
+					<td>tax</td>
+					<td>NCBI taxonomic identifer of annotated protein</td>
+					<td>9606</td>
+				</tr>
+				<tr style='border-bottom:thin black solid'>
+					<td>protein</td>
+					<td>Specifies one or more sequence identifiers or accessions from available database(s) (see DB filter column)</td>
+					<td>Mm.363225, P99999</td>
+				</tr>
+				<tr style='border-bottom:thin black solid'>
+					<td>qualifier</td>
+					<td>Tags that modify the interpretation of an annotation</td>
+					<td>NOT, colocalizes_with, contributes_to</td>
+				</tr>
+				<tr style='border-bottom:thin black solid'>
+					<td>db</td>
+					<td>Protein database (identifier type)</td>
+					<td>UniProtKB, UniGene, Ensembl</td>
+				</tr>
+				<tr style='border-bottom:thin black solid'>
+					<td>q</td>
+					<td>Advanced query. Used to customize GO annotation sets using Boolean operators</td>
+					<td>See Advanced Query section below</td>
+				</tr>
+				<tr>
+					<td>col</td>
+					<td>
+						<span>This parameter, which is currently only applicable to the tsv download format, allows you to specify a comma-separated list of columns that you want to be included in the returned data set.</span>
+						<br/>
+						<span>The list below shows the available column names; clicking on the name of a column will take you to the description of the column in the QuickGO help file. The default set of columns is shown in </span><span style="font-weight:bold">bold text</span>.
+						<ul>
+							<li><span style="font-weight:bold"><a href="reference.html#annotation-column-proteinDB">proteinDB</a></span></li>
+							<li><span style="font-weight:bold"><a href="reference.html#annotation-column-proteinID">proteinID</a></span></li>
+							<li><span style="font-weight:bold"><a href="reference.html#annotation-column-proteinSymbol">proteinSymbol</a></span></li>
+							<li><span style="font-weight:bold"><a href="reference.html#annotation-column-qualifier">qualifier</a></span></li>
+							<li><span style="font-weight:bold"><a href="reference.html#annotation-column-goID">goID</a></span></li>
+							<li><span style="font-weight:bold"><a href="reference.html#annotation-column-goName">goName</a></span></li>
+							<li><span style="font-weight:bold"><a href="reference.html#annotation-column-aspect">aspect</a></span></li>
+							<li><span style="font-weight:bold"><a href="reference.html#annotation-column-evidence">evidence</a></span></li>
+							<li><span style="font-weight:bold"><a href="reference.html#annotation-column-ref">ref</a></span></li>
+							<li><span style="font-weight:bold"><a href="reference.html#annotation-column-with">with</a></span></li>
+							<li><span style="font-weight:bold"><a href="reference.html#annotation-column-proteinTaxon">proteinTaxon</a></span></li>
+							<li><span style="font-weight:bold"><a href="reference.html#annotation-column-date">date</a></span></li>
+							<li><span style="font-weight:bold"><a href="reference.html#annotation-column-from">from</a></span></li>
+							<li><span style="font-weight:bold"><a href="reference.html#annotation-column-splice">splice</a></span></li>
+							<li><a href="reference.html#annotation-column-proteinName">proteinName</a></li>
+							<li><a href="reference.html#annotation-column-proteinSynonym">proteinSynonym</a></li>
+							<li><a href="reference.html#annotation-column-proteinType">proteinType</a></li>
+							<li><a href="reference.html#annotation-column-proteinTaxonName">proteinTaxonName</a></li>
+							<li><a href="reference.html#annotation-column-originalTermID">originalTermID</a></li>
+							<li><a href="reference.html#annotation-column-originalGOName">originalGOName</a></li>
+						</ul>
+					</td>
+					<td>proteinDB,proteinID,goID,goName,aspect</td>
+				</tr>
+			</table>
+
+            <div>
+            <a name="advanced query"/>
+            <h2>Advanced Query</h2>
+            <div>Advanced query syntax and valid fields are listed in <a href='reference.html#advanced_annotation'>Advanced search</a>.
+                Only one advanced query may be specified, and it will be AND'ed with any other query criteria.</div>
+                </div>
+        </div>
+    </body>
+</html>

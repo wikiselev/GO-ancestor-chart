@@ -1,0 +1,107 @@
+<html xmlns:use='java:uk.ac.ebi.interpro.jxbp2.render.Use'
+      xmlns:rq='java:uk.ac.ebi.quickgo.web.Request'
+        >
+  <head>
+    <title></title>
+  </head>
+  <body>
+
+<use:define name='search'>
+    <rq:dataFiles>
+        <form action='GSearch' class='automatic'>
+            <span class='popupClick'>
+
+                <input name='q' type='text' style='width:200px'
+                       accesskey='9'
+                       id='search-input' autocomplete="off"/>
+
+                <input type='submit' value='Search' style='width:60px'/>
+                <div class='popup'>
+                    <span class='target'>Type a query for QuickGO...</span>
+                    <div>You can reach the search box using alt+9 (Win/IE), alt+shift+9 (Win/Firefox) or ctrl+9 (Mac)</div>
+                </div>
+            </span>
+
+        </form>
+    </rq:dataFiles>
+
+    <rq:nodata>
+        QuickGO is offline.
+    </rq:nodata>
+</use:define>
+
+<use:define name='footer'>
+        <div style='float:right' onclick="popupClick(this,popupAuto(this,findPopup(this)),event)">
+            {rq:age}
+            <div class='popup'>
+
+
+                <table>
+                    <rq:quickGO xmlns:qg='java:uk.ac.ebi.quickgo.web.QuickGO'>
+                        <tr><td>Hostname</td><td>{qg:hostName}</td></tr>
+                        <tr><td>Uptime</td><td>{qg:since}</td></tr>
+                    </rq:quickGO>
+                    <rq:dataFiles xmlns:df='java:uk.ac.ebi.quickgo.web.configuration.DataFiles'>
+                        <tr><td>Data version</td><td>{df:stamp}</td></tr>
+                    </rq:dataFiles>
+                </table>
+                <div onclick='showTerminal()'>Terminal</div>
+            </div>
+        </div>
+
+    <rq:debug>
+        <iframe style='width:100%;height:500px' src='Configure?id={rq:id}&amp;action=MonitorInfo'></iframe>
+    </rq:debug>
+
+
+</use:define>
+
+<use:define name='term' xmlns:term='java:uk.ac.ebi.quickgo.web.data.Term'>
+	<a href='Selection?id={term:id}'><i class="selection"><img src='image/basket_add.png'/></i></a><a class="lb-dismiss" href="GTerm?id={term:id}">{term:id}</a> {term:name}
+</use:define>
+
+<use:define name="audit_header_full">
+	<tr class="column-header">
+		<td><span class="context-help" topic="audit-column-timestamp">Timestamp</span></td>
+		<td><span class="context-help" topic="audit-column-goId">GO ID</span></td>
+		<td><span class="context-help" topic="audit-column-name">GO Term Name</span></td>
+		<td><span class="context-help" topic="audit-column-action">Action</span></td>
+		<td><span class="context-help" topic="audit-column-category">Category</span></td>
+		<td><span class="context-help" topic="audit-column-detail">Detail</span></td>
+	</tr>
+</use:define>
+
+<use:define name='audit_record_full' xmlns:ar="java:uk.ac.ebi.quickgo.web.data.AuditRecord">
+	<tr>
+		<td><a href="GHistory?from={ar:timestamp}&amp;to={ar:timestamp}">{ar:timestamp}</a></td>
+		<td><a href="GTerm?id={ar:goId}">{ar:goId}</a></td>
+		<td>{ar:term}</td>
+		<td>{ar:action}</td>
+		<td>{ar:category}</td>
+		<td>{ar:text}</td>
+	</tr>
+</use:define>
+
+<use:define name="audit_header_mini">
+	<tr class="column-header">
+		<td><span class="context-help" topic="audit-column-timestamp">Timestamp</span></td>
+		<td><span class="context-help" topic="audit-column-action">Action</span></td>
+		<td><span class="context-help" topic="audit-column-category">Category</span></td>
+		<td><span class="context-help" topic="audit-column-detail">Detail</span></td>
+	</tr>
+</use:define>
+
+<use:define name='audit_record_mini' xmlns:ar="java:uk.ac.ebi.quickgo.web.data.AuditRecord">
+	<tr>
+		<td><a href="GHistory?from={ar:timestamp}&amp;to={ar:timestamp}">{ar:timestamp}</a></td>
+		<td>{ar:action}</td>
+		<td>{ar:category}</td>
+		<td>{ar:text}</td>
+	</tr>
+</use:define>
+
+  </body>
+
+
+</html>
+

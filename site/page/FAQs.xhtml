@@ -1,0 +1,219 @@
+<html xmlns:widgets='java:uk.ac.ebi.interpro.jxbp2.Widgets'>
+
+<head>
+    <title>QuickGO Frequently Asked Questions</title>
+</head>
+<body>
+
+<h4>Index</h4>
+ <p>
+     <ol>
+<li><a href="#FAQ1"><p>Can I download annotations for a list of proteins? </p></a></li>
+<li><a href="#FAQ2"><p>How do I see only manual annotations (i.e. exclude all electronic annotations)</p></a></li>
+<li><a href="#FAQ3"><p>How do I make a GO Slim?</p></a></li>
+<li><a href="#FAQ4"><p>I'd like to map my set of proteins to one of the existing pre-determined GO slims</p></a></li>
+<li><a href="#FAQ5"><p>I would like to see and download annotations for just the human proteome</p></a> </li>
+<li><a href="#FAQ6"><p>I'd like to get a list of proteins which have all been annotated to the same GO term.</p></a></li>
+<li><a href="#FAQ7"><p>I'd like to see all the annotations that used a particular PubMed reference</p></a></li>
+<li><a href="#FAQ8"><p>I have RefSeq/UniGene/Ensembl etc. identifiers, can I query for these in QuickGO?</p></a></li>
+<li><a href="#FAQ9"><p>Can I map my RefSeq/UniGene/Ensembl etc. identifiers to UniProtKB accessions using QuickGO?</p></a></li>
+<li><a href="#FAQ10"><p>Do you provide any webservices for QuickGO?</p></a></li>
+<li><a href="#FAQ11"><p>Why do I get a different set of annotations when I look at the same gene/protein in AmiGO?</p></a></li>
+     </ol>
+</p>
+<hr />
+<p><a name="FAQ1"><b>1.  Can I download annotations for a list of proteins? </b></a></p>
+    <p>Firstly, open the <a href="http://www.ebi.ac.uk/QuickGO/GAnnotation">Annotation Download page</a> linked from the QuickGO home page ('Search and Filter GO annotation sets').
+    This page will show a table in which all the GO annotations available from UniProt-GOA are displayed.</p>
+
+    <p>This annotation set can be filtered by specifying protein accession numbers.
+    To do this click on the 'Filter' button in the Annotation Toolbar (top right-hand toolbar), select the 'ID' tab and enter a list of accessions into the text box (separated by space, tab, new line or comma).
+    Click on 'Submit' at the bottom of the window and QuickGO will display the first 25 annotations by default, this can be increased using the 'Page size' drop-down menu.
+    </p>
+ 
+    <p><b>Example Query:</b>
+    To retrieve annotations for UniProtKB accessions: P10415, P10417, P49950, Q00709, O02718</p>
+    <p><b>See the <a href="http://www.ebi.ac.uk/QuickGO/GAnnotation?protein=P10415%2C%20P10417%2C%20P49950%2C%20Q00709%2C%20O02718">QuickGO display for this example query</a></b></p>
+
+    <!--<p>Alternatively, instead of using the filter box, users can also query QuickGO by entering a query in 'Advanced' search text box on the Annotation Download page.</p>
+    <p>Querying QuickGO with the example sequence identifiers shown above, would require the following command:
+    </p>
+    <p  style="margin-left:20px">  <b>protein=P10415,P10417,P49950,Q00709,O02718</b></p>  -->
+    <p>Statistics on different aspects of the annotation set can be viewed by clicking the 'Statistics' button in the Annotation Toolbar.</p>
+
+    <p>Finally, users have the option of downloading the displayed annotations by clicking on the 'Download' button in the Annotation Toolbar. Several download formats are available.
+    Ensure the download limit is set to the number of annotations in the set, this value is displayed in the summary tab of the 'Statistics' section or in the top left of the Annotation Download table.</p>
+ <hr />
+
+<p><b><a name="FAQ2">2. How do I see only manual annotations (i.e. exclude all electronic annotations)?</a></b></p>
+    <p>
+    Firstly, open the <a href="http://www.ebi.ac.uk/QuickGO/GAnnotation">Annotation Download page</a>, linked from the QuickGO home page ('Search and Filter GO annotation sets'). This page will show a table in which all the GO annotations available from UniProt-GOA are displayed. </p>
+    <p>This annotation set can be filtered by specifying the evidence code used to create an annotation.
+    To do this, click on the 'Filter' button in the Annotation Toolbar and select the 'Evidence' tab.
+    Users can choose to view annotations which have applied only 'Manual experimental' or 'Manual all' evidence codes by using the appropriate tick box or,
+    alternatively, users can choose any of the evidence codes individually. Click on 'Submit' at the bottom of the window to see the filtered annotations.
+    </p>
+    <p><b>Example query:</b>
+    Find all annotations which use only 'Manual experimental' evidence codes; IDA, IMP, IGI, IPI and IEP</p>
+    <p><b>See <a href="http://www.ebi.ac.uk/QuickGO/GAnnotation?termUse=ancestor&amp;evidence=IMP%2C%20IGI%2C%20IPI%2C%20IDA%2C%20IEP">QuickGO display for this example query</a></b></p>
+    <!--<p>Alternatively, instead of using the filter boxes, users can also query QuickGO by entering a query in 'Advanced:' search text box on the Annotation Download page. </p>
+    <p>Querying QuickGO with the example shown above, would require the following command:</p>
+    <p  style="margin-left:20px"><b>evidence=IDA,IMP,IGI,IPI,IEP</b></p>
+     -->
+<hr />
+<p><b><a name="FAQ3">3. How do I make a GO Slim?</a></b></p>
+<p>
+        QuickGO provides extensive support to users who would like to create their own slim or use a pre-defined slim and map up annotation sets:
+</p>
+    <p><b>i. If you already have a set of GO identifiers that you would like to use as a GO slim</b> </p>
+        <p>Firstly, open the  <a href="http://www.ebi.ac.uk/QuickGO/GMultiTerm">'Investigate GO slims' page</a> linked to from the QuickGO home page.</p>
+        <p>Click on the 'Choose Terms' tab and enter your list of GO identifiers into the 'Add Terms' text box then click on the 'Add Terms' button. You will automatically be taken to the 'Refine Selection' tab where your chosen terms will be listed. You may add or delete terms from this list. Once you have a final list of GO terms, click on the 'Find Annotations' tab to view all the annotations in the UniProt-GOA database slimmed
+        up to the selected terms. To limit the annotations to a particular list of protein identifiers, click on the 'Filter' button in the Annotation Toolbar, select the 'ID' tab and paste in a list of identifiers into the text box. Click on 'Submit' at the bottom of the window to view the annotations (the first 25 by default).</p>
+    <p>
+    <b>ii. Alternatively, you can select terms for a slim while browsing in QuickGO</b></p>
+        <p>Users can add GO terms to the Term Basket (displayed at the top of each page) by clicking the <img src='image/basket_add.png' alt="basket add"/> icon which appears adjacent to terms.</p>
+        <p>Links in the 'Term Basket' pop-up box allow users to modify and view this GO term set. To use the terms as a GO slim, click on the 'Use terms' button within the Term Basket pop-up window, this will take you to the 'Refine Selection' tab of the GO Slims and GO Term Comparison page where your chosen terms will be listed. You may add or delete terms from this list. Once you have a final list of GO terms, click on the 'Find Annotations' tab to view all the annotations in the UniProt-GOA database slimmed
+        up to the selected terms. To limit the annotations to a particular list of protein identifiers, click on the 'Filter' button in the Annotation Toolbar, select the 'ID' tab and paste in a list of identifiers into the text box. Click on 'Submit' at the bottom of the window to view the annotations (the first 25 by default).</p>
+        <p>Finally, the annotation file can be downloaded by clicking on the 'Download' button on the Annotation Toolbar and choosing one of the download options. However, to ensure all annotations are downloaded, the download limit must be increased to the number of annotations in the set (this value is found in the 'Statistics' section or on the top-left of the Annotation Download table). </p>
+       <hr />
+<p><a name="FAQ4"><b>4. I'd like to map my set of proteins to one of the existing pre-determined GO slims</b></a></p>
+
+    <p>All of the pre-determined GO slims which the GO Consortium maintains within the GO OBO file have been extracted and are available to view or modify from QuickGO.</p>
+    <p>GO slims can be accessed from the front page of QuickGO ('Investigate GO slims'). Select the 'Choose Terms' tab to view the available GO slim sets. Clicking the green plus icon next to any of the GO slims will result in a detailed view of the composition of the slim. Options are also given to modify and map annotations to any of these slims.</p>
+
+<hr />
+<p><a name="FAQ5"><b>5. I would like to see and download annotations for just the human proteome</b></a></p>
+        <p>Firstly, open the <a href="http://www.ebi.ac.uk/QuickGO/GAnnotation">Annotation Download page</a> linked from the QuickGO home page ('Search and Filter GO annotation sets').</p>
+        <p>The resulting page will show a table in which all the GO annotations available from UniProt-GOA are displayed. The annotation set can be filtered by specifying taxonomic identifiers. Users can find taxon identifiers by searching <a href="http://www.uniprot.org/taxonomy/"> UniProt Taxonomy </a>.</p>
+        <p>To limit the results to the human taxon identifier, click on the 'Filter' button in the Annotation Toolbar, select the 'Taxon' tab and select the option '9606 Human'. Alternatively, you can add the taxon identifier(s) for any desired species, or taxonomic group(s) into the text box that appears in this Taxon filter.</p>
+        <!--<p>Alternatively, the following could be entered into the 'Advanced:' search text box:</p>
+        <b> <p  style="margin-left:20px">tax=9606</p></b>
+
+<p><b>See the <a href="http://www.ebi.ac.uk/QuickGO/GAnnotation?termUse=ancestor&amp;tax=9606"> results of this example query</a></b></p>   -->
+
+        <p>Statistics on the different aspects of this selected annotation set are available in the 'Statistics' button in the Annotation Toolbar.</p>
+         <hr />
+<p><a name="FAQ6"><b>6. I'd like to get a list of proteins which have all been annotated to the same GO term.</b></a></p>
+        <p>Firstly, locate the GO term you are interested in by querying QuickGO (searching either on words that might be present in the GO term's name/synonyms/cross-references/definition or using the GO identifier directly).</p>
+        <p>From the search results, select the GO term you are interested in. QuickGO will then load all the details of the GO term, which will be separated in six tabs (in the JavaScript-enabled view) or into one page (in the non-JavaScript view). </p>
+        <p>In the JavaScript-enabled (Standard) version of QuickGO, click on the 'Protein Annotation' tab, where all of the annotations that have used the term either directly or indirectly (by descendants of the selected term) are displayed. Users can subsequently filter this set further using the 'Filter' button in the Annotation Toolbar; for instance to restrict the annotations for a specific taxon identifier.</p>
+
+        <p><b>Example:</b> See the <a href="http://www.ebi.ac.uk/QuickGO/GAnnotation?termUse=ancestor&amp;col=proteinDB&amp;col=proteinID&amp;col=splice&amp;col=proteinSymbol&amp;col=qualifier&amp;col=goID&amp;col=ref&amp;col=evidence&amp;col=with&amp;col=aspect&amp;col=proteinName&amp;col=proteinTaxon&amp;col=date&amp;col=from&amp;col=goName&amp;select=normal&amp;goid=GO%3A0005634"> standard QuickGO Annotation display for the GO term  nucleus (GO:0005634)</a></p>
+
+        <p> In the non-Javascript (Simple) version of QuickGO, scroll down to the bottom of the page, where you will see the 'Protein Annotation' header and click 'Get'.</p>
+        <p>Additional restrictions can be added to the search, for instance if you were only interested in annotations for a specific taxonomic group.
+        An annotation page will then be displayed containing all of the annotations that have used the term either directly or indirectly (by descendants of the selected term). </p>
+        <p><b>Example:</b> See the <a href="http://www.ebi.ac.uk/QuickGO/GAnnotation?db=&amp;protein=&amp;goid=GO%3A0005634&amp;ref=&amp;with=&amp;tax=&amp;source=&amp;limit=1000&amp;format=sample">Javascript disabled annotation display for the GO term nucleus (GO:0005634)</a></p>
+
+             <hr />
+<p><a name="FAQ7"><b>7. I'd like to see all the annotations that used a particular PubMed reference</b></a></p>
+    <p>You can enter a PubMed identifier into the search box of QuickGO, e.g. 2175912 </p>
+
+    <p><b>Example:</b><a href="http://www.ebi.ac.uk/QuickGO/GSearch?q=2175912">  Search for PubMed identifier: 2175912 </a></p>
+    <p>Clicking on the identifier will display all annotations available for that paper </p>
+
+<!--<p><a name="FAQ8"><b>8. I would like to find all annotations which do NOT use a particular GO term/experimental method/evidence code/produced by a particular annotation group </b></a></p>
+           <p>Firstly, open the <a href="http://www.ebi.ac.uk/QuickGO/GAnnotation">Annotation Download page</a>, linked from the QuickGO home page ('Search and Filter GO annotation sets'). This page will show a table in which the GO annotations available from UniProt-GOA are displayed.</p>
+           <p>For many 'NOT' queries, users will need to enter their query in the 'Advanced:' search text box.</p>
+           <p>e.g. 'I would like to retrieve all annotations which use the GO term nucleus (GO:0005634) but NOT nucleolus (GO:0005730)'</p>
+
+            <p>Query to enter in the 'Advanced:' search text box:</p>
+
+            <p  style="margin-left:20px">  <b>ancestor=GO:0005634 &amp; !ancestor=GO:0005730</b></p>
+
+            <p>e.g. 'I would like to find all annotations, apart from those produced by the InterPro2GO mapping'</p>
+
+            <p>Query to enter in the 'Advanced:' Search box:</p>
+
+            <p style="margin-left:20px">  <b>!ref=0000002</b></p>
+
+            <p>e.g. I would like to find all annotations, apart from those produced by the UniProt group (this will include both electronic and manual annotations)</p>
+
+            <p>Query to enter in the 'Advanced:' Search box:</p>
+            <p style="margin-left:20px">  <b>!source=UniProtKB </b></p>
+
+            <p>e.g. I would like to retrieve all annotations produced for Cyanobacteria ( taxon id=1117), apart from for those proteins where the type of cyanobacteria is unclassified as they have been environmental sampled ( taxon id= 48504).</p>
+
+            <p style="margin-left:20px">  <b>tax=1117 &amp; !tax=48504</b></p>
+
+               <hr /> -->
+<!--<p><a name="FAQ9"><b>9. Give me all the annotations which have experimentally-supported evidence codes to the GO term apoptosis (or child terms) but NOT the GO term nucleus (or child terms) for all eukaryotic species (taxon id: 2759)</b></a></p>
+
+        <p>Firstly, open the <a href="http://www.ebi.ac.uk/QuickGO/GAnnotation">Download annotation page</a>, linked from the QuickGO home page. This page will show a table in which the GO annotations available from UniProt-GOA are displayed. Enter the following query into the 'Advanced:' search text box:</p>
+
+        <p style="margin-left:20px"><b>((ancestor= GO:0006915 &amp; ( evidence=IMP,IGI,IPI,IDA,IEP )) &amp; \! (ancestor= GO:0005634 )) &amp; tax=2759</b></p>
+             <hr />       -->
+<!--<p><a name="FAQ10"><b>10. Find all the mouse annotation created by InterPro by mapping a particular InterPro domain to GO, and from this selected set, find out what other InterPro2GO annotations have been assigned to these selected proteins.</b></a></p>
+
+        <p>Firstly, open the <a href="http://www.ebi.ac.uk/QuickGO/GAnnotation">Download annotation page</a>, linked to from the home page to retrieve all annotations in the database. Enter the following query into the 'Advanced:' search text box:</p>
+
+        <p  style="margin-left:20px"><b>((~with=IPR000719) AND with=InterPro: ) AND tax=10090</b></p>    -->
+             <hr />
+<p><a name="FAQ8"><b> 8. I have RefSeq/UniGene/Ensembl etc. identifiers, can I query for these in QuickGO?</b></a></p>
+
+        <p>You can query QuickGO using a number of different identifier types (including:  DictyBase, UniGene, UniProtKB, FlyBase, Gramene, Mouse Genome Informatics, GeneDB (S. Pombe), The Institute of Genome Research, WormBase, The Zebrafish Information Network, Ensembl, NCBI Reference Sequences, EMBL accession and NCBI Entrez Gene identifiers).</p>
+
+        <p>You can enter a single identifier into the search box on QuickGO's home page to retrieve the matching UniProt accession and link to its annotations.</p>
+
+        <p>Alternatively, you can search for annotations to a list of identifiers from the <a href="http://www.ebi.ac.uk/QuickGO/GAnnotation">Annotation Download page</a> linked from the QuickGO home page ('Search and Filter GO annotation sets'). First click on the 'Filter' button in the Annotation Toolbar, select the 'ID' tab and enter the list of identifiers into the text box. Click on 'Submit' to see the annotations.</p>
+        <p>As QuickGO automatically maps the entered identifiers to corresponding UniProtKB accession numbers, the annotations displayed will show UniProtKB accessions and not your entered identifier type, unless you have selected the relevant ID type in the 'ID mapping' window (see FAQ.9). </p>
+       
+
+       <p> <b>Example:</b> Display annotations for these Ensembl identifiers:   </p>
+
+            <p style="margin-left:20px">  ENSMUSG00000036264</p>
+            <p style="margin-left:20px">  ENSMUSG00000036915</p>
+            <p style="margin-left:20px">  ENSMUSG00000043865</p>
+            <p style="margin-left:20px">  ENSMUSG00000061561</p>
+            <p style="margin-left:20px">  ENSMUSG00000028683</p>
+                                       <br />
+            <a href="http://www.ebi.ac.uk/QuickGO/GAnnotation?a=&amp;termUse=ancestor&amp;relType=IPO%3D&amp;customRelType=IPOR%2B-%3F%3D&amp;protein=ENSMUSG00000036264%2CENSMUSG00000036915%2CENSMUSG00000043865%2CENSMUSG00000061561%2CENSMUSG00000028683&amp;tax=&amp;qualifier=&amp;goid=&amp;ref=&amp;evidence=&amp;with=&amp;source=&amp;q=&amp;col=proteinDB%2CproteinID%2CproteinSymbol%2Cqualifier%2CgoID%2CgoName%2Caspect%2Cevidence%2Cref%2Cwith%2CproteinTaxon%2Cdate%2Cfrom%2Csplice&amp;select=normal&amp;db=ENSEMBL_GeneID">Annotation Download page display of the example query results</a>
+
+             <hr />
+<p><a name="FAQ9"><b>9. Can I map my RefSeq/UniGene/Ensembl etc. identifiers to UniProtKB accessions using QuickGO?</b></a></p>
+
+        <p>You can map between several identifiers using QuickGO. On the home page, click on 'Search and Filter GO annotation sets', this will bring up the entire UniProt-GOA database of annotations. Click on the 'ID mapping' button in the Annotation Toolbar and select the identifier you wish to map to and click on 'Submit' at the bottom of the window. </p>
+        <p>The table will now display all the annotations to the ID type selected. To limit this to a list of IDs, click on the 'Filter' button in the Annotation Toolbar, select the 'ID' tab and paste in your list of IDs that match the ID type that was selected in the ID mapping window (the acceptable identifiers are those listed in the 'ID mapping' window). Click on 'Submit' to see the results of your query.</p>
+            <hr />
+<p><a name="FAQ10"><b>10.  Do you provide any webservices for QuickGO?</b></a></p>
+
+        <p>All data provided by QuickGO can be queried remotely, both for GO term information and annotation data.</p>
+        <p>These web services are fully integrated, so that the filtering options and datasets available are fully synchronised between the browsable and web service interfaces. The web services have been designed for ease of use; QuickGO provides a REST style query interface in which all information is provided in the URL and the results are in tab separated, OBO or XML formats conforming to well established standards.</p>
+
+        <p>Web service information can be accessed by clicking the 'Web Services' button in the QuickGO Global Toolbar; Term information can be viewed in the following formats; Mini HTML, OBO and OBO XML and sample clients are available in Java. For protein annotation, sample clients are available in Java, Bash and Perl. Details are given on how to construct web queries, format options and sample scripts showing how to query QuickGO in Java, Perl and Bash.</p>
+                <hr />
+<p><a name="FAQ11"><b>11.  Why do I get a different set of annotations when I look at the same gene/protein in AmiGO?</b></a></p>
+
+<p>There are several ways in which <a href="http://amigo.geneontology.org/cgi-bin/amigo/go.cgi">AmiGO</a> and QuickGO differ in their
+display of annotations as follows:</p>
+<p>
+    <ol>
+        <li>Update cycle; QuickGO updates with GO terms every day and with GO annotations every week, so for GO terms QuickGO should only be, at most, one day behind AmiGO and for GO annotations no more than one week. The dates on which the GO terms and annotations were last updated in QuickGO are displayed in the <a href="http://www.ebi.ac.uk/QuickGO/Dataset.html">Dataset</a> page of QuickGO;</li>  
+        <li>AmiGO only provides electronic (IEA-coded) annotation for 12 model organism species whereas QuickGO provides electronic annotation for over 300,000 taxa in UniProtKB;</li>
+        <li>Annotations from external groups are only incorporated into QuickGO if the external sequence identifiers can be mapped to valid (neither secondary or deleted) UniProtKB accession numbers;</li>
+        <li>Annotations are only displayed in QuickGO if the GO identifier used has not been made secondary.</li>
+    </ol>
+</p>
+<hr/>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  </body>
+</html>

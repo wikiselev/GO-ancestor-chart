@@ -1,0 +1,75 @@
+<page xmlns:page='java:uk.ac.ebi.quickgo.web.servlets.GTermServlet.TermPage'
+        xmlns:relation='java:uk.ac.ebi.quickgo.web.data.TermRelation'
+        xmlns:term='java:uk.ac.ebi.quickgo.web.data.Term'>
+  <table>
+    <tr>
+      <td>
+        <help>Term ID</help>
+      </td>
+      <td>{term:id}</td>
+    </tr>
+    <tr>
+      <td>
+        <help>Name</help>
+      </td>
+      <td>{term:name}</td>
+    </tr>
+    <tr>
+      <td>
+        <help>Definition</help>
+      </td>
+        <td>
+            {term:definition}
+        </td>
+    </tr>
+    <tr>
+      <td>
+        <help>Synonyms</help>
+      </td>
+
+<term:synonyms xmlns:synonym='java:uk.ac.ebi.quickgo.web.data.Synonym'>
+    <td>
+        {synonym:name}
+        transmembrane receptor protein tyrosine kinase activation
+        <br/>
+      </td>
+</term:synonyms>
+    </tr>
+
+
+
+      <tr>
+      <td>
+        <help>EC/TC mappings</help>
+      </td>
+      <td>
+        <table>
+<term:xrefs xmlns:xr="java:uk.ac.ebi.quickgo.web.data.Term.XRef">
+          <tr>
+            <td>
+                {xr:db}
+            </td>
+            <td>
+              <a>{xr:id}</a>
+              <br/>
+            </td>
+          </tr>
+</term:xrefs>
+        </table>
+      </td>
+    </tr>
+      <tr>
+      <td>
+        <help>Child terms</help>
+      </td>
+      <td>
+          <term:children>
+              <relation:child>
+                  <a>{term:id}:</a> {term:name}
+                  <br/>
+              </relation:child>
+          </term:children>
+      </td>
+    </tr>
+  </table>
+</page>

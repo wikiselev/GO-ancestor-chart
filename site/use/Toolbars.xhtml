@@ -1,0 +1,163 @@
+<html xmlns:use='java:uk.ac.ebi.interpro.jxbp2.render.Use'
+      xmlns:rq='java:uk.ac.ebi.quickgo.web.Request'
+        >
+<body>
+
+<use:define name='local_toolbar'>
+    <div class='toolbar' style='float:left'>
+        <use:content/>
+    </div>
+</use:define>
+
+<use:define name='global_toolbar'>
+    <div class='toolbar' id='global-toolbar' style='float:left' title="The QuickGO Global Toolbar">
+		<div class='toolbar-button' style="padding-top:10px;" title="Go to QuickGO home page">
+            <a href=".">
+                <img width="70" height="38" src="image/mb/logo.png" alt='QuickGO Home'/>
+            </a>
+        </div>
+        <div class='toolbar-button' style="padding-top:10px;" title="Search QuickGO">
+	        <form class="search">
+                <input class="autosearch" style="width:200px" name='q' autocomplete="off"/>
+                <input type='image' class="search" style='vertical-align:bottom;' src="image/mb/button_search.png" alt='Search'/>
+                <div class="example-search jsonly">
+                    <div class="search">
+                        Search for terms by keyword or ID:
+                    </div>
+                    <div class="search">
+                        <a class="link" href='GSearch?q=apoptosis&amp;what=GO'>apoptosis</a>
+                    </div>
+                    <div class="search">
+                        <a class="link" href='GSearch?q=GO:0006915&amp;what=GO'>GO:0006915</a>
+                    </div>
+                    <div class="search">
+                        Search for proteins by name or accession:
+                    </div>
+                    <div class="search">
+                        <a class="link" href="GSearch?q=tropomyosin&amp;what=Protein">tropomyosin</a>
+                    </div>
+                    <div class="search">
+                        <a class="link" href="GSearch?q=P06727&amp;what=Protein">P06727</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+		<div class='toolbar-button' title="Go to QuickGO web services page">
+			<a href='WebServices.html'>
+				<img src="image/mb/tool_web.png" class="icon"/>
+				<div>Web Services</div>
+			</a>
+		</div>
+		<div class='toolbar-button' title="Go to QuickGO dataset information page">
+			<a href='Dataset.html'>
+				<img src="image/mb/tool_dataset.png" class="icon"/>
+				<div>Dataset</div>
+			</a>
+		</div>
+	    <div class='toolbar-button' title="Display your selected GO terms">
+		    <a href="Selection">
+			    <i class='selectionlink'>
+				    <img src="image/mb/tool_basket_full.png" class="icon"/>
+				    <div>Term Basket<span class='count'/></div>
+				</i>
+			</a>
+		</div>
+		<div class='helpicon' title="Display Global Toolbar help">
+		    <div class='context-help' topic="global_toolbar">
+			    <img src="image/mb/icon_info.png" class="icon"/>
+			</div>
+	    </div>
+    </div>
+</use:define>
+
+<use:define name='pagination_controls'>
+	<div class='paginator' style='float:left'  title="The Annotation Paginator">
+		<span>
+			<a class="link_page_first"><img class="img_page_first" src="image/nav/paging_first_grey.png" title="Display first page of annotations"/></a>
+		</span>
+		<span>
+			<a class="link_page_prev"><img class="img_page_prev" src="image/nav/paging_previous_grey.png" title="Display previous page of annotations"/></a>
+		</span>
+		<span class="page_info" style="padding-bottom:5px;display:inline-block;" title="Range of annotations currently displayed">
+			Displaying annotations FIRST to LAST of TOTAL
+		</span>
+		<span>
+			<a class="link_page_next"><img class="img_page_next" src="image/nav/paging_next_grey.png" title="Display next page of annotations"/></a>
+		</span>
+		<span>
+			<a class="link_page_last"><img class="img_page_last" src="image/nav/paging_last_grey.png" title="Display last page of annotations"/></a>
+		</span>
+		<span style="padding-bottom:5px;display:inline-block;" title="Number of annotations per page">Page size:
+			<select class="page_size" value="25" title="Select page size">
+			  <option value="25">25</option>
+			  <option value="50">50</option>
+			  <option value="75">75</option>
+			  <option value="100">100</option>
+			</select>
+		</span>
+		<span class="page_all" style="padding-bottom:5px;display:none;" title="Display all annotations">
+			(<a class="link_page_all">Show All</a>)
+		</span>
+		<span style="padding-bottom:5px;display:inline-block;" title="Additional filtering options in effect">
+			Additional filters: <span class="page_filter"/> 
+		</span>
+		<span style="display:inline-block;" title="Bookmarkable link for this annotation set">
+			<a class="link_page_link"><img src="image/nav/paging_link.png"/>Bookmarkable link</a>
+		</span>
+	</div>
+</use:define>
+
+
+<use:define name='annotation_toolbar'>
+    <div class='toolbar' id='annotation-toolbar' style='float:right' title="The QuickGO Annotation Toolbar">
+		<div class='toolbar-button' id="annotation-display" title="Show the Display Options dialog box">
+			<a>
+				<i class="display-link">
+					<img class="icon" src="image/mb/tool_display_grey.png"/>
+					<div>Display</div>
+				</i>
+			</a>
+		</div>
+		<div class='toolbar-button' id="annotation-mapping" title="Show the ID Mapping dialog box">
+			<a>
+				<i class="idmapping-link">
+					<img class="icon" src="image/mb/tool_id_grey.png"/>
+					<div>ID Mapping</div>
+				</i>
+			</a>
+		</div>
+		<div class='toolbar-button' id="annotation-filter" title="Show the Filter Options dialog box">
+			<a>
+				<i class="filter-link">
+					<img class="icon" src="image/mb/tool_filter_grey.png"/>
+					<div>Filter</div>
+				</i>
+			</a>
+		</div>
+		<div class='toolbar-button' id="annotation-statistic" title="Show the Statistics dialog box">
+			<a>
+				<i class="statistics-link">
+					<img class="icon" src="image/mb/tool_statistics_grey.png"/>
+					<div>Statistics</div>
+				</i>
+			</a>
+		</div>
+		<div class='toolbar-button download-button' id="annotation-export" title="Show the Download dialog box">
+			<a>
+				<i class="export-link">
+					<img class="icon" src="image/mb/tool_export_grey.png"/>
+					<div>Download</div>
+				</i>
+			</a>
+		</div>
+		<div class='helpicon' title="Display Annotation Toolbar help">
+		    <div class='context-help' topic="annotation_toolbar">
+			    <img src="image/mb/icon_info.png" class="icon"/>
+			</div>
+	    </div>
+    </div>
+</use:define>
+
+</body>
+</html>
+

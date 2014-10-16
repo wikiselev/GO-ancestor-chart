@@ -1,0 +1,53 @@
+<annotation_extension_relations
+		xmlns:use='java:uk.ac.ebi.interpro.jxbp2.render.Use'
+		xmlns:rels='java:uk.ac.ebi.quickgo.web.data.AnnotationExtensionRelationSet'
+		xmlns:list='java:uk.ac.ebi.interpro.jxbp2.ListContent'
+		xmlns:rel='java:uk.ac.ebi.quickgo.web.data.AnnotationExtensionRelationSet.AnnotationExtensionRelation'
+        xmlns:trm='java:uk.ac.ebi.quickgo.web.data.Term'
+		xmlns:ems='java:uk.ac.ebi.quickgo.web.data.AnnotationExtensionRelationSet.EntityMatcherSet'
+		xmlns:em='java:uk.ac.ebi.quickgo.web.data.AnnotationExtensionRelationSet.EntityMatcher'
+		>
+	<relations>
+		<rels:annExtRelations>
+			<relation name="{rel:name}">
+				<rel:hasDomain>
+					<domain>
+						<rel:domainTerms list:body='any'>
+							<rel:domainTerms>
+								<term id='{trm:id}'/>
+							</rel:domainTerms>
+						</rel:domainTerms>
+						<rel:domainOptions list:body='any'>
+							<rel:domainOptions>
+								<syntax namespace='{em:namespace}' idSyntax='{em:idSyntax}' regExp ='{em:regExp}'/>
+							</rel:domainOptions>
+						</rel:domainOptions>
+					</domain>
+				</rel:hasDomain>
+				<rel:hasRange>
+					<range>
+						<rel:rangeTerms list:body='any'>
+							<rel:rangeTerms>
+								<term id='{trm:id}'/>
+							</rel:rangeTerms>
+						</rel:rangeTerms>
+						<rel:rangeOptions list:body='any'>
+							<rel:rangeOptions>
+								<syntax namespace='{em:namespace}' idSyntax='{em:idSyntax}' regExp ='{em:regExp}'/>
+							</rel:rangeOptions>
+						</rel:rangeOptions>
+					</range>
+				</rel:hasRange>
+			</relation>
+		</rels:annExtRelations>
+	</relations>
+	<rels:rangeDefaults>
+		<default_options>
+			<ems:entityMatchers list:body='any'>
+				<ems:entityMatchers>
+					<syntax namespace='{em:namespace}' idSyntax='{em:idSyntax}' regExp ='{em:regExp}'/>
+				</ems:entityMatchers>
+			</ems:entityMatchers>
+		</default_options>
+	</rels:rangeDefaults>
+</annotation_extension_relations>

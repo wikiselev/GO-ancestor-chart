@@ -1,0 +1,69 @@
+<html xmlns:use='java:uk.ac.ebi.interpro.jxbp2.render.Use'
+      xmlns:compare='java:uk.ac.ebi.quickgo.web.servlets.annotation.GAnnotationServlet.Comparison'
+      xmlns:tc='java:uk.ac.ebi.quickgo.web.servlets.annotation.GAnnotationServlet.TermComparison'
+	  xmlns:term='java:uk.ac.ebi.quickgo.web.data.Term'
+      
+      >
+
+  <head>
+    <title>Annotation statistics</title>
+  </head>
+
+  <body>
+	<use:define name='heading'>
+		<tr class='column-header'>
+			<td class="column-header">Compared term</td>
+			<td class="column-header">Aspect</td>
+			<td class="column-header">Name</td>
+			<td class="column-header-right"><span class="context-help" topic="co_pr">PR</span></td>
+			<td class="column-header-right"><span class="context-help" topic="co_spct">S%</span></td>
+			<td class="column-header-right"><span class="context-help" topic="co_together"># Together</span></td>
+			<td class="column-header-right"><span class="context-help" topic="co_compared"># Compared</span></td>
+		</tr>
+	</use:define>
+
+	<use:define name="compare-summary">
+		<tr>
+			<td class="bucket-code" colspan="5">Totals</td>
+			<td class="bucket-count"><a href='GAnnotation?q={compare:dataParameter}'>{compare:data}</a></td>
+			<td class="bucket-count"><a href='GAnnotation?q={compare:backgroundParameter}'>{compare:background}</a></td>
+		</tr>
+	</use:define>
+
+	<use:define name='compare'>
+		<tr>
+			<tc:term>
+				<td style="white-space:nowrap"><a href='Selection?id={term:id}'><i class="selection"><img src='image/basket_add.png'/></i></a> <a href="GTerm?id={term:id}">{term:id}</a></td>
+				<td>{term:aspect}</td>
+				<td>{term:name}</td>
+			</tc:term>
+			<td class="bucket-percent">{tc:prtext}</td>
+			<td class="bucket-percent">{tc:stext}</td>
+			<tc:term>
+				<td class="bucket-count"><a href='GAnnotation?q={tc:dataParameter}'>{tc:overlap}</a></td>
+				<td class="bucket-count"><a href='GAnnotation?q={tc:backgroundParameter}'>{tc:background}</a></td>
+			</tc:term>
+		</tr>
+	</use:define>
+
+	<div id='results'>
+		<table class="tab-holder">
+			<tr class="shadowbox">
+				<td class="shadowbox">The top {compare:overCount} of {compare:allCount} co-occurring terms</td>
+			</tr>
+			<tr>
+				<td style="vertical-align:top">
+					<table class="quickgo-standard">
+						<use:use name='heading'/>
+						<compare:over>
+							<use:use name='compare'/>
+						</compare:over>
+						<use:use name='compare-summary'/>
+					</table>
+				</td>
+			</tr>
+		</table>
+	</div>
+
+</body>
+</html>

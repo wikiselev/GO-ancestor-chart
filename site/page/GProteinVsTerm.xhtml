@@ -1,0 +1,54 @@
+<html xmlns:widgets='java:uk.ac.ebi.interpro.jxbp2.Widgets'
+      xmlns:page='java:uk.ac.ebi.quickgo.web.servlets.GMultiTermServlet.TermPage'>
+
+
+  <head>
+    <title>Proteins vs Terms</title>
+  </head>
+
+  <body class='wide'>
+
+  <table>
+      <tr><td>Code</td><td>Evidence</td></tr>
+  <rq:evidences>
+      <tr><td>
+      <div class='ev_{ev:code}'>
+          {ev:code}
+      </div>
+      </td>
+          <td>
+              {ev:description}
+          </td>
+      </tr>
+
+  </rq:evidences>
+  </table>
+
+  <table onclick='crosstabclick("cellinfo")'>
+      <tr>
+          <td></td>
+      <page:terms xmlns:t='java:' xmlns:c='java:'>
+          <td><t:idchar><div><c:char/></div></t:idchar></td>
+      </page:terms>
+      </tr>
+      <page:proteins xmlns:p='java:'>
+      <tr>
+          <td onclick=''>{p:ac}</td>
+          <p:matches xmlns:m='java:'>
+              <td><div class='ev_{m:upper}'> </div><div class='ev_{m:central}'> </div><div class='ev_{m:lower}'> </div></td>
+          </p:matches>
+      </tr>
+      </page:proteins>
+  </table>
+
+  <div id='cellinfo' class='popup'>
+      Term: %1
+      Protein: %2
+      <div id='loading-cell'>Loading...</div>
+      <div id='terminfo-cell'></div>
+      <iframe style='visibility:hidden;' onload='refreshDiv(this,"terminfo-cell","loading-cell")' xsrc='G?id=%1&amp;ac=%2&amp;format=mini'></iframe>
+  </div>
+
+
+  </body>
+</html>

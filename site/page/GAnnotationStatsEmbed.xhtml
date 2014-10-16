@@ -1,0 +1,234 @@
+<html xmlns:rq='java:uk.ac.ebi.quickgo.web.Request'
+	  xmlns:widgets='java:uk.ac.ebi.interpro.jxbp2.Widgets'
+      xmlns:page='java:uk.ac.ebi.quickgo.web.servlets.annotation.GAnnotationServlet.AnnotationPage'
+      xmlns:ann='java:uk.ac.ebi.quickgo.web.servlets.annotation.Annotation'
+      xmlns:summary='java:uk.ac.ebi.quickgo.web.servlets.annotation.Summary'
+      xmlns:cat='java:uk.ac.ebi.quickgo.web.servlets.annotation.Summary.Category'
+      xmlns:c='java:uk.ac.ebi.quickgo.web.servlets.annotation.GAnnotationServlet.Column'
+      xmlns:para='java:uk.ac.ebi.quickgo.web.servlets.annotation.GAnnotationServlet.AnnotationParameters'
+      xmlns:use='java:uk.ac.ebi.interpro.jxbp2.render.Use'
+      >
+
+	<head>
+		<title>Annotation statistics</title>
+	</head>
+
+	<body>
+		<div id="results">
+			<use:define name='stats-chart' xmlns:b='java:uk.ac.ebi.quickgo.web.servlets.annotation.Summary.Bucket'>
+				<div class='stats-summary'>Statistics for {cat:scope}</div>
+				<div class='stats-details'>
+					<use:use file='use/Annotation.xhtml' name='chart'/>
+				</div>
+			</use:define>
+
+			<table class="hidden">
+				<tr class="hidden" >
+					<td colspan='{para:columnCount}'>
+						<span class="annotation-count">{summary:totalAnnotations}</span>
+						<span class="protein-count">{summary:totalProteins}</span>
+						<rq:dataFiles xmlns:df='java:uk.ac.ebi.quickgo.web.configuration.DataFiles'>
+							<df:stats>
+								<span class="annotation-total">{summary:totalAnnotations}</span>
+								<span class="protein-total">{summary:totalProteins}</span>
+							</df:stats>
+						</rq:dataFiles>
+					</td>
+				</tr>
+
+				<tr class="hidden">
+					<para:columns>
+						<td class="stats-column">
+							<c:proteinID>
+								<div class="tab-definition">
+									<div class="tab-caption">Summary</div>
+									<div class="tab-id">{c:name}</div>
+									<div class="tab-content">
+										<div class="text-block">
+											<div class="user-guidance">
+												<div class="paragraph">
+													Please note that the figures displayed on this, and the other pages in this dialog relate to the annotation set that you have selected; if you perform any filtering or ID mapping operations, the statistics displayed will alter accordingly.
+												</div>
+												<div class="paragraph">
+													You can find full details of the datasets that comprise the full annotation set <a target="_blank" href="Dataset.html">here</a>.
+												</div>
+											</div>
+										</div>
+										<div class="stats-summary">
+											<table class="quickgo-standard">
+												<tr>
+													<td class="bucket-code">Number of annotations</td>
+													<td class="bucket-count">{summary:totalAnnotations}</td>
+												</tr>
+												<tr>
+													<td class="bucket-code">Number of distinct proteins</td>
+													<td class="bucket-count">{summary:totalProteins}</td>
+												</tr>
+											</table>
+										</div>
+										<hr/>
+										<use:use file='use/Annotation.xhtml' name='filter_params'/>
+									</div>
+									<summary:hasProteinStatistics>
+										<div class="tab-definition">
+											<div class="tab-caption">Proteins</div>
+											<div class="tab-id">Proteins</div>
+											<div class="tab-content">
+												<use:use file='use/Annotation.xhtml' name='filter_params'/>
+												<hr/>
+												<div class="text-block">
+													<div class="user-guidance">
+														<div class="paragraph">
+															<summary:proteinStatistics>
+																<div>{cat:proteinStatisticsSummary}</div>
+															</summary:proteinStatistics>
+														</div>
+													</div>
+												</div>
+												<table class="tab-holder">
+													<tr class="shadowbox">
+														<td class="shadowbox">Count of Annotations per Protein</td>
+													</tr>
+													<tr>
+														<td><summary:proteinStatistics><use:use name='stats-chart'/></summary:proteinStatistics></td>
+													</tr>
+												</table>
+											</div>
+										</div>
+									</summary:hasProteinStatistics>
+								</div>
+							</c:proteinID>
+							<c:goID>
+								<div class="tab-definition">
+									<div class="tab-caption">{c:displayName}</div>
+									<div class="tab-id">{c:name}</div>
+									<div class="tab-content">
+										<use:use file='use/Annotation.xhtml' name='filter_params'/>
+										<hr/>
+										<table class="tab-holder">
+											<tr class="shadowbox">
+												<td class="shadowbox">Count of Annotations per {c:displayName}</td>
+												<td class="shadowbox">Count of Proteins per {c:displayName}</td>
+											</tr>
+											<tr>
+												<td><summary:termByAnnotation><use:use name='stats-chart'/></summary:termByAnnotation></td>
+												<td><summary:termByProtein><use:use name='stats-chart'/></summary:termByProtein></td>
+											</tr>
+										</table>
+									</div>
+								</div>
+							</c:goID>
+							<c:aspect>
+								<div class="tab-definition">
+									<div class="tab-caption">{c:displayName}</div>
+									<div class="tab-id">{c:name}</div>
+									<div class="tab-content">
+										<use:use file='use/Annotation.xhtml' name='filter_params'/>
+										<hr/>
+										<table class="tab-holder">
+											<tr class="shadowbox">
+												<td class="shadowbox">Count of Annotations per {c:displayName}</td>
+												<td class="shadowbox">Count of Proteins per {c:displayName}</td>
+											</tr>
+											<tr>
+												<td><summary:aspectByAnnotation><use:use name='stats-chart'/></summary:aspectByAnnotation></td>
+												<td><summary:aspectByProtein><use:use name='stats-chart'/></summary:aspectByProtein></td>
+											</tr>
+										</table>
+									</div>
+								</div>
+							</c:aspect>
+							<c:evidence>
+								<div class="tab-definition">
+									<div class="tab-caption">{c:displayName}</div>
+									<div class="tab-id">{c:name}</div>
+									<div class="tab-content">
+										<use:use file='use/Annotation.xhtml' name='filter_params'/>
+										<hr/>
+										<table class="tab-holder">
+											<div class="text-block">
+												<div class="user-guidance">
+													<div class="paragraph">
+														A full description of evidence codes and their usage can be found <a href="http://www.geneontology.org/GO.evidence.shtml" target="_blank">here</a>.
+													</div>
+												</div>
+											</div>
+											<tr class="shadowbox">
+												<td class="shadowbox">Count of Annotations per {c:displayName}</td>
+												<td class="shadowbox">Count of Proteins per {c:displayName}</td>
+											</tr>
+											<tr>
+												<td><summary:evidenceByAnnotation><use:use name='stats-chart'/></summary:evidenceByAnnotation></td>
+												<td><summary:evidenceByProtein><use:use name='stats-chart'/></summary:evidenceByProtein></td>
+											</tr>
+										</table>
+									</div>
+								</div>
+							</c:evidence>
+							<c:ref>
+								<div class="tab-definition">
+									<div class="tab-caption">{c:displayName}</div>
+									<div class="tab-id">{c:name}</div>
+									<div class="tab-content">
+										<use:use file='use/Annotation.xhtml' name='filter_params'/>
+										<hr/>
+										<table class="tab-holder">
+											<tr class="shadowbox">
+												<td class="shadowbox">Count of Annotations per {c:displayName}</td>
+												<td class="shadowbox">Count of Proteins per {c:displayName}</td>
+											</tr>
+											<tr>
+												<td><summary:referenceByAnnotation><use:use name='stats-chart'/></summary:referenceByAnnotation></td>
+												<td><summary:referenceByProtein><use:use name='stats-chart'/></summary:referenceByProtein></td>
+											</tr>
+										</table>
+									</div>
+								</div>
+							</c:ref>
+							<c:proteinTaxon>
+								<div class="tab-definition">
+									<div class="tab-caption">{c:displayName}</div>
+									<div class="tab-id">{c:name}</div>
+									<div class="tab-content">
+										<use:use file='use/Annotation.xhtml' name='filter_params'/>
+										<hr/>
+										<table class="tab-holder">
+											<tr class="shadowbox">
+												<td class="shadowbox">Count of Annotations per {c:displayName}</td>
+												<td class="shadowbox">Count of Proteins per {c:displayName}</td>
+											</tr>
+											<tr>
+												<td><summary:taxonByAnnotation><use:use name='stats-chart'/></summary:taxonByAnnotation></td>
+												<td><summary:taxonByProtein><use:use name='stats-chart'/></summary:taxonByProtein></td>
+											</tr>
+										</table>
+									</div>
+								</div>
+							</c:proteinTaxon>
+							<c:from>
+								<div class="tab-definition">
+									<div class="tab-caption">{c:displayName}</div>
+									<div class="tab-id">{c:name}</div>
+									<div class="tab-content">
+										<use:use file='use/Annotation.xhtml' name='filter_params'/>
+										<hr/>
+										<table class="tab-holder">
+											<tr class="shadowbox">
+												<td class="shadowbox">Count of Annotations per {c:displayName}</td>
+												<td class="shadowbox">Count of Proteins per {c:displayName}</td>
+											</tr>
+											<tr>
+												<td><summary:sourceByAnnotation><use:use name='stats-chart'/></summary:sourceByAnnotation></td>
+												<td><summary:sourceByProtein><use:use name='stats-chart'/></summary:sourceByProtein></td>
+											</tr>
+										</table>
+									</div>
+								</div>
+							</c:from>
+						</td>
+					</para:columns>
+				</tr>
+			</table>
+		</div>
+	</body>
+</html>

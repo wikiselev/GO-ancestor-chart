@@ -1,0 +1,45 @@
+<html xmlns:widgets='java:uk.ac.ebi.interpro.jxbp2.Widgets'
+      xmlns:page='java:uk.ac.ebi.quickgo.web.servlets.annotation.GAnnotationServlet.AnnotationPage'
+      xmlns:ann='java:uk.ac.ebi.quickgo.web.servlets.annotation.Annotation'
+      xmlns:summary='java:uk.ac.ebi.quickgo.web.servlets.annotation.Summary'
+      xmlns:cat='java:uk.ac.ebi.quickgo.web.servlets.annotation.Summary.Category'
+      xmlns:c='java:uk.ac.ebi.quickgo.web.servlets.annotation.GAnnotationServlet.Column'
+      xmlns:n='java:uk.ac.ebi.quickgo.web.servlets.annotation.GAnnotationServlet.Column.Name'
+      xmlns:para='java:uk.ac.ebi.quickgo.web.servlets.annotation.GAnnotationServlet.AnnotationParameters'
+      >
+
+  <head>
+    <title>Annotation statistics</title>
+  </head>
+
+  <body>
+
+  <para:columns>
+
+  <c:goID>
+      <h2>GO Terms</h2>
+      <summary:term><widgets:invoke name='chart'/></summary:term>
+              </c:goID>
+              <c:evidence>
+                  <h2>Evidence</h2>
+                  <summary:evidence><widgets:invoke name='chart'/></summary:evidence>
+
+              </c:evidence>
+
+              <c:proteinTaxon>
+                  <h2>Taxonomy</h2>
+                      <summary:tax><widgets:invoke name='chart'/></summary:tax>
+              </c:proteinTaxon>
+
+              <c:from>
+                  <h2>Source</h2>
+                      <summary:source><widgets:invoke name='chart'/></summary:source>
+
+              </c:from>
+  
+  </para:columns>
+
+
+
+  </body>
+</html>

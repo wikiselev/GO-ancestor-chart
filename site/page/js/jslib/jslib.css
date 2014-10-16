@@ -1,0 +1,85 @@
+/* tabs.js */
+
+span.tab {
+    padding:3px 10px 0px 10px;
+    margin:0 2px 0 0;
+    border:1px solid #000;
+    
+    border-top-left-radius:5px;
+    border-top-right-radius:5px;
+	-moz-border-radius-topleft:5px;
+	-moz-border-radius-topright:5px;
+    cursor:pointer;
+    
+    background-color:#066;
+    color:#fff;
+}
+
+span.activetab {
+    padding:3px 10px 1px 10px;
+    margin:0 2px;
+    border:1px solid #000;
+    border-bottom:none;
+    border-top-left-radius:5px;
+    border-top-right-radius:5px;
+	-moz-border-radius-topleft:5px;
+	-moz-border-radius-topright:5px;
+    cursor:pointer;
+
+
+
+    background-color:#eef5f5;
+    color:#000;
+}
+
+div.tabs {    
+    border-bottom:1px solid #000;
+    margin:5px 0 0 0;
+}
+
+div.tabcontent {
+    background-color:#fff;
+    border:1px solid #066;
+    padding:0px;
+}
+
+div.tabframe {
+    background-color:#eef5f5;
+    border:1px solid #000;
+    border-top:none;
+    padding:12px;
+
+/*
+	border-top-left-radius:0px;
+	border-bottom-left-radius:5px;
+	border-top-right-radius:5px;
+	border-bottom-right-radius:5px;
+	-moz-border-radius-topleft:0px;
+	-moz-border-radius-bottomleft:5px;
+	-moz-border-radius-topright:5px;
+	-moz-border-radius-bottomright:5px;
+*/
+}
+
+
+/* lightbox.js */
+
+
+div.lightbox-container {
+	background-color: #fff;
+	opacity:1;
+	padding:20px;
+	-moz-border-radius:20px;
+	border-radius:20px;
+	text-align: left;
+    
+}
+
+/* This rule is overridden by jslib.js for IE<7 to position:absolute */
+.fixed {
+    position: fixed;
+}
+
+
+
+/* the end */

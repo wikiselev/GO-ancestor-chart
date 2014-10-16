@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html>
+	<head>
+		<!-- JSON support for IE (needed to use JS API) -->
+
+		<script type="text/javascript" src="ann_ext_rel/cytoscape/js/min/json2.min.js"></script>
+		<!-- Flash embedding utility (needed to embed Cytoscape Web) -->
+
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+
+		<script type="text/javascript" src="ann_ext_rel/cytoscape/js/min/AC_OETags.min.js"></script>
+
+		<!-- Cytoscape Web JS API (needed to reference org.cytoscapeweb.Visualization) -->
+		<script type="text/javascript" src="ann_ext_rel/cytoscape/js/min/cytoscapeweb.min.js"></script>
+
+		<script type="text/javascript" src="ann_ext_rel/js/ontology-map.js"></script>
+		<link rel="stylesheet" type="text/css" media="all" href="ann_ext_rel/css/network.css" />
+
+		<script type="text/javascript">
+			$(document).ready(
+				function() {
+					$("#cytoscapeweb").html('Retrieving graph data...');
+					$('.window .close').click(
+						function (e) {
+							//Cancel the link behavior
+							e.preventDefault();
+							$('.window').hide();
+						}
+					);
+
+					drawOntology();
+				}
+			);
+		</script>
+
+		<title>QuickGO - Visualisation of go_annotation_extension_relations.obo</title>
+	</head>
+
+	<body>
+		<div id="cytoscapeweb">
+			(Cytoscape placeholder)
+		</div>
+		<div id="boxes">
+			<div id="dialog" class="window">
+				<table style="width:100%; border-bottom:thin solid black">
+					<tr>
+						<td style="width:90%;vertical-align:bottom;">
+							<b><span id="nodetitle">(id)</span></b>
+						</td>
+						<td style="text-align:right">
+							<span class="close">
+								<img src="ann_ext_rel/image/cross_red_13.png" alt="Close" />
+							</span>
+						</td>
+					</tr>
+				</table>
+				<span id="nodenote"></span>
+			</div>
+		</div>
+	</body>
+</html>

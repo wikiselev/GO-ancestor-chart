@@ -1,0 +1,40 @@
+<html   xmlns:widgets='java:uk.ac.ebi.interpro.jxbp2.Widgets'
+        xmlns:page='java:uk.ac.ebi.quickgo.web.servlets.GTermServlet.TermPage'
+        xmlns:relation='java:uk.ac.ebi.quickgo.web.data.TermRelation'
+        xmlns:term='java:uk.ac.ebi.quickgo.web.data.Term'>
+
+  <head>
+    <title>{term:id}</title>
+  </head>
+  <body>
+
+  <div id='results'>
+
+      <div><a href='GTerm?id={term:id}'>{term:id}</a> {term:name}</div>
+
+      <h2>Definition</h2>
+  <div>{term:definition}</div>
+
+  <h2>Children</h2>
+
+
+  <table>
+  <term:children>
+      <tr>
+          <td>{relation:typeof}</td>
+          <td><relation:child><widgets:invoke name='term'/></relation:child></td>
+      </tr>
+  </term:children>
+      </table>
+
+      <h2>GO Slims</h2>
+      <table>
+          <term:slims xmlns:slim='java:uk.ac.ebi.quickgo.web.data.Terms'>
+              <tr><td style='width:10px;background-color:{slim:cssColour}'></td><td><a href='GMultiTerm?a={slim:getCompressed}'>{slim:name}</a></td><td>{slim:count}</td></tr>
+          </term:slims>
+
+      </table>
+  </div>
+  
+  </body>
+</html>

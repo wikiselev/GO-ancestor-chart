@@ -1,0 +1,23 @@
+<quickGO>
+    <monitor accessLog="access.log" monitorLog="monitor.log" monitorInterval='5m'/>
+
+	<pages name='default' root='site' standard='style/EBI.xhtml' use='template/widgets.xhtml' limit='10485760'/>
+
+    <data base="data/full" update="http://www.ebi.ac.uk/QuickGO/download/data/full/"/>
+
+    <chart defaultImageLimit='10' maximumImageLimit='20'/>
+
+    <feedback path='feedback' password='changeme'/>
+
+	<databases default_item_url="http://www.google.com/search?q=[example_id]">
+		<database name="GO" generic_url="http://www.ebi.ac.uk/QuickGO" item_url="http://www.ebi.ac.uk/QuickGO/GTerm?id=GO:[example_id]"/>
+		<database name="PUBMED" generic_url="http://europepmc.org" item_url="http://europepmc.org/abstract/MED/[example_id]"/>
+		<database name="PMID" generic_url="http://europepmc.org" item_url="http://europepmc.org/abstract/MED/[example_id]"/>
+		<database name="AgBase" generic_url="http://www.agbase.msstate.edu/" item_url=""/>
+		<!--<database name="ENSEMBL" generic_url="http://www.ensembl.org/" item_url=""/>-->
+		<database name="UniGene" generic_url="http://www.ncbi.nlm.nih.gov/UniGene" item_url=""/>
+		<database name="Reactome" generic_url="http://www.reactome.org" item_url="http://www.reactome.org/cgi-bin/link?SOURCE=Reactome&amp;ID=[example_id]"/>
+		<!-- this next entry is a *little* bit of a hack, but I won't tell if you won't... -->
+		<database name="With" generic_url="http://www.geneontology.org/GO.evidence.shtml#iss" item_url="reference.html#with_not_supplied"/>
+	</databases>
+</quickGO>

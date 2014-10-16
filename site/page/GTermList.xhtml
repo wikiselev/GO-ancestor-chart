@@ -1,0 +1,16 @@
+<html
+	xmlns:tlp='java:uk.ac.ebi.quickgo.web.servlets.GSearchServlet.TermListPage'
+	xmlns:t='java:uk.ac.ebi.quickgo.web.data.Term'
+	>
+
+<head>
+	<title>All GO {tlp:ontology} Terms</title>
+</head>
+
+<body>
+<h3>All GO terms in the {tlp:ontology} ontology</h3>
+
+<tlp:terms><a href='GTerm?id={t:id}'>{t:id}</a> {t:name}<br/></tlp:terms>
+
+</body>
+</html>

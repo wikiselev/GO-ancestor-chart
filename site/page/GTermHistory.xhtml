@@ -1,0 +1,177 @@
+<html
+	xmlns:use="java:uk.ac.ebi.interpro.jxbp2.render.Use"
+	xmlns:thp="java:uk.ac.ebi.quickgo.web.servlets.GHistoryServlet.TermHistoryPage"
+	xmlns:list="java:uk.ac.ebi.interpro.jxbp2.ListContent"
+	xmlns:toh="java:uk.ac.ebi.quickgo.web.data.TermOntologyHistory"
+>
+
+<head>
+	<title>GO Term History: {thp:description}</title>
+</head>
+
+<body>
+	<use:use file='use/Toolbars.xhtml' name='global_toolbar'/>
+	<div>
+		<i class='history-toolbar'/>
+		<div style="float:right" class="jsonly">
+			<use:use file='use/Toolbars.xhtml' name='local_toolbar'>
+				<div class='toolbar-button' id="history-filter" title="Show the History Options dialog box">
+					<a>
+						<i class="options-link">
+							<img class="icon" src="image/mb/tool_filter.png"/>
+							<div>Options</div>
+						</i>
+					</a>
+				</div>
+				<div class='helpicon' title="Display History Toolbar help">
+				    <div class='context-help' topic="history_toolbar">
+					    <img src="image/mb/icon_info.png" class="icon"/>
+					</div>
+			    </div>
+			</use:use>
+		</div>
+		<div class="history-options">
+			<form action="GHistory">
+				<table>
+					<tr><td>From (YYYY-MM-DD):</td><td><input type="text" size="10" name="from" value=""/></td></tr>
+					<tr><td>To (YYYY-MM-DD):</td><td><input type="text" size="10" name="to" value=""/></td></tr>
+					<tr>
+						<td>Period:</td>
+						<td>
+							<input type="text" size="2" name="period_length" value="6"/>
+							<select name="period_unit">
+								<option value="d">Day(s)</option>
+								<option value="w">Week(s)</option>
+								<option value="m" selected="true">Month(s)</option>
+								<option value="y">Years(s)</option>
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<td>Category:</td>
+						<td>
+							<select name="what">
+								<option value="" selected="true">All changes</option>
+								<option value="TERM">Terms</option>
+								<option value="OBSOLETION">Obsoletions</option>
+								<option value="DEFINITION">Definitions</option>
+								<option value="SYNONYM">Synonyms</option>
+								<option value="XREF">Cross-references</option>
+								<option value="RELATION">Relationships</option>
+								<option value="SECONDARY">Secondaries</option>
+								<option value="SLIM">Slims</option>
+							</select>
+						</td>
+					</tr>
+					<tr><td>Terms:</td><td><input type="text" name="id" value=""/></td></tr>
+					<tr><td>Limit:</td><td><input type="text" size="5" name="limit" value="500"/></td></tr>
+				</table>
+			</form>
+			<div class="dialog-help">
+				<div class="sub-header">Date Specification</div>
+
+				<p>You can specify an explicit date range that you are interested in by setting the "From" and "To" parameters; this will limit the data displayed to those changes that were recorded within that (inclusive) date range.</p>
+
+				<p>Alternatively, you can use the "Period" parameter to view the GO term changes that occurred over a specific number of Day(s), Week(s), Month(s) or Year(s) before a specified date.</p>
+				<p>If you do not enter a "To" date, then the period will be relative to the current date. If, however, you do specify a "To" value, then the "Period" value will display records in the timeframe up to and including that specified date.</p>
+
+				<div class="sub-header">Category</div>
+
+				<p>You can use this field to specify what types of term changes you are interested in seeing.</p>
+
+				<div class="sub-header">Terms</div>
+
+				<p>You can enter a list of GO Terms in this field to limit the changes displayed. Please note that only changes made to directly listed terms will be displayed, not term descendants.</p>
+
+				<div class="sub-header">Limit</div>
+
+				<p>The default number of records returned is 500, however you can increase or decrease this limit. In order to prevent possible browser problems, the maximum upper limit is 10,000.</p>
+			</div>
+		</div>
+	</div>
+
+	<div style="clear:both"/>
+
+	<thp:history>
+		<div class='tabs-h2' name='info'>
+			<thp:multiCategory>
+				<h2 name='introduction'>Introduction<a name='introduction'/></h2>
+				<div class="text-block">
+					<div class="user-guidance">
+						<div>This page displays the differences recorded in the full Gene Ontology OBO v1.2 file as audited by the UniProt-GOA database during its daily update cycle.</div>
+						<div>If there is any delay in uploading the current OBO file, the changes displayed and the date recorded for these changes may not correspond to when the changes to the OBO file were committed.</div>
+					</div>
+				</div>
+
+				<h2>All changes</h2>
+				<table class="quickgo-standard">
+					<use:use file="use/Common.xhtml" name="audit_header_full"/>
+					<toh:auditRecords>
+						<use:use file="use/Common.xhtml" name="audit_record_full"/>
+					</toh:auditRecords>
+				</table>
+			</thp:multiCategory>
+
+			<toh:historyTerms list:body='any'>
+				<h2>Terms</h2>
+				<table class="quickgo-standard">
+					<use:use file="use/Common.xhtml" name="audit_header_full"/>
+					<toh:historyTerms>
+						<use:use file="use/Common.xhtml" name="audit_record_full"/>
+					</toh:historyTerms>
+				</table>
+			</toh:historyTerms>
+
+			<toh:historyObsoletions list:body='any'>
+				<h2>Obsoletions</h2>
+				<table class="quickgo-standard">
+					<use:use file="use/Common.xhtml" name="audit_header_full"/>
+					<toh:historyObsoletions>
+						<use:use file="use/Common.xhtml" name="audit_record_full"/>
+					</toh:historyObsoletions>
+				</table>
+			</toh:historyObsoletions>
+
+			<toh:historyDefinitions list:body='any'>
+				<h2>Definition/synonyms</h2>
+				<table class="quickgo-standard">
+					<use:use file="use/Common.xhtml" name="audit_header_full"/>
+					<toh:historyDefinitions>
+						<use:use file="use/Common.xhtml" name="audit_record_full"/>
+					</toh:historyDefinitions>
+				</table>
+			</toh:historyDefinitions>
+
+			<toh:historyRelations list:body='any'>
+				<h2>Relationships</h2>
+				<table class="quickgo-standard">
+					<use:use file="use/Common.xhtml" name="audit_header_full"/>
+					<toh:historyRelations>
+						<use:use file="use/Common.xhtml" name="audit_record_full"/>
+					</toh:historyRelations>
+				</table>
+			</toh:historyRelations>
+
+			<toh:historyXRefs list:body='any'>
+				<h2>Cross-references</h2>
+				<table class="quickgo-standard">
+					<use:use file="use/Common.xhtml" name="audit_header_full"/>
+					<toh:historyXRefs>
+						<use:use file="use/Common.xhtml" name="audit_record_full"/>
+					</toh:historyXRefs>
+				</table>
+			</toh:historyXRefs>
+
+			<toh:historyOther list:body='any'>
+				<h2>Other</h2>
+				<table class="quickgo-standard">
+					<use:use file="use/Common.xhtml" name="audit_header_full"/>
+					<toh:historyOther>
+						<use:use file="use/Common.xhtml" name="audit_record_full"/>
+					</toh:historyOther>
+				</table>
+			</toh:historyOther>
+		</div>
+	</thp:history>
+</body>
+</html>

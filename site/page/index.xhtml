@@ -1,0 +1,223 @@
+<html xmlns:use='java:uk.ac.ebi.interpro.jxbp2.render.Use'
+      xmlns:rq='java:uk.ac.ebi.quickgo.web.Request'>
+
+<head>
+	<title>QuickGO</title>
+</head>
+
+<body>
+	<!-- specially for all you bots out there... -->
+	<div style="display:none">
+		<a href="GSearch?format=termlist&amp;what=Process">Biological Process</a>
+		<a href="GSearch?format=termlist&amp;what=Function">Molecular Function</a>
+		<a href="GSearch?format=termlist&amp;what=Component">Cellular Component</a>
+	</div>
+
+<!--
+	<br style="clear:both"/>
+
+	<p style='padding-bottom:10px'>
+		QuickGO is a fast web-based browser for <a href='http://geneontology.org'>Gene Ontology</a>
+		terms and annotations, which is provided by the <a href='http://www.ebi.ac.uk/GOA'>UniProt-GOA project</a> at the <a href='http://www.ebi.ac.uk'>EBI</a>.
+	</p>
+-->
+
+	<rq:nodata>
+		<p>QuickGO is currently offline. No data is available.</p>
+	</rq:nodata>
+
+	<rq:dataFiles xmlns:df='java:uk.ac.ebi.quickgo.web.configuration.DataFiles'>
+		<use:use file='use/Toolbars.xhtml' name='global_toolbar'/>
+	
+		<br style="clear:both"/>
+
+		<div style="float:right;width:40%">
+			<div class="shadowbox">
+				<span class="green-bold">QuickGO News</span>
+                <div class="collaps-o-matic">
+                    <div style="padding:10px">
+                        <span style="font-weight:bold"><img class="com-indicator" src="image/zoom_in.png"/>19 August 2011 - Changes to the Term Basket</span>
+                        <div class="com-content" style="display:none">
+                            <div style="margin-top:10px">
+                                <span style="font-weight:bold;font-style:italic">"Your Terms" renamed</span>
+                                <p>
+                                    The "Your Terms" basket has been given the more descriptive name "Term Basket".
+                                </p>
+                                <p>
+                                    Additionally, the <img src="image/add-white.png" alt="green plus"/> icons that were adjacent to each GO ID throughout QuickGO have been replaced with <img src="image/basket_add.png" alt="shopping basket with a plus sign"/> (a shopping basket with a plus sign) to convey more clearly what the functionality behind the icon is.
+                                    Use this <img src="image/basket_add.png" alt="shopping basket with a plus sign"/> icon to collect GO terms in the Term Basket so that you can subsequently view the relationships between selected terms or use them to create a GO slim.
+                                </p>
+                                <p>
+                                    To remove all the terms from the Term Basket, click on the 'Empty' button within the Term Basket window.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+				<div class="collaps-o-matic">
+					<div style="padding:10px">
+						<span style="font-weight:bold"><img class="com-indicator" src="image/zoom_in.png"/>14 June 2011 - New term history displays</span>
+						<div class="com-content" style="display:none">
+							<div style="margin-top:10px">
+								<span style="font-weight:bold;font-style:italic">New term history page</span>
+								<p>
+									QuickGO now has a new Term History page which displays the differences recorded in the full Gene Ontology OBO v1.2 file as audited by the UniProt-GOA database during its daily update cycle.
+								</p>
+								<p>
+									You can access this page by following the "View the history of changes to GO" link on the QuickGO front page, or by clicking <a href='GHistory'>here</a>.
+								</p>
+							</div>
+							<div style="margin-top:10px">
+								<span style="font-weight:bold;font-style:italic">Term-specific change logs</span>
+								<p>
+									In addition to the new Term History page, QuickGO now displays term-specific change logs on individual term detail pages.
+								</p>
+								<p>
+									For example, click <a href="GTerm?id=GO:0006915#term=history">here</a> to see the change log for GO:0006915 (apoptosis).
+								</p>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="collaps-o-matic">
+					<div style="padding:10px">
+						<span style="font-weight:bold"><img class="com-indicator" src="image/zoom_in.png"/>20 April 2011 - Display improvements</span>
+						<div class="com-content" style="display:none">
+							<div style="margin-top:10px">
+								<span style="font-weight:bold;font-style:italic">Improvements to the co-occurring terms table</span>
+								<p>
+									This table shows commonly co-annotated terms for any of the terms within the Gene Ontology and can be accessed in the 'Co-occurring terms' tab of any GO term information page; for example, see the commonly co-annotated terms for 'apoptosis' <a href="http://www.ebi.ac.uk/QuickGO/GTerm?id=GO:0006915#term=stats">here</a>.
+								</p>
+								<p>
+									The highest ranking terms are those that most frequently occur in the same protein entry as the term being viewed.
+								</p>
+								<p>
+									The '# Together' value is the number of proteins which have been annotated with both of the GO terms, and the '#Compared' value is the number of proteins which have been annotated with the compared term.
+								</p>
+								<p>
+									The Co-occurring terms table also shows the terms which are least likely to be co-annotated with the chosen term.
+								</p>
+							</div>
+							<div style="margin-top:10px">
+								<span style="font-weight:bold;font-style:italic">Improvements to the term search results display</span>
+								<p>
+									The display of obsolete GO terms in the term search results has been refined by showing a red exclamation point next to a GO ID which has been made obsolete. Clicking on this exclamation point will give you any suggested alternatives to the obsolete term.
+								</p>
+								<p>
+									Additionally, the display of the synonym and definition matches of a search result has been made more informative. For example, clicking on the 'Definition' match from a term search now provides you with a complete definition of the term.
+								</p>
+								<p>
+									For an example showing all of the above improvements, try searching for 'GTPase beta'.
+								</p>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div style="padding:10px">
+					<a href="NewsArchive.html">QuickGO News Archive</a>
+				</div>
+			</div>
+
+			<div class="shadowbox">
+				<div class="collaps-o-matic">
+					<span class="green-bold"><img class="com-indicator" src="image/zoom_in.png"/>QuickGO Tips</span>
+					<div class="com-content" style="display:none">
+						<ul>
+							<li style="padding-bottom:10px">
+								Many of QuickGO's displays can be clicked for more information, e.g., the ancestor chart and protein annotation table. This information includes descriptions, definitions and links to relevant pages or resources.
+							</li>
+							<li style="padding-bottom:10px">
+								The protein annotation sets displayed by QuickGO by default include both Swiss-Prot (reviewed) and TrEMBL (unreviewed) UniProtKB accessions. To retrieve only Swiss-Prot (reviewed) UniProtKB accessions use the ID mapping tool in the Annotation Toolbar on the annotation download page and select 'UniProtKB/Swiss-Prot'.
+							</li>
+							<li style="padding-bottom:10px">
+								You can retrieve annotations for 22 different sequence identifier types (such as UniProtKB, Ensembl, RefSeq or UniGene identifiers) using QuickGO's ID mapping facility. Just click on the 'ID Mapping' icon on the  tool bar displayed in the <a href="http://www.ebi.ac.uk/QuickGO/GAnnotation">Annotation download page</a>.
+							</li>
+							<li style="padding-bottom:10px">
+								You can view the relationship of GO terms in an ontology by collecting terms into the Term Basket and then clicking on the 'Use Terms' button to visualize terms in a graph. Terms can be added to the Term Basket by using the <img src='image/basket_add.png'/> icons adjacent to all GO term identifiers.
+							</li>
+							<li style="padding-bottom:10px">
+								Want to find out which terms are frequently co-annotated to your GO term of interest? Click on the 'Co-occurring Terms' tab when viewing the details on any individual GO term.
+							</li>
+							<li style="padding-bottom:10px">
+								Find out details of when QuickGO ontology or annotation information was last updated by clicking on <a href="http://www.ebi.ac.uk/QuickGO/Dataset.html">'Dataset'</a> in the global tool bar.
+							</li>
+							<li style="padding-bottom:10px">
+								Statistics for an annotation set can be downloaded as a text file, enabling the data to be used to create bar graphs etc. for publication. Just click on the 'Statistics' button in the top right-hand toolbar (Annotation Toolbar) when you are viewing a set of annotations to access this feature.
+							</li>
+							<li style="padding-bottom:10px">
+								QuickGO can help make customized GO slims, which can be used to 'map up' your gene/protein identifiers to broadly categorise their functions or subcellular locations. Click <a href="GMultiTerm">here</a> for more information.
+							</li>
+							<li style="padding-bottom:10px">
+								QuickGO's search facility can be used to find information on GO terms as well as information on annotation to distinct proteins. Just type a partial GO term name/synonym or a gene symbol, protein name or sequence identifier into the Search box.
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+
+			<div class="shadowbox">
+				<div class="collaps-o-matic">
+					<span class="green-bold"><img class="com-indicator" src="image/zoom_in.png"/>Tutorial</span>
+					<div class="com-content" style="display:none">
+						<p>
+							You can try an interactive demo by clicking <a href="demo.html">here</a>.
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class='shadowbox' style ="width:50%">
+			<a href='GAnnotation'><span class='green-bold'>Search and Filter GO annotation sets</span></a>
+			<div class='context-help' style="float:right" topic="search_go_annotations">
+				<img src="image/mb/icon_info.png" class="icon"/>
+			</div>
+
+			<p>Extensive filters are available from this page to allow the generation of specific subsets of GO annotations, mapped to sequence identifiers of your choice.</p>
+		</div>
+
+		<div class='shadowbox' style ="width:50%">
+			<div>
+				<a href='GMultiTerm'><span class='green-bold'>Investigate GO slims</span></a>
+				<div class='context-help' style="float:right" topic="investigate_go_slims">
+					<img src="image/mb/icon_info.png" class="icon"/>
+				</div>
+				<p>GO slims are lists of GO terms that have been selected from the full set of terms available from the Gene Ontology project.</p>
+				<p>GO slims can be used to generate a focused view of part of the GO, or with annotation data they can be used to see how a set of proteins/genes can be broadly categorized (using annotation data and the relationships that exist between terms in the ontologies).</p>
+				<p>Further information on GO slims can be found at the <a href="http://www.geneontology.org/GO.slims.shtml">GO Consortium web site</a>.</p>
+			</div>
+		</div>
+
+		<div class='shadowbox' style ="width:50%">
+			<a href='GHistory'><span class='green-bold'>View the history of changes to GO</span></a>
+			<div class='context-help' style="float:right" topic="view_go_history">
+				<img src="image/mb/icon_info.png" class="icon"/>
+			</div>
+
+			<p>This page allows you to view the changes to GO, optionally filtered by date, term identifier, or type of change.</p>
+		</div>
+
+		<div class='shadowbox' style ="width:50%">
+			<div class="collaps-o-matic">
+				<span class='green-bold'><img class="com-indicator" src="image/zoom_in.png"/>Other resources for GO analysis</span>
+				<div class="com-content" style="display:none">
+					<ul>
+						<li style="margin:10px">
+							The <a href="http://www.geneontology.org/GO.tools.shtml">GO tools collection</a> contains tools developed by the GO Consortium and by third parties.
+						</li>
+						<li style="margin:10px">
+							The <a href="http://amigo.geneontology.org/cgi-bin/amigo/blast.cgi">AmiGO BLAST server</a> searches the sequences from the GO Consortium protein sequence database, which comprises protein sequences of genes and gene products that have been annotated to a GO term and submitted to the GO Consortium.
+						</li>
+						<li style="margin:10px">
+							The <a href="http://amigo.geneontology.org/cgi-bin/amigo/term_enrichment">AmiGO Term Enrichment tool</a> finds significant shared GO terms or parents of those GO terms, used to describe the genes in the query/input set to help discover what those genes may have in common.
+						</li>
+						<li style="margin:10px">
+							The <a href="http://www.berkeleybop.org/goose/">GO Online SQL Environment (GOOSE)</a> provides a direct interface to the GO Consortium database, allowing users to run custom queries without having to install a copy of the GO Consortium database locally.
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</rq:dataFiles>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<html
+        xmlns:sel='java:uk.ac.ebi.quickgo.web.servlets.Selection.SelectionPage'
+        xmlns:widgets='java:uk.ac.ebi.interpro.jxbp2.Widgets'>
+
+  <head>
+
+
+
+    <title>Selection</title>
+  </head>
+  <body>
+
+ 
+
+  <div id='results'>
+
+
+  <span class='popupClick'><a>
+  <img src='image/basket_add.png'/> Your selection ({sel:count} terms)<img src='image/down-white.png' width='10' height='10'/>
+  </a>
+  <div class='popup' style='width:500px'>
+
+
+      <p>When the <img src='image/basket_add.png'/> icon occurs next to a GO term, you can use it to add the term to this 'Your selection' basket. The resulting collection of terms can then be used to create a GO slim, or to download annotations that contain these terms.
+                You can view your current selection of GO terms below.   </p>
+      
+
+        <widgets:invoke name='help' section='your-selection'>Selection:</widgets:invoke>
+      <div><a href='{sel:url}'>View selected terms</a></div>
+      <table>
+      <sel:terms xmlns:t='java:uk.ac.ebi.quickgo.web.data.Term'>
+          <tr><td><a href='Selection?remove={t:id}' target='selection-frame'><img src='image/delete-white.png'/></a></td><td><a href='GTerm?id={t:id}'>{t:id}</a></td><td>{t:name}</td></tr>
+      </sel:terms>
+      </table>
+      <div><a href='Selection?empty' target='selection-frame'>Empty</a></div>
+      <form target="selection-frame" action="Selection">
+      <textarea style='width:450px' name="id" id='selectionlist'>{sel:idList}</textarea>
+          <div>
+
+         Add to the selection in the textbox above and press: <input type="Submit" value="Add"/>
+          </div>
+      </form>
+  </div>
+  </span>
+
+  </div>
+
+  </body>
+</html>
+

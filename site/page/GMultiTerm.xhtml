@@ -1,0 +1,217 @@
+<html 
+    xmlns:page='java:uk.ac.ebi.quickgo.web.servlets.GMultiTermServlet.TermPage'
+    xmlns:loop='java:uk.ac.ebi.interpro.jxbp2.Loop'
+    xmlns:use='java:uk.ac.ebi.interpro.jxbp2.render.Use'>
+
+    <head>
+        <title>GO Slims and GO Term Comparison</title>
+        <script>
+	        if (window.rewriteURL) {
+		        window.rewriteURL();
+	        }
+        </script>
+    </head>
+
+    <body class='wide'>
+
+    <use:use file='use/Toolbars.xhtml' name='global_toolbar'/>
+
+    <br style="clear:both"/>
+
+    <div>
+        <i class="multiterm"/>
+
+        <div class='tabs-h2' name='tab'>
+
+	        <h2 name='introduction'>Introduction<a name='introduction'/></h2>
+				<div class="text-block">
+					<div class="user-guidance">
+						<div class="paragraph">GO slims are lists of GO terms that have been selected from the full set of terms available from the Gene Ontology project.</div>
+						<div class="paragraph">GO slims can be used to generate a focused view of part of the GO or a broad overview of all of the top GO categories. Used alongside annotation data they can be used to see how a set of proteins/genes can be broadly categorized into selection of terms (this method applies the relationships that exist between terms in the ontologies).</div>
+						<div class="paragraph">You can use GO slims that have been predefined by members of the GO Consortium, that have been imported into QuickGO, or make a new GO slim that more closely meets with your visualization requirements.</div>
+						<div class="paragraph">Use the tabs on this page to choose the terms to include in your slim, which you can subsequently edit, visualise the relationships between selected terms and finally have the annotations in QuickGO 'mapped' up to your selected set of terms.</div>
+						<div class="paragraph">A guide to the GO slims maintained by the GO Consortium is available at <a href="http://www.geneontology.org/GO.slims.shtml">http://www.geneontology.org/GO.slims.shtml</a>.</div>
+					</div>
+				</div>
+
+            <h2 name='choose-terms'>Choose Terms<a name='info'/></h2>
+
+            <form action="GMultiTerm" method="POST" class="multiterm">
+                <div>
+                    <div class='box'>
+                        <div class='boxtitle'>Predefined GO Term sets</div>
+	                    <div class="user-guidance">
+		                    <div>The predefined GO slims listed below have been created by groups in the GO Consortium; you can use them directly, or adapt them to your own requirements.</div>
+		                    <div>To use the terms from one of these GO slims, click on the <img src="image/edit_add_button.png"/> button next to its name.</div>
+		                    <div>The colour associated with each predefined GO slim can be used to identify slim terms when viewing the ontology in the Ancestor chart view.</div>
+	                    </div>
+                        <table class="quickgo-standard">
+	                        <tr class="column-header">
+		                        <td colspan="2">Slim name</td>
+		                        <td>Number of terms</td>
+		                        <td>Slim colour</td>
+	                        </tr>
+                            <page:sets xmlns:set='java:uk.ac.ebi.quickgo.web.data.Terms'>
+                                <tr>
+	                                <td><input type="checkbox" name="a" value="{set:getCompressed}" class="compressed"/></td>
+									<td>{set:name}</td>
+	                                <td>{set:count}</td>
+	                                <td style='width:10px;background-color:{set:cssColour}'/>
+                                </tr>
+                            </page:sets>
+                        </table>
+                    </div>
+
+                    <div class='box'>
+                        <div class='boxtitle'>Add Terms</div>
+						<div class="user-guidance">
+							<div>If you have selected one of the predefined GO slim sets above, you can use the text box below to add additional GO identifiers to create a customised version of the slim.</div>
+							<div>Alternatively, if you have decided to create an entirely new GO slim, you can just add GO term identifiers into this text box.</div>
+						</div>
+                        <div>
+                            <textarea name="terms" style="width:100%" class="terms"/>
+                        </div>
+                        <div>
+                            <button class="addterms">Add terms</button>
+                        </div>
+                    </div>
+
+					<div class='box'>
+						<div class='boxtitle'>Term Basket
+							<div class='helpicon' style="float:right">
+								<div class='context-help' topic="multiterm-choose-yourterms">
+									<img src="image/mb/icon_info.png" class="icon"/>
+								</div>
+							</div>
+						</div>
+						<div class="user-guidance">
+							<div>You can add terms from your Term Basket to the slim; click on the <img src="image/mb/icon_info.png"/> icon for more details.</div>
+						</div>
+						<table style="table-layout:fixed" class="selection"/>
+					</div>
+                </div>
+            </form>
+
+            <h2 name='edit-terms'>Refine Selection<a name='info'/></h2>
+
+            <form action="GMultiTerm" method="POST" class="multiterm">
+
+                <table style="table-layout:fixed;width:100%">
+                    <tr>
+                        <td style="width:50%;vertical-align:top;overflow:auto;">
+                            <div class='box'>
+                                <div class='boxtitle'>Your selected terms
+	                                <div class='helpicon' style="float:right">
+		                                <div class='context-help' topic="multiterm-edit-compareterms">
+			                                <img src="image/mb/icon_info.png" class="icon"/>
+		                                </div>
+	                                </div>
+                                </div>
+	                            <div class="user-guidance">
+		                            <div>You can remove a GO term from the set you have chosen by clicking on the <img src="image/edit_remove_button.png"/> button next to it in the list below; to remove all terms in a particular category, click on the <img src="image/edit_remove_button.png"/> button in the category header.</div>
+		                            <div>You can add extra terms to your selection by going back to the Choose Terms tab.</div>
+		                            <div>Click on <img src="image/chart_add_button.png"/> in the list below to add a GO term (or category) to the comparison chart, or <img src="image/chart_delete_button.png"/> to remove it.</div>
+	                            </div>
+
+                                <table class="termList">
+	                                <tbody class="AllOntologies">
+										<tr class="head">
+											<td class="term-remove-all"/>
+											<td class="term-select-all"/>
+											<td class="term-ontology" colspan="2" style='font-weight:bold;'>All Terms</td>
+										</tr>
+	                                </tbody>
+
+                                    <page:groups xmlns:o='java:uk.ac.ebi.quickgo.web.data.Term.Ontology' xmlns:group='java:uk.ac.ebi.quickgo.web.servlets.GMultiTermServlet.OntologyGroup'>
+                                        <tbody class="{o:text}">
+                                            <tr class="head">
+	                                            <td class="term-remove-all"/>
+	                                            <td class="term-select-all"/>
+	                                            <td class="term-ontology" colspan="2" style='font-weight:bold;'>{o:description} Terms</td>
+                                            </tr>
+
+											<group:terms xmlns:h='java:uk.ac.ebi.quickgo.web.servlets.GMultiTermServlet.HiliteTerm'>
+												<h:term  xmlns:t='java:uk.ac.ebi.quickgo.web.data.Term'>
+													<tr>
+														<td class="select"><input type='checkbox' name='select' value='{t:id}' checked="checked"/></td>
+														<!--<td class="term-chart-use"/>-->
+														<td><a href='GTerm?id={t:id}'>{t:id}</a></td>
+														<td>{t:name}</td>
+													</tr>
+												</h:term>
+											</group:terms>
+                                        </tbody>
+                                    </page:groups>
+                                </table>
+                            </div>
+                        </td>
+                        <td style="width:50%;vertical-align:top;">
+                            <div class='box'>
+                                <div class='boxtitle'>Term Comparison</div>
+	                            <div class="user-guidance">Click on the thumbnail below (or on the Comparison Chart tab) to display a full-sized term comparison chart.</div>
+                                <div class="termcomparison">
+	                                <i class="chartthumbnail"/>
+								</div>
+                            </div>                            
+                        </td>
+                    </tr>
+                </table>
+
+
+                <input type="submit" value="Update" class="dynamic"/>
+
+            </form>
+
+
+            <h2 name='chart'>Comparison Chart<a name='chart'/></h2>
+
+            <div style="overflow:auto">
+                
+                <div style="float:right" class="jsonly">
+                    <use:use file='use/Toolbars.xhtml' name='local_toolbar'>
+
+                        <div class='toolbar-button'>
+                            <img src="image/mb/tool_display.png" alt="Display options"/>
+                            <div>Display</div>
+                        </div>
+
+                    </use:use>
+                </div>
+	            <div class="user-guidance">
+		            <div>This chart is interactive; you can click on the term boxes and legend for more information.</div>
+	            </div>
+                <i class="comparisonchart"></i>
+            </div>
+
+            <div>
+                <form action="GMultiTerm" class="displayOptions">
+                    <input type="hidden" name="format" value="chart"/>
+                    <input type="text" name="id" value="" class="dynamic"/>
+
+                    <table>
+                        <tr><td>Key</td><td><select name="chart_key"><option value="true">Show</option><option value="false">Hide</option></select></td></tr>
+                        <tr><td>GO IDs</td><td><select name="chart_ids"><option value="true">Show</option><option value="false" selected="selected">Hide</option></select></td></tr>
+                        <tr><td>Term box width</td><td><input type="text" name="chart_width" value="85"/></td></tr>
+                        <tr><td>Term box height</td><td><input type="text" name="chart_height" value="55"/></td></tr>
+                        <tr><td>Slim colours</td><td><select name="chart_slim"><option value="true">Show</option><option value="false" selected="selected">Hide</option></select></td></tr>
+	                    <tr><td>Show children</td><td><select name="chart_showChildren"><option value="true">Show</option><option value="false" selected="selected">Hide</option></select></td></tr>
+                        <tr><td>Image size limit (in megapixels)</td><td><input type="text" name="limit" value="10"/></td></tr>
+                    </table>
+                    <div>
+                        Note that setting the limit too high may result in images being generated slowly; it may even cause the browser to crash. The maximum limit is 20 megapixels.
+                    </div>
+                    <input type="submit" value="View" class="dynamic"/>
+
+                </form>
+            </div>
+
+            <h2 name='annotations'>Find Annotations</h2>
+			<div class="annotation-page">
+				<use:use file='use/Toolbars.xhtml' name='annotation_toolbar'/>
+				<div style="clear:both"/>
+				<use:use file='use/Annotation.xhtml' name='annotation'/>
+			</div>
+        </div>
+    </div>
+</body>
+</html>

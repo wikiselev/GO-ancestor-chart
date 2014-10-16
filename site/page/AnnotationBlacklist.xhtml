@@ -1,0 +1,103 @@
+<html xmlns:rq='java:uk.ac.ebi.quickgo.web.Request'
+      xmlns:use='java:uk.ac.ebi.interpro.jxbp2.render.Use'
+      xmlns:df='java:uk.ac.ebi.quickgo.web.configuration.DataFiles'
+      xmlns:bl='java:uk.ac.ebi.quickgo.web.data.AnnotationBlacklist'
+      xmlns:be='java:uk.ac.ebi.quickgo.web.data.AnnotationBlacklistEntry'
+>
+<head>
+	<title>The UniProt-GOA Annotation Blacklist</title>
+</head>
+<body>
+<use:use file='use/Toolbars.xhtml' name='global_toolbar'/>
+<div style="clear:both"/>
+
+<h2>Scope</h2>
+This method aims to correct annotations to UniProtKB accessions, from incorrect annotations inferred from electronic annotation (IEA) methods that are supplied by the UniProt-GOA project to the GO Consortium.
+
+<h2>The need for a blacklist</h2>
+The process of changing incorrect electronically inferred annotations is not instantaneous and in some cases these annotations are displayed for a while before the prediction method can be corrected at source.
+<br/>
+In some cases it is not possible for the IEA source to remove the annotation (see note 1, below).
+
+<div style="font-style:italic; margin-top:10px">Example: False positives</div>
+In the case where proteins are grouped together by a sequence model and the model hits a false positive, the 'false positive' protein would receive incorrect annotation(s).
+
+<h2>Contents</h2>
+This list contains UniProtKB protein accessions associated with specific GO terms that curators feel incorrectly describe a protein's function, associated process or subcellular location. This list is split into three sections:
+<br/>
+<h3>1. Negative associations curated from IEA pipeline review</h3>
+
+A list of protein-GO term associations that have been observed as being incorrect from the review of annotations obtained from an IEA pipeline. These associations are often added when a curator has observed that a function/process term is being over-predicted to a group of proteins.
+<br/>
+These associations are not present in the UniProt-GOA annotation set, as there is no published sequence or experimental data to specifically negate these associations. However, curator knowledge has been used to assert these undesirable associations.
+<div style="margin-left:50px; margin-top:5px">
+	<div style="font-style:italic">Note:</div>
+	Some electronic annotation sources have a cut-off criterion such that if the annotation is true for 95% of the proteins in the set, it is considered relevant for GO mappings to be added to the FULL protein set.
+	<br/>
+	This blacklist endeavours to highlight those proteins that may have been caught out in the 5% to provide users with as correct a set of protein annotations as possible.
+</div>
+
+<h3>2. Negative associations obtained from NOT-qualified GO annotations (annotation set updated weekly)</h3>
+
+These protein-GO term associations have been created when a protein has been expected to have a particular function, associated process or location, but specific experimental or sequence-based evidence has been curated to demonstrate the contrary. These NOT-qualified GO annotations are obtained from the current UniProt-GOA annotation set and are updated weekly. GO Consortium guidance on curator usage of the NOT-qualifier is available here: <a href="http://www.geneontology.org/GO.annotation.conventions.shtml#not">http://www.geneontology.org/GO.annotation.conventions.shtml#not</a>
+
+<h3>3. Negative associations obtained from UniProt COMMENT_CAUTION entries (annotation set updated weekly)</h3>
+
+These protein-GO term associations have been created when a 'caution' comment in the UniProt entry indicates that a protein does not have the expected function, process or location. These comments are added manually by UniProt curators after reviewing the sequence or literature.
+
+<h2>Custodian of the blacklist</h2>
+The <a href="http://www.ebi.ac.uk/GOA" target="_blank">UniProt-GOA project</a> is responsible for maintaining the annotation blacklist for annotation sources originating from this group.
+
+<h2>The currently active annotation blacklist</h2>
+
+<use:define name="ab-category">
+	<table class="quickgo-standard">
+		<tr class="column-header">
+			<td>Gene Product ID</td>
+			<td>GO Identifier</td>
+			<td>Reason</td>
+			<td>Rule/Method ID</td>
+		</tr>
+		<use:content/>
+	</table>
+</use:define>
+
+<use:define name="ab-entry">
+	<tr>
+		<td><a href="GProtein?ac={be:proteinAc}">{be:proteinAc}</a></td>
+		<td style="white-space:nowrap"><a href='Selection?id={be:goId}'><i class="selection"><img src='image/basket_add.png'/></i></a><span> <a href='GTerm?id={be:goId}'>{be:goId}</a></span></td>
+		<td>{be:reason}</td>
+		<td>{be:methodId}</td>
+	</tr>
+</use:define>
+
+<br/>
+<rq:dataFiles>
+	<df:blacklist>
+		<div class='tabs-h2' name='tab'>
+		    <h2 name='iea-review'>Curated from IEA pipeline review<a name='iea-review'/></h2>
+			<use:use name="ab-category" >
+				<bl:blacklistIEAReview >
+					<use:use name="ab-entry" />
+				</bl:blacklistIEAReview>
+			</use:use>
+
+			<h2 name='not-qualified'>Obtained from NOT-qualified GO annotations<a name='not-qualified'/></h2>
+			<use:use name="ab-category" >
+				<bl:blacklistNotQualified>
+					<use:use name="ab-entry" />
+				</bl:blacklistNotQualified>
+			</use:use>
+
+			<h2 name='uniprot-caution'>Obtained from UniProt COMMENT_CAUTION entries<a name='uniprot-caution'/></h2>
+			<use:use name="ab-category" >
+				<bl:blacklistUniProtCaution>
+					<use:use name="ab-entry" />
+				</bl:blacklistUniProtCaution>
+			</use:use>
+		</div>
+	</df:blacklist>
+</rq:dataFiles>
+
+</body>
+</html>

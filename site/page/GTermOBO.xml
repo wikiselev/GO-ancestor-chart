@@ -1,0 +1,24 @@
+<obo xmlns:page='java:uk.ac.ebi.quickgo.web.servlets.GTermServlet.TermPage'
+        xmlns:relation='java:uk.ac.ebi.quickgo.web.data.TermRelation'
+        xmlns:term='java:uk.ac.ebi.quickgo.web.data.Term'>
+
+<term>
+<l>[Term]</l>
+<l>id: {term:id}</l>
+<l>name: {term:name}</l>
+<l>def: "{term:definition}"</l>
+<term:synonyms xmlns:synonym='java:uk.ac.ebi.quickgo.web.data.Synonym'>
+<l>synonym: "{synonym:name}" {synonym:type}</l>
+</term:synonyms>
+<term:xrefs xmlns:xr="java:uk.ac.ebi.quickgo.web.data.Term.XRef">
+<l>xref: {xr:db}:{xr:id}</l>
+</term:xrefs>
+<term:isa><relation:parent>
+<l>is_a: {term:id} ! {term:name}</l>
+</relation:parent></term:isa>
+<term:otherparents><relation:parent>
+<l>relationship: {relation:typeof} {term:id} ! {term:name}</l>
+</relation:parent></term:otherparents>
+</term>
+
+</obo>

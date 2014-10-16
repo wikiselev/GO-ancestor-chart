@@ -1,0 +1,28 @@
+<html xmlns:use='xmlns:uk.ac.ebi.interpro.jxbp2.render.Use'
+      xmlns:page='java:uk.ac.ebi.interpro.jxbp2.render.DataPage'
+      xmlns:rq='java:uk.ac.ebi.quickgo.web.Request'>
+<head>
+    <link rel="stylesheet" type="text/css" href="css/quickgo.css" />
+
+    <script src='./js/quickgo.js'></script>
+    <script src='./js/jslib/jslib.js'></script>
+    <script src='./js/quickgoMain.js'></script>
+
+    <page:use xpath='head'/>
+</head>
+
+<body>
+
+
+<h1><page:use xpath='//title'/></h1>
+
+
+
+<page:use xpath='body'/>
+
+<hr/>
+<a href='Configure'>Administration</a>
+<div onclick='showTerminal()'>Terminal</div>
+
+</body>
+</html>

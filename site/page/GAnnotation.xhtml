@@ -1,0 +1,22 @@
+<html xmlns:use='java:uk.ac.ebi.interpro.jxbp2.render.Use'>
+	<head>
+		<title>Annotation download</title>
+	</head>
+
+	<body class='wide'>
+
+        <div class="annotation-page">
+            <i class="auto-annotation-page"/>
+
+			<use:use file='use/Toolbars.xhtml' name='global_toolbar'/>
+			<use:use file='use/Toolbars.xhtml' name='annotation_toolbar'/>
+			<div style="clear:both"/>
+
+			<use:use file='use/Annotation.xhtml' name='annotation'/>
+
+			<br/>
+			<div>Please note that UniProt-GOA only integrates manual annotations from external groups. Additionally, external annotations can only be incorporated where external sequence identifiers can be mapped to corresponding UniProtKB accession numbers and the GO identifier associated has not been made secondary.</div>
+			<div>Information on the numbers of external annotations integrated into the UniProt-GOA dataset can be found in the annotation break-down provided for the <a href="http://www.ebi.ac.uk/GOA/uniprot_release">UniProt-GOA gene association file.</a></div>
+        </div>
+	</body>
+</html>

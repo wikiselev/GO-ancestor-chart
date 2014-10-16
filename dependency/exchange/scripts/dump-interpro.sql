@@ -1,0 +1,124 @@
+-- CITATION
+select PUB_ID,PUB_TYPE,PUBMED_ID,ISBN,VOLUME,ISSUE,YEAR,TITLE,URL,RAWPAGES,MEDLINE_JOURNAL,ISO_JOURNAL,AUTHORS,DOI_URL from INTERPRO.CITATION;
+write * postgres+gz CITATION.dat.gz;
+copy;
+-- COMMON_ANNOTATION
+select ANN_ID , NAME , TEXT from INTERPRO.COMMON_ANNOTATION;
+write * postgres+gz COMMON_ANNOTATION.dat.gz;
+copy;
+-- CV_DATABASE
+select DBCODE , DBNAME , DBORDER , DBSHORT from INTERPRO.CV_DATABASE;
+write * postgres+gz CV_DATABASE.dat.gz;
+copy;
+-- CV_ENTRY_TYPE
+select CODE , ABBREV , DESCRIPTION from INTERPRO.CV_ENTRY_TYPE;
+write * postgres+gz CV_ENTRY_TYPE.dat.gz;
+copy;
+-- CV_EVIDENCE
+select CODE , ABBREV , DESCRIPTION from INTERPRO.CV_EVIDENCE;
+write * postgres+gz CV_EVIDENCE.dat.gz;
+copy;
+-- DB_VERSION
+select DBCODE , VERSION , ENTRY_COUNT , FILE_DATE , LOAD_DATE from INTERPRO.DB_VERSION;
+write * postgres+gz DB_VERSION.dat.gz;
+copy;
+-- ENTRY
+select ENTRY_AC , ENTRY_TYPE , NAME , CREATED , SHORT_NAME from INTERPRO.ENTRY where checked='Y';
+write * postgres+gz ENTRY.dat.gz;
+copy;
+-- ENTRY2COMMON
+select ENTRY_AC , ANN_ID , ORDER_IN from INTERPRO.ENTRY2COMMON;
+write * postgres+gz ENTRY2COMMON.dat.gz;
+copy;
+-- ENTRY2COMP
+select ENTRY1_AC , ENTRY2_AC from INTERPRO.ENTRY2COMP;
+write * postgres+gz ENTRY2COMP.dat.gz;
+copy;
+-- ENTRY2ENTRY
+select ENTRY_AC , PARENT_AC from INTERPRO.ENTRY2ENTRY;
+write * postgres+gz ENTRY2ENTRY.dat.gz;
+copy;
+-- ENTRY2METHOD
+select ENTRY_AC , METHOD_AC , EVIDENCE , IDA from INTERPRO.ENTRY2METHOD where entry_ac in (select entry_ac from interpro.entry where checked='Y');
+write * postgres+gz ENTRY2METHOD.dat.gz;
+copy;
+-- ENTRY2PUB
+select ENTRY_AC , ORDER_IN , PUB_ID from INTERPRO.ENTRY2PUB;
+write * postgres+gz ENTRY2PUB.dat.gz;
+copy;
+-- ENTRY_XREF
+select ENTRY_AC , DBCODE , AC , NAME from INTERPRO.ENTRY_XREF;
+write * postgres+gz ENTRY_XREF.dat.gz;
+copy;
+-- ENTRY_FRIENDS
+select ENTRY1_AC,ENTRY2_AC,S,P1,P2,PB,A1,A2,AB from INTERPRO.ENTRY_FRIENDS;
+write * postgres+gz ENTRY_FRIENDS.dat.gz;
+copy;
+-- ETAXI
+select TAX_ID,PARENT_ID,SCIENTIFIC_NAME,RANK,LEFT_NUMBER,RIGHT_NUMBER,FULL_NAME from INTERPRO.ETAXI;
+write * postgres+gz ETAXI.dat.gz;
+copy;
+-- EXAMPLE_AUTO
+select ENTRY_AC , PROTEIN_AC from INTERPRO.EXAMPLE_AUTO;
+write * postgres+gz EXAMPLE_AUTO.dat.gz;
+copy;
+-- INTACT_DATA 
+select UNIPROT_ID,PROTEIN_AC,UNDETERMINED,INTACT_ID,INTERACTS_WITH,TYPE,ENTRY_AC,PUBMED_ID from INTERPRO.INTACT_DATA;
+write * postgres+gz INTACT_DATA.dat.gz;
+copy;
+-- INTERPRO2GO 
+select ENTRY_AC,GO_ID,SOURCE from INTERPRO.INTERPRO2GO;
+write * postgres+gz INTERPRO2GO.dat.gz;
+copy;
+-- MATCH
+select PROTEIN_AC , METHOD_AC , POS_FROM , POS_TO , STATUS , DBCODE , EVIDENCE , SEQ_DATE , MATCH_DATE , SCORE from INTERPRO.MATCH;
+write * postgres+gz MATCH.dat.gz;
+copy;
+-- MATCH_STRUCT
+select PROTEIN_AC , DOMAIN_ID , POS_FROM , POS_TO , DBCODE from INTERPRO.MATCH_STRUCT;
+write * postgres+gz MATCH_STRUCT.dat.gz;
+copy;
+-- METHOD
+select METHOD_AC , NAME , DBCODE , METHOD_DATE , SKIP_FLAG , CANDIDATE from INTERPRO.METHOD;
+write * postgres+gz METHOD.dat.gz;
+copy;
+-- METHOD2PUB 
+select PUB_ID,METHOD_AC from INTERPRO.METHOD2PUB;
+write * postgres+gz METHOD2PUB.dat.gz;
+copy;
+-- PFAM_CLAN 
+select CLAN_ID,METHOD_AC from INTERPRO.PFAM_CLAN;
+write * postgres+gz PFAM_CLAN.dat.gz;
+copy;
+-- PFAM_CLAN_DATA 
+select CLAN_ID,NAME,DESCRIPTION from INTERPRO.PFAM_CLAN_DATA;
+write * postgres+gz PFAM_CLAN_DATA.dat.gz;
+copy;
+-- PROTEIN
+select PROTEIN_AC , NAME , DBCODE , CRC64 , LEN , FRAGMENT , STRUCT_FLAG , TAX_ID from INTERPRO.PROTEIN;
+write * postgres+gz PROTEIN.dat.gz;
+copy;
+-- PROTEIN_IDA
+select PROTEIN_AC , IDA from INTERPRO.PROTEIN_IDA;
+write * postgres+gz PROTEIN_IDA.dat.gz;
+copy;
+-- PUB
+select PUB_ID , PUB_TYPE , MEDLINE_ID , ISSN , ISBN , VOLUME , ISSUE , FIRSTPAGE , LASTPAGE , YEAR , TITLE , URL , RAWPAGES , PUBMED_ID from INTERPRO.PUB;
+write * postgres+gz PUB.dat.gz;
+copy;
+-- STRUCT_CLASS 
+select DOMAIN_ID,FAM_ID,DBCODE from INTERPRO.STRUCT_CLASS;
+write * postgres+gz STRUCT_CLASS.dat.gz;
+copy;
+-- UNIPROT_TAXONOMY
+select PROTEIN_AC , TAX_ID , LEFT_NUMBER , RIGHT_NUMBER from INTERPRO.UNIPROT_TAXONOMY;
+write * postgres+gz UNIPROT_TAXONOMY.dat.gz;
+copy;
+-- VARSPLIC_MASTER 
+select PROTEIN_AC,VARIANT,CRC64,LENGTH from INTERPRO.VARSPLIC_MASTER;
+write * postgres+gz VARSPLIC_MASTER.dat.gz;
+copy;
+-- VARSPLIC_MATCH 
+select PROTEIN_AC,METHOD_AC,POS_FROM,POS_TO,STATUS,DBCODE,EVIDENCE,SEQ_DATE,MATCH_DATE,TIMESTAMP,USERSTAMP,SCORE from INTERPRO.VARSPLIC_MATCH;
+write * postgres+gz VARSPLIC_MATCH.dat.gz;
+copy;

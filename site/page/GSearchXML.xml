@@ -1,0 +1,33 @@
+<quickgo
+        xmlns:rq='java:uk.ac.ebi.quickgo.web.Request'
+        xmlns:data='java:uk.ac.ebi.quickgo.web.configuration.DataFiles'
+        xmlns:sp='java:uk.ac.ebi.quickgo.web.servlets.GSearchServlet.SearchPage'
+        xmlns:sq='java:uk.ac.ebi.quickgo.web.servlets.GSearchServlet.Query'
+        xmlns:h='java:uk.ac.ebi.quickgo.web.servlets.GSearchServlet.SearchHit'
+        xmlns:t='java:uk.ac.ebi.quickgo.web.servlets.GSearchServlet.Text'
+        xmlns:widgets='java:uk.ac.ebi.interpro.jxbp2.Widgets'
+        xmlns:r='java:uk.ac.ebi.quickgo.web.servlets.GSearchServlet.Reason'
+        xmlns:tl='java:uk.ac.ebi.quickgo.web.servlets.GSearchServlet.TextList'
+        xmlns:tab='java:uk.ac.ebi.quickgo.web.servlets.GSearchServlet.SearchTab'
+        xmlns:list='java:uk.ac.ebi.interpro.jxbp2.ListContent'>
+
+    <!--<widgets:define name='hilite'><t:hilite><span style='background-color:{t:colour}'>{t:text}</span></t:hilite><t:plain>{t:text}</t:plain></widgets:define>-->
+	<widgets:define name='hilite'>
+		<tl:components>
+			<t:hilite><span style='background-color:{t:colour}'>{t:text}</span></t:hilite>
+			<t:plain>{t:text}</t:plain>
+		</tl:components>
+	</widgets:define>
+
+    <sp:termTabs>
+        <ul>
+            <tab:hits>
+                <h:term xmlns:st='java:uk.ac.ebi.quickgo.web.servlets.GSearchServlet.SearchTerm'>
+                    <li><a href='http://www.ebi.ac.uk/QuickGO/GTerm?id={st:id}'>{st:id}</a><st:name><widgets:invoke name='hilite'/></st:name></li>
+                </h:term>
+            </tab:hits>
+        </ul>
+    </sp:termTabs>
+
+
+</quickgo>

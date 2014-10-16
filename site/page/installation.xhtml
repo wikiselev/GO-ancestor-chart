@@ -1,0 +1,79 @@
+<html>
+
+<head>
+    <title>QuickGO Installation Manual</title>
+</head>
+<body>
+
+<div style="border:2px solid #f9a200;padding:2px;">
+    <div style="background:#f9a200;margin:-2px -2px 0 -2px;padding:2px;font-weight:bold;">
+        Terms of License
+    </div>
+    <pre>
+Copyright 2012 European Molecular Biology Laboratory
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    <a href="http://www.apache.org/licenses/LICENSE-2.0">http://www.apache.org/licenses/LICENSE-2.0</a>
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+    </pre>
+</div>
+
+<h3>Prerequisites</h3>
+<p>
+    Java (version 1.6.0_01 and above) is required. Java is available for most plaforms from <a href='http://java.sun.com'>java.sun.com</a>.
+</p>
+<p>
+    For the complete version of QuickGO, with the full data set, a computer with at least 1GB of RAM and 15GB of disk space is required.
+</p>
+<h3>Download</h3>
+<p>
+    Get both software and data together, ready to go: <a href='http://www.ebi.ac.uk/QuickGO/download/data/mini/QuickGO5.1-latest.zip'>QuickGO + human subset data</a>.
+</p>
+<p>
+    Or get the resources you need:
+</p>
+
+<ol>
+    <li><a href='http://www.ebi.ac.uk/QuickGO/download/QuickGO5.1.zip'>QuickGO</a> software
+        containing source code, a war file (tested on Tomcat 5.5) and an executable jar file (using an embedded Jetty webserver)
+    </li>
+    <li>Data from <a href='http://www.ebi.ac.uk/QuickGO/download/data/mini/'>human subset</a> [~150MB disk space required]
+    or <a href='http://www.ebi.ac.uk/QuickGO/download/data/full/'>all data</a> [~14GB] </li>
+</ol>
+<p>
+    If you don't download data, the software will automatically download the required data from the QuickGO website.
+</p>
+<p>
+    The human subset data consists of manual annotations to proteins recorded for Human in UniProtKB.
+</p>
+
+<h3>Installation</h3>
+<p>
+    1) Unzip QuickGO zipfile (you can put it on a memory stick if you wish)
+</p>
+<p>
+    2) QuickGO can be started:
+</p>
+<ul>
+    <li>Windows: run <code>run.bat</code> </li>
+    <li>MacOS X, Linux, etc: run <code>run.sh</code> </li>
+    <li>Others:<div><code>
+        java -Xmx256m -jar QuickGO5.1.jar --config quickgo-config-mini.xml --port 8080 --root /QuickGO --password changeme
+    </code></div></li>
+</ul>
+
+<p>
+    The full version can be run by changing the script or the command to refer to quickgo-config.xml.
+    You may need to expand the maximum memory (the -Xmx option on the command line or in scripts) to -Xmx1024m
+</p>
+
+</body>
+</html>

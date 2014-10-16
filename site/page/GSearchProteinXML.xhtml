@@ -1,0 +1,23 @@
+<quickgo xmlns:sp='java:uk.ac.ebi.quickgo.web.servlets.GSearchServlet.SearchPage'
+        xmlns:h='java:uk.ac.ebi.quickgo.web.servlets.GSearchServlet.SearchHit'
+        xmlns:tl='java:uk.ac.ebi.quickgo.web.servlets.GSearchServlet.TextList'
+        xmlns:t='java:uk.ac.ebi.quickgo.web.servlets.GSearchServlet.Text'
+        xmlns:tab='java:uk.ac.ebi.quickgo.web.servlets.GSearchServlet.SearchTab'>
+
+	<sp:proteinTabs>
+		<proteins category="{tab:name}">
+			<tab:hits>
+				<h:protein xmlns:sp='java:uk.ac.ebi.quickgo.web.servlets.GSearchServlet.SearchProtein'>
+					<protein db="{sp:db}" id="{sp:ac}" symbol="{sp:symbol}" species="{sp:species}">
+						<sp:description>
+							<tl:components>
+								<t:hilite>{t:text}</t:hilite>
+								<t:plain>{t:text}</t:plain>
+							</tl:components>
+						</sp:description>
+					</protein>
+				</h:protein>
+			</tab:hits>
+		</proteins>
+	</sp:proteinTabs>
+</quickgo>

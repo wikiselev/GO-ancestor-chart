@@ -1,0 +1,897 @@
+<html xmlns:widgets='java:uk.ac.ebi.interpro.jxbp2.Widgets'>
+
+<head>
+    <title>QuickGO Reference Manual</title>
+</head>
+<body>
+
+<div class="inline-help"><a name="inline-help"/><h3>Inline help</h3></div>
+<div id='inline-help'>
+    <div>Inline help is available by clicking the link wherever the <img src='image/information.png'/> is found.</div>
+    <div>Inline help consists of sections from the <a class="lb-cancel" href='reference.html'>Reference Manual</a>.</div>
+</div>
+
+<div class="global_toolbar"><a name="global_toolbar"/><h3>The Global Toolbar</h3></div>
+<div id="global_toolbar">
+	<div>
+		The global toolbar is accessible from any page of QuickGO. The following features can be accessed from the global toolbar;
+        <div>1. The QuickGO search box - search for GO terms by keyword or identifier or search for proteins by name or accession.</div>
+        <div>2. Web Services - QuickGO supplies GO term information and GO annotation data via REST web services.</div>
+        <div>3. Dataset - details of the data that QuickGO contains  </div>
+        <div>4. Term Basket - GO terms can be added to your term basket by clicking on <img src='image/basket_add.png'/> icons that appear adjacent to GO terms. </div>
+        <div>For more information see the 'Term Basket' section below.</div>
+	</div>
+</div>
+
+<div class="annotation_toolbar"><a name="annotation_toolbar"/><h3>The Annotation Toolbar</h3></div>
+<div id="annotation_toolbar">
+	<div>
+		The annotation toolbar is accessible from pages displaying annotations, e.g. the Annotation Download page.
+        <div>The following features can be accessed from the annotation toolbar;  </div>
+        <div>1. Display - the annotation table is customisable by selecting which columns are displayed</div>
+        <div>2. ID mapping - this filter is used to change between different sequence identifier types, the default is UniProtKB accessions.</div>
+        <div>3. Filter - the annotation set can be filtered by several parameters, including sequence identifier, taxon, GO ID and evidence code.</div>
+        <div>4. Statistics - various statistics are calculated for the current annotation set, including number of distinct proteins,
+        count of GO IDs, count of evidence codes and count of taxon identifiers. Statistics are updated on-the-fly for each filtering action on the annotation dataset.</div>
+        <div>5. Download - annotation sets may be downloaded in several formats, including gene association file, protein list and FASTA.
+         The 'Limit' should be increased to ensure all annotations in the set are downloaded (the total number of annotations in a set is found
+         at the top left of the annotation table). There is an option to have the output file gzipped.</div>
+	</div>
+</div>
+
+<div class="history_toolbar"><a name="history_toolbar"/><h3>The Term History Toolbar</h3></div>
+<div id="history_toolbar">
+	<div>
+		<div class="sub-header">History Options</div>
+
+		<p>The default GO Term History displays the last 500 changes for all GO terms. However, in addition to clicking on the tabs, timestamp and GO identifiers in the default display, users can further tailor the display of GO term changes by adding parameters into the page URL, using the History Options form. Users can therefore use specify the types of changes of most interest to them and bookmark the resulting URL to be regularly updated.</p>
+
+		<div class="sub-header">Date Specification</div>
+
+		<p>The History Options dialog enables users to specify an explicit date range of interest by setting the "From" and "To" parameters; this will limit the data displayed to those changes that were recorded within that (inclusive) date range.</p>
+
+		<p>Alternatively, the "Period" parameter allows users to view the GO term changes that occurred over a specific number of Day(s), Week(s), Month(s) or Year(s) before a specified date.</p>
+		<p>If no "To" date value is entered, then the period will be relative to the current date. If, however, a "To" value is specified, then the "Period" value will display records in the timeframe up to and including that specified date.</p>
+		<p>For example, if "To" is set to 2011-06-01 and "Period" is set to 6w, then QuickGO will display those changes recorded in the size week period that ended on 1st June 2011.</p>
+
+		<div class="sub-header">Category</div>
+
+		<p>Users can use this field to specify what types of term changes they would like returned.</p>
+
+		<div class="sub-header">Terms</div>
+
+		<p>GO Terms can be entered in this field to limit the term changes displayed. Please note that only changes made to directly listed terms will be displayed, not term descendants.</p>
+
+		<div class="sub-header">Limit</div>
+
+		<p>The default number of records returned is 500, however this limit can be increased/decreased by the user. In order to prevent possible browser problems, the maximum upper limit is 10,000.</p>
+	</div>
+</div>
+
+<div class="your-terms"><a name="your-terms"/><h3>Term Basket</h3></div>
+<div id='your-terms'>
+    <div>GO terms can be added to the Term Basket by clicking on <img src='image/basket_add.png'/> icons that appear adjacent to GO terms.</div>
+    <div>In this manner, a set of GO terms can be selected that can then be used to retrieve associated annotations</div>
+    <!--add to this when the tool allows users to update the selection of GO terms by copy/pasting directly into the box -->
+</div>
+
+<div class="home"><a name="home"/><h3>Home</h3></div>
+<div id='home'>
+    <div>QuickGO home page.</div>
+</div>
+
+<div class="help"><a name="help"/><h3>Help</h3></div>
+<div id='help'>
+    <div>QuickGO help manual.</div>
+</div>
+
+<div class="downloads"><a name="downloads"/><h3>Downloads</h3></div>
+<div id='downloads'>
+    <div>Download gene association files from UniProt-GOA website.</div>
+</div>
+
+<h2>Descriptions of the columns displayed when returning lists of retrieved GO terms from a GO term keyword search</h2>
+
+<div class="go-ontology"><a name="go-ontology"/><h3>GO Ontology</h3></div>
+<div id='go-ontology'>
+    <div>The GO contains three ontologies of terms: Molecular Function, Biological Process and Cellular Component.</div>
+    <div>The values displayed indicate in which of the three ontologies a GO term resides.</div>
+</div>
+
+<div class="go_id"><a name="go_id"/><h3>GO Term Identifier</h3></div>
+<div id='go_id'>
+    <div>Unique, stable numerical GO term identifiers for displayed GO terms </div>
+    <div>Clicking on a GO identifier will take you to the GO term detail page, where further information on the GO term,
+        as well as a list of any annotations using this term.</div>
+    <div>Clicking on one of the <img src='image/basket_add.png'/> icons enables users to add the adjacent GO term into the Term Basket</div>
+    <div>The GO term list thus generated can be used to retrieve annotations that contain one or more of these GO terms</div>
+</div>
+
+<div class="go_name"><a name="go_name"/><h3>GO Term Name</h3></div>
+<div id='go_name'>
+    <div>Primary name for displayed GO terms</div>
+</div>
+
+<div class="obsolete"><a name="obsolete"/><h3>Obsolete tags</h3></div>
+<div id='obsolete'>
+    <div>When a GO term has been made obsolete, a red 'Obsolete' tag will appear adjacent to a listed GO term.</div>
+    <div>Clicking on such an 'Obsolete' tag will generate a pop-up window that will detail the reasons behind the term's obsoletion.</div>
+</div>
+
+<div class="def_syn"><a name="def_syn"/><h3>Definition or Synonym tags</h3></div>
+<div id='def_syn'>
+    <div>When a search returns a GO term based on matching words found in either the GO term's description or synonym section,</div>
+    <div>then either a 'Description' or 'Synonym' tag will appear adjacent to the listed GO term.</div>
+    <div>Clicking on such a tag will produce a pop-up window showing the term's definition or synonyms, with matching word(s) highlighted.</div>
+</div>
+
+<h2>Descriptions of the columns displayed when returning lists of retrieved proteins from a protein keyword search</h2>
+
+<div class="protein_ac"><a name="protein_ac"/><h3>UniProtKB Accession</h3></div>
+<div id='protein_ac'>
+    <div>Unique protein identifier from the <a class="lb-cancel" href='http://uniprot.org'>UniProt KnowledgeBase</a></div>
+    <div>Clicking on the accession will take you to a page containing all the GO annotations to that protein.</div>
+</div>
+
+<div class="gene_symbol"><a name="gene_symbol"/><h3>Gene Symbol</h3></div>
+<div id='gene_symbol'>
+<div>The gene symbol that is matched to the UniProtKB accession number</div>
+</div>
+
+<div class="taxonomy"><a name="taxonomy"/><h3>Taxonomy</h3></div>
+<div id='taxonomy'>
+    <div>Scientific name of species for displayed protein</div>
+</div>
+
+<div class="protein_name"><a name="protein_name"/><h3>Protein Name</h3></div>
+<div id='protein_name'>
+    <div>Protein name provided by UniProtKB</div>
+</div>
+
+<h2>Descriptions of the values for GO term detail page</h2>
+
+<!-- GO ID, name already have div ids - 'go_id','go_name' -->
+
+<div class="def"><a name="def"/><h3>Definition</h3></div>
+<div id='def'>
+    <div>Explanation of the term name</div>
+</div>
+
+<div class="comment"><a name="comment"/><h3>Comment</h3></div>
+<div id='comment'>
+    <div>Clarification of definition or remarks on GO term usage</div>
+</div>
+
+<div class="secondaries"><a name="secondaries"/><h3>Secondary IDs</h3></div>
+<div id='secondaries'>
+    <div>List of secondary GO term identifiers that this term replaces</div>
+</div>
+
+<div class="gonuts-page"><a name="gonuts-page"/><h3>GONUTS Page</h3></div>
+<div id='gonuts-page'>
+    <div>Link to the GONUTS wiki page relating to this GO term</div>
+</div>
+
+<div class="synonym"><a name="synonym"/><h3>Synonyms</h3></div>
+<div id='synonym'>
+	<div>Synonyms alternative words or phrases closely related in meaning to the term name, with indication of the relationship between the name and synonym given by the synonym scope.</div>
+	<div>
+		The scopes for GO synonyms are:
+		<ul>
+			<li>exact - an exact equivalent interchangeable with the term name, e.g., ornithine cycle is an exact synonym of urea cycle</li>
+			<li>broad - the synonym is broader than the term name, e.g., cell division is a broad synonym of cytokinesis</li>
+			<li>narrow - the synonym is narrower or more precise than the term name, e.g., pyrimidine-dimer repair by photolyase is a narrow synonym of photoreactive repair</li>
+			<li>related - the terms are related in some way not covered above, e.g., cytochrome bc1 complex is a related synonym of ubiquinol-cytochrome-c reductase activity, virulence is a related synonym of pathogenesis</li>
+		</ul>
+		For full details, see <a target="_blank" href="http://www.geneontology.org/GO.ontology.structure.shtml#opt">http://www.geneontology.org/GO.ontology.structure.shtml#opt</a>.
+	</div>
+</div>
+
+<div class="xrefs"><a name="xrefs"/><h3>XRefs</h3></div>
+<div id='xrefs'>
+    <div>Cross-references to external database entries relevant for that term.</div>
+</div>
+
+<div class="ancestor_chart"><a name="ancestor_chart"/><h3>Ancestor chart</h3></div>
+<div id='ancestor_chart'>
+    <div>Visual display of a section of the GO <a class="lb-cancel" href='http://www.geneontology.org/GO.doc.shtml#look'>directed acyclic graph (DAG)</a> for a single or set of GO terms. Terms in the GO are linked to parent (more general) terms and often to child (more specific) terms by one or more 'relationships'</div>
+</div>
+
+<div class="ancestor_table"><a name="ancestor_table"/><h3>Ancestor table</h3></div>
+<div id='ancestor_table'>
+    <div>Alternative display of a section of the GO, providing a concise view of the relationships connecting GO terms</div>
+</div>
+
+<div class="relationship_key"><a name="relationship_key"/><h3>Relationship Key</h3></div>
+<div id='relationship_key'>
+    <div>Terms in the GO can be linked to one another by three different relationships:</div>
+    <div><strong>is_a</strong></div>
+    <div><strong>part_of</strong></div>
+    <div><strong>regulates</strong></div>
+    <div>For more details on relationships see <a class='lb-cancel' href='http://www.geneontology.org/GO.doc.shtml#look'>here.</a></div>
+</div>
+
+<div class="child_terms"><a name="child_terms"/><h3>Child Terms</h3></div>
+<div id='child_terms'>
+    <div>Child terms are more specialised GO terms that, when existing, are directly linked to the selected GO term.</div>
+</div>
+
+<div class="annotation"><a name="annotation"/><h3>Protein Annotation</h3></div>
+<div id='annotation'>
+    <div>Associations created between GO terms and protein identifiers.</div>
+</div>
+
+<div class="statistics"><a name="statistics"/><h3>Statistics</h3></div>
+<div id='statistics'>
+    <div>Statistics of co-occurence of GO terms in protein annotations.</div>
+</div>
+
+<h2>Descriptions of the columns in the annotation tables</h2>
+
+<div class="annotation-column-proteinDB"><a name="annotation-column-proteinDB"/><h3>Database</h3></div>
+<div id="annotation-column-proteinDB">
+    <div>This column displays the name of the database from which the annotated gene or protein identifier originates (e.g., UniProtKB, RefSeq, MGI).</div>
+	<div>Please click on the 'ID Mapping' button in the tool bar if you would like to have the identifiers displayed mapped to a different sequence database.</div>
+	<br/>
+	<div>This field equates to 'DB' (column 1) of the GO Consortium's <a class="lb-cancel" href="http://www.geneontology.org/GO.format.gaf-2_0.shtml#db">gene association file</a>.</div>
+</div>
+
+<div class="annotation-column-proteinID"><a name="annotation-column-proteinID"/><h3>Gene Product ID</h3></div>
+<div id="annotation-column-proteinID">
+    <div>This column displays the sequence identifiers that have been annotated to GO.</div>
+	<div>Please click on the 'Filter' button in the tool bar if you would like to see annotations to a specific list of sequence identifiers.</div>
+	<div>Alternatively, click on the 'ID Mapping' button in the tool bar if you would like to have the identifiers displayed mapped to a different sequence database.</div>
+	<br/>
+	<div>This field equates to 'DB Object ID' (column 2) of the GO Consortium's <a class="lb-cancel" href="http://www.geneontology.org/GO.format.gaf-2_0.shtml#db_object_id">gene association file</a>.</div>
+</div>
+
+<div class="annotation-column-splice"><a name="annotation-column-splice"/><h3>Product Form ID</h3></div>
+<div id="annotation-column-splice">
+    <div>This column displays any isoform identifiers (splice variants) that GO terms have been specifically annotated to.</div>
+	<div>If no isoform identifier has been specified in the annotation, then there will be no values displayed in this column.</div>
+	<br/>
+	<div>This field equates to 'Gene Product Form ID' column (column 17) of the GO Consortium's <a class="lb-cancel" href="http://www.geneontology.org/GO.format.gaf-2_0.shtml#gene_product_form_id">gene association file</a>.</div>
+</div>
+
+<div class="annotation-column-proteinSymbol"><a name="annotation-column-proteinSymbol"/><h3>Symbol</h3></div>
+<div id="annotation-column-proteinSymbol">
+	<div>This column displays symbols which match the identifier supplied in the 'ID' column.</div>
+	<div>An officially approved gene symbol will be used in this field when available. Alternatively, other gene symbols or locus names are applied.</div>
+	<div>If no symbols are available, the identifier applied in column 2 (DB_Object_ID) will be used.</div>
+	<br/>
+	<div>This field equates to 'DB_Object_Symbol' (column 3) of the GO Consortium's <a class="lb-cancel" href="http://www.geneontology.org/GO.format.gaf-2_0.shtml#db_object_symbol">gene association file</a>.</div>
+</div>
+
+<div class="annotation-column-qualifier"><a name="annotation-column-qualifier"/><h3>Qualifier</h3></div>
+<div id="annotation-column-qualifier">
+	<div>This column is used to modify the interpretation of an annotation.</div>
+	<div>When applied in an annotation, values can equal one of 'NOT', 'contributes_to' or 'colocalizes_with'.</div>
+	<div>Further details on qualifiers can be found <a class="lb-cancel" href="http://www.geneontology.org/GO.annotation.conventions.shtml#qual">here</a>.</div>
+	<div>If you would like to explicitly filter qualifier values in this annotation set, please click on the 'Filter' button in the tool bar.</div>
+	<br/>
+	<div>This field equates to 'Qualifier' (column 3) of the GO Consortium's <a class="lb-cancel" href="http://www.geneontology.org/GO.format.gaf-2_0.shtml#qualifier">gene association file</a>.</div>
+</div>
+
+<div class="annotation-column-goID"><a name="annotation-column-goID"/><h3>GO Identifier</h3></div>
+<div id="annotation-column-goID">
+	<div>This column displays the unique, stable identifier of the GO term.</div>
+	<br/>
+	<div>This field equates to 'GO ID' (column 5) of the GO Consortium's <a class="lb-cancel" href="http://www.geneontology.org/GO.format.gaf-2_0.shtml#go_id">gene association file</a>.</div>
+</div>
+
+<div class="annotation-column-originalTermID"><a name="annotation-column-originalTermID"/><h3>Original GO ID</h3></div>
+<div id="annotation-column-originalTermID">
+	<div>This column displays the GO ID of the original annotation when annotations have been slimmed up to higher-level terms.</div>
+</div>
+
+<div class="annotation-column-ref"><a name="annotation-column-ref"/><h3>Reference</h3></div>
+<div id="annotation-column-ref">
+	<div>This column displays a citation to a reference, either a PubMed reference or a GO_REF identifier, which contains either the data supporting the annotation or details of the electronic method applied to generate the annotation.</div>
+	<br/>
+	<div>This field equates to 'DB:Reference' (column 6) of the GO Consortium's <a class="lb-cancel" href="http://www.geneontology.org/GO.format.gaf-2_0.shtml#db_reference">gene association file</a>.</div>
+</div>
+
+<div class="annotation-column-evidence"><a name="annotation-column-evidence"/><h3>Evidence</h3></div>
+<div id="annotation-column-evidence">
+	<div>GO terms are assigned to proteins based on different evidence. This is represented by an evidence code. See also the <a class="lb-cancel" href='http://www.geneontology.org/GO.evidence.shtml'>GO Consortium documentation</a></div>
+	<br/>
+	<div>This field equates to 'Evidence Code' (column 7) of the GO Consortium's <a class="lb-cancel" href="http://www.geneontology.org/GO.format.gaf-2_0.shtml#evidence_code">gene association file</a>.</div>
+</div>
+
+<div class="annotation-column-with"><a name="annotation-column-with"/><h3>With</h3></div>
+<div id="annotation-column-with">
+	<div>This column displays an additional identifier to support annotations using certain evidence codes (including IEA, IPI, IGI, IC and ISS evidences).</div>
+	<br/>
+	<div>Examples: UniProtKB:O00341, InterPro:IPROO1878, Ensembl:ENSG00000136141, GO:0000001, EC:3.1.22.1</div>
+	<br/>
+	<div>This field equates to 'With or From' (column 8) of the GO Consortium's <a class="lb-cancel" href="http://www.geneontology.org/GO.format.gaf-2_0.shtml#with_from">gene association file</a>.</div>
+</div>
+
+<div class="annotation-column-aspect"><a name="annotation-column-aspect"/><h3>Aspect</h3></div>
+<div id="annotation-column-aspect">
+	<div>This column displays the single letter initial of the ontology to which the GO term belongs. One of either F (Molecular <strong>F</strong>unction), P (Biological <strong>P</strong>rocess) or C (Cellular <strong>C</strong>omponent).</div>
+	<br/>
+	<div>This field equates to 'Aspect' (column 9) of the GO Consortium's <a class="lb-cancel" href="http://www.geneontology.org/GO.format.gaf-2_0.shtml#aspect">gene association file</a>.</div>
+</div>
+
+<div class="annotation-column-proteinName"><a name="annotation-column-proteinName"/><h3>Name</h3></div>
+<div id="annotation-column-proteinName">
+	<div>This column displays the name of the protein.</div>
+	<br/>
+	<div>This field equates to 'DB Object Name' (column 10) of the GO Consortium's <a class="lb-cancel" href="http://www.geneontology.org/GO.format.gaf-2_0.shtml#db_object_name">gene association file</a>.</div>
+</div>
+
+<div class="annotation-column-proteinSynonym"><a name="annotation-column-proteinSynonym"/><h3>Synonym</h3></div>
+<div id="annotation-column-proteinSynonym">
+	<div>This column displays any synonyms or gene symbols associated with the protein.</div>
+	<br/>
+	<div>This field equates to 'DB Object Synonym' (column 11) of the GO Consortium's <a class="lb-cancel" href="http://www.geneontology.org/GO.format.gaf-2_0.shtml#synonym">gene association file</a>.</div>
+</div>
+
+<div class="annotation-column-proteinType"><a name="annotation-column-proteinType"/><h3>Type</h3></div>
+<div id="annotation-column-proteinType">
+	<div>This column displays the type of gene product that has been annotated.</div>
+	<br/>
+	<div>This field equates to 'DB Object Type' (column 12) of the GO Consortium's <a class="lb-cancel" href="http://www.geneontology.org/GO.format.gaf-2_0.shtml#db_object_type">gene association file</a>.</div>
+</div>
+
+<div class="annotation-column-proteinTaxon"><a name="annotation-column-proteinTaxon"/><h3>Taxon</h3></div>
+<div id="annotation-column-proteinTaxon">
+	<div>This column displays the taxonomic identifier for the species being annotated.</div>
+	<br/>
+	<div>This field equates to 'Taxon' (column 13) of the GO Consortium's <a class="lb-cancel" href="http://www.geneontology.org/GO.format.gaf-2_0.shtml#taxon">gene association file</a>.</div>
+</div>
+
+<div class="annotation-column-proteinTaxonName"><a name="annotation-column-proteinTaxonName"/><h3>Taxon Name</h3></div>
+<div id="annotation-column-proteinTaxonName">
+	<div>This column displays the name of the species that matches the taxonomic identifier being annotated.</div>
+</div>
+
+<div class="annotation-column-date"><a name="annotation-column-date"/><h3>Date</h3></div>
+<div id="annotation-column-date">
+	<div>This column displays the date on which the annotation was made.</div>
+	<br/>
+	<div>This field equates to 'Date' (column 14) of the GO Consortium's <a class="lb-cancel" href="http://www.geneontology.org/GO.format.gaf-2_0.shtml#date">gene association file</a>.</div>
+</div>
+
+<div class="annotation-column-from"><a name="annotation-column-from"/><h3>Assigned By</h3></div>
+<div id="annotation-column-from">
+	<div>This column indicates the database which created the annotation. The GO annotation may not be copied without acknowledgement of the data source.</div>
+	<br/>
+	<div>This field equates to 'Assigned By' (column 15) of the GO Consortium's <a class="lb-cancel" href="http://www.geneontology.org/GO.format.gaf-2_0.shtml#assigned_by">gene association file</a>.</div>
+</div>
+
+<div class="annotation-column-goName"><a name="annotation-column-goName"/><h3>GO Term Name</h3></div>
+<div id="annotation-column-goName">
+	<div>This column displays the GO term name which matches the GO Identifier used in the annotation.</div>
+</div>
+
+<div class="annotation-column-originalGOName"><a name="annotation-column-originalGOName"/><h3>Original GO Term Name</h3></div>
+<div id="annotation-column-originalGOName">
+	<div>This column displays the GO term name of the original annotation when annotations have been slimmed up to higher-level terms.</div>
+</div>
+
+<div class="annotation-column-sequence"><a name="annotation-column-sequence"/><h3>Sequence</h3></div>
+<div id="annotation-column-sequence">
+	<div>This column displays the amino acid length of the annotated sequence. Clicking on the length will result in a pop-up box containing the actual sequence.</div>
+</div>
+
+<h2>Description of columns in term history / change logs</h2>
+
+<div class="audit-column-timestamp"><a name="audit-column-timestamp"/><h3>Timestamp</h3></div>
+<div id="audit-column-timestamp">
+	<div>Changes to terms are displayed in descending date order according to the timestamp registered by the UniProt-GOA database.</div>
+	<div>Clicking on a date will display those changes that were recorded on that date for all terms.</div>
+</div>
+
+<div class="audit-column-goId"><a name="audit-column-goId"/><h3>GO ID</h3></div>
+<div id="audit-column-goId">
+	<div>The different changes to terms in the GO are focused around the stable GO identifier.</div>
+	<div>Clicking on a GO identifier will provide full data on the selected GO term, which includes the full history (in the Change Log tab) of all changes recorded for that term.</div>
+</div>
+
+<div class="audit-column-name"><a name="audit-column-name"/><h3>GO Term Name</h3></div>
+<div id="audit-column-name">
+	<div>The GO term name of the associated GO identifier.</div>
+</div>
+
+<div class="audit-column-action"><a name="audit-column-action"/><h3>Action</h3></div>
+<div id="audit-column-action">
+	<div>Changes to the ontology are recorded in the UniProt-GOA database as "Added", "Updated" or "Deleted" actions.</div>
+	<div>Please note that the order in which these changes are displayed is determined by the order in which the actions were performed in the database.</div>
+	<div>This may lead to situations where actions that were recorded as part of the same overall ontology update may appear to be displayed in a non-intuitive order; this is, unfortunately, unavoidable.</div>
+</div>
+
+<div class="audit-column-category"><a name="audit-column-category"/><h3>Category</h3></div>
+<div id="audit-column-category">
+	<div>Changes are recognised by the changes logged to specific aspects of a GO term.</div>
+	<div>The categories that are currently audited are: TERM, OBSOLETION, DEFINITION, SYNONYM, RELATION, XREF, SECONDARY and SLIM.</div>
+	<div>In addition to the "All changes" tab, which displays changes in all categories, there are also separate tabs for each individual category.</div>
+</div>
+
+<div class="audit-column-detail"><a name="audit-column-detail"/><h3>Detail</h3></div>
+<div id="audit-column-detail">
+	<div>This column contains additional detailed information about the change; its content varies dependent on the change category.</div>
+	<div>For example, for the RELATION category it shows the type of the relationship and the identifier and name of the target GO term.</div>
+</div>
+
+
+<h2>Qualifiers</h2>
+
+<div class="not_qualifier"><a name="not_qualifier"/><h3>The NOT Qualifier</h3></div>
+<div id='not_qualifier'>
+    <div>NOT is used to make an explicit note that the gene product is not associated with the GO term.<a class="lb-cancel" href='http://www.geneontology.org/GO.annotation.conventions.shtml#not'>GO Consortium documentation</a></div>
+</div>
+
+<div class="contributes_to_qualifier"><a name="contributes_to_qualifier"/><h3>The Contributes_to Qualifier</h3></div>
+<div id='contributes_to_qualifier'>
+    <div>'Contributes_to' appears in a GO annotation when a function of a protein complex is facilitated, but not directly carried out by one of its subunits. <a class="lb-cancel" href='http://www.geneontology.org/GO.annotation.conventions.shtml#contributes_to'>GO Consortium documentation</a> </div>
+</div>
+
+<div class="colocalizes_with_qualifier"><a name="colocalizes_with_qualifier"/><h3>The Colocalizes_with Qualifier</h3></div>
+<div id='colocalizes_with_qualifier'>
+    <div>'Colocalizes_with' appears in a GO annotation to indicate a transient or peripheral association of the protein with an organelle or complex. <a class="lb-cancel" href='http://www.geneontology.org/GO.annotation.conventions.shtml#colocalizes_with'>GO Consortium documentation</a></div>
+</div>
+
+<h2>GO References</h2>
+
+<div class="interpro2go"><a name="interpro2go"/><h3>GO_REF:0000002</h3></div>
+<div id='interpro2go'>
+    <div>Electronic annotation created from application of the <a class="lb-cancel" href='http://www.geneontology.org/external2go/interpro2go'>InterPro to GO mapping </a>
+        over UniProtKB. <a class="lb-cancel" href='http://www.geneontology.org/cgi-bin/references.cgi#GO_REF:0000002/'>GO Consortium documentation </a></div>
+</div>
+
+<div class="ec2go"><a name="ec2go"/><h3>GO_REF:0000003</h3></div>
+<div id='ec2go'>
+    <div>Electronic annotation created from application of the <a class="lb-cancel" href='http://www.geneontology.org/external2go/ec2go'>Enzyme Commission number to GO mapping </a>
+        over UniProtKB. <a class="lb-cancel" href='http://www.geneontology.org/cgi-bin/references.cgi#GO_REF:0000003/'>GO Consortium documentation </a></div>
+</div>
+
+<div class="spkw2go"><a name="spkw2go"/><h3>GO_REF:0000004</h3></div>
+<div id='spkw2go'>
+    <div>Electronic annotation created from application of the <a class="lb-cancel" href='http://www.geneontology.org/external2go/spkw2go'>Swiss-Prot Keyword to GO mapping </a>
+        over UniProtKB. <a class="lb-cancel" href='http://www.geneontology.org/cgi-bin/references.cgi#GO_REF:0000004/'>GO Consortium documentation </a></div>
+</div>
+
+<div class="nd"><a name="nd"/><h3>GO_REF:0000015</h3></div>
+<div id='nd'>
+    <div>Manual annotation created when a curator has searched all the relevant literature for the annotated protein and found no information supporting an
+        annotation to any GO term in a particular ontology. This reference can only be used with the three terms; Molecular Function GO:0003674, Biological Process GO:0008150 and Cellular Component GO:0005575.
+        <a class="lb-cancel" href='http://www.geneontology.org/cgi-bin/references.cgi#GO_REF:0000015/'>GO Consortium documentation </a></div>
+</div>
+
+<div class="compara"><a name="compara"/><h3>GO_REF:0000019</h3></div>
+<div id='compara'>
+    <div>Electronic annotation created from the transfer of experimentally verified manual GO annotation data to orthologs using Ensembl orthology data.
+        <a class="lb-cancel" href='http://www.ebi.ac.uk/GOA/compara_go_annotations'> UniProt-GOA documentation</a></div>
+</div>
+
+<div class="hamap2go"><a name="hamap2go"/><h3>GO_REF:0000020</h3></div>
+<div id='hamap2go'>
+    <div>Electronic annotation created from application of the <a class="lb-cancel" href='http://www.geneontology.org/external2go/hamap2go'>HAMAP to GO mapping </a>
+        over UniProtKB. <a class="lb-cancel" href='http://www.geneontology.org/cgi-bin/references.cgi#GO_REF:0000020/'>GO Consortium documentation </a></div>
+</div>
+
+<div class="spsl2go"><a name="spsl2go"/><h3>GO_REF:0000023</h3></div>
+<div id='spsl2go'>
+    <div>Electronic annotation created from application of the <a class="lb-cancel" href='http://www.geneontology.org/external2go/spsl2go'>UniProt Subcellular Location to GO mapping </a>
+        over UniProtKB. <a class="lb-cancel" href='http://www.geneontology.org/cgi-bin/references.cgi#GO_REF:0000023/'>GO Consortium documentation</a></div>
+</div>
+
+<div class="refgen"><a name="refgen"/><h3>GO_REF:0000033</h3></div>
+<div id='refgen'>
+    <div>Inferred annotation created by the GO Consortium's Reference Genome Project from annotation of evolutionary trees from the <a class="lb-cancel" href='http://www.pantherdb.org/'>PANTHER database. </a>
+         <a class="lb-cancel" href='http://www.geneontology.org/cgi-bin/references.cgi#GO_REF:0000033/'>GO Consortium documentation</a></div>
+</div>
+
+<h2>Evidence Codes</h2>
+
+<div class="EXP"><a name="EXP"/><h3>EXP</h3></div>
+<div id='EXP'>
+    <div>Inferred from experiment. See <a class="lb-cancel" href='http://www.geneontology.org/GO.evidence.shtml'>GO Consortium documentation</a>.</div>
+</div>
+
+<div class="IDA"><a name="IDA"/><h3>IDA</h3></div>
+<div id='IDA'>
+    <div>Inferred by direct assay. See <a class="lb-cancel" href='http://www.geneontology.org/GO.evidence.shtml'>GO Consortium documentation</a>.</div>
+</div>
+
+<div class="IPI"><a name="IPI"/><h3>IPI</h3></div>
+<div id='IPI'>
+    <div>Inferred from physical interation. See <a class="lb-cancel" href='http://www.geneontology.org/GO.evidence.shtml'>GO Consortium documentation</a>.</div>
+</div>
+
+<div class="IMP"><a name="IMP"/><h3>IMP</h3></div>
+<div id='IMP'>
+    <div>Inferred from mutant phenotype. See <a class="lb-cancel" href='http://www.geneontology.org/GO.evidence.shtml'>GO Consortium documentation</a>.</div>
+</div>
+
+<div class="IEP"><a name="IEP"/><h3>IEP</h3></div>
+<div id=' IEP'>
+    <div>Inferred from expression pattern. See <a class="lb-cancel" href='http://www.geneontology.org/GO.evidence.shtml'>GO Consortium documentation</a>.</div>
+</div>
+
+<div class="IGI"><a name="IGI"/><h3>IGI</h3></div>
+<div id='IGI'>
+    <div>Inferred from genetic interaction. See <a class="lb-cancel" href='http://www.geneontology.org/GO.evidence.shtml'>GO Consortium documentation</a></div>
+</div>
+
+<div class="RCA"><a name="RCA"/><h3>RCA</h3></div>
+<div id='RCA'>
+    <div>Inferred from reviewed computational analysis. See <a class="lb-cancel" href='http://www.geneontology.org/GO.evidence.shtml'>GO Consortium documentation</a>.</div>
+</div>
+
+<div class="IGC"><a name="IGC"/><h3>IGC</h3></div>
+<div id='IGC'>
+    <div>Inferred from genomic context. See <a class="lb-cancel" href='http://www.geneontology.org/GO.evidence.shtml'>GO Consortium documentation</a>.</div>
+</div>
+
+<div class="TAS"><a name="TAS"/><h3>TAS</h3></div>
+<div id='TAS'>
+    <div>Traceable author statement. See <a class="lb-cancel" href='http://www.geneontology.org/GO.evidence.shtml'>GO Consortium documentation</a>.</div>
+</div>
+
+<div class="NAS"><a name="NAS"/><h3>NAS</h3></div>
+<div id='NAS'>
+    <div>Non-traceable author statement. See <a class="lb-cancel" href='http://www.geneontology.org/GO.evidence.shtml'>GO Consortium documentation</a>.</div>
+</div>
+
+<div class="IC"><a name="IC"/><h3>IC</h3></div>
+<div id='IC'>
+    <div>Inferred by curator. See <a class="lb-cancel" href='http://www.geneontology.org/GO.evidence.shtml'>GO Consortium documentation</a>.</div>
+</div>
+
+<div class="ND"><a name="ND"/><h3>ND</h3></div>
+<div id='ND'>
+    <div>No data. See <a class="lb-cancel" href='http://www.geneontology.org/GO.evidence.shtml'>GO Consortium documentation</a>.</div>
+</div>
+
+<div class="ISS"><a name="ISS"/><h3>ISS</h3></div>
+<div id='ISS'>
+    <div>Inferred from sequence or structural similarity. See <a class="lb-cancel" href='http://www.geneontology.org/GO.evidence.shtml'>GO Consortium documentation</a>.</div>
+</div>
+
+<div class="ISO"><a name="ISO"/><h3>ISO</h3></div>
+<div id='ISO'>
+    <div>Inferred from sequence orthology. See <a class="lb-cancel" href='http://www.geneontology.org/GO.evidence.shtml'>GO Consortium documentation</a>.</div>
+</div>
+
+<div class="ISA"><a name="ISA"/><h3>ISA</h3></div>
+<div id='ISA'>
+    <div>Inferred from sequence alignment. See <a class="lb-cancel" href='http://www.geneontology.org/GO.evidence.shtml'>GO Consortium documentation</a>.</div>
+</div>
+
+<div class="ISM"><a name="ISM"/><h3>ISM</h3></div>
+<div id='ISM'>
+    <div>Inferred from sequence model. See <a class="lb-cancel" href='http://www.geneontology.org/GO.evidence.shtml'>GO Consortium documentation</a>.</div>
+</div>
+
+<div class="IEA"><a name="IEA"/><h3>IEA</h3></div>
+<div id='IEA'>
+    <div>Inferred by electronic annotation. See <a class="lb-cancel" href='http://www.geneontology.org/GO.evidence.shtml'>GO Consortium documentation</a>.</div>
+</div>
+
+<h2>Co-occurence</h2>
+<p>
+    A list of terms which are most often annotated to the same proteins as the selected term,
+    and the terms least often annotated to the same proteins.
+</p>
+
+<div class="co_overrepresented"><a name="co_overrepresented"/><h3>Over represented terms</h3></div>
+<div id='co_overrepresented'>
+    <div>
+        Terms which are over-represented in the proteins annotated to selected term,
+        sorted by probability ratio.
+    </div>
+</div>
+
+<div class="co_term"><a name="co_term"/><h3>Compared terms</h3></div>
+<div id='co_term'>
+    <div>Compared term: this is compared to the selected term</div>
+</div>
+
+<div class="co_pr"><a name="co_pr"/><h3>PR</h3></div>
+<div id='co_pr'>
+    <div>Probability ratio</div>
+    <div>Ratio of probability of compared term given selected term to probability of compared term</div>
+    <div>=(#together/selected)/(#compared/#all)</div>
+    <div>Probability of term here estimated as fraction of proteins annotated to term.</div>
+</div>
+
+<div class="co_spct"><a name="co_spct"/><h3>S%</h3></div>
+<div id='co_spct'>
+    <div>Probability similarity ratio</div>
+    <div>Ratio of probability of both terms to probability of either term</div>
+    <div>=#together/(#selected+#compared-#together)</div>
+    <div>Probability of term here estimated as fraction of proteins annotated to term.</div>
+</div>
+
+<div class="co_together"><a name="co_together"/><h3>Together</h3></div>
+<div id='co_together'>
+    <div>Count of proteins where both selected and compared terms are annotated</div>
+</div>
+
+<div class="co_compared"><a name="co_compared"/><h3>Compared</h3></div>
+<div id='co_compared'>
+    <div>Count of proteins where compared term is annotated</div>
+</div>
+
+<div class="co_selected"><a name="co_selected"/><h3>Selected</h3></div>
+<div id='co_selected'>
+    <div>Total count of proteins annotated to selected term</div>
+</div>
+
+<div class="co_all"><a name="co_all"/><h3>All</h3></div>
+<div id='co_all'>
+    <div>Total count of proteins</div>
+</div>
+
+<div class="advanced_annotation"><a name="advanced_annotation"/><h3>Advanced Annotation Search</h3></div>
+<div id='advanced_annotation'>
+    <div>GO annotation sets can be customized using a set of Boolean operators.</div>
+    <div>
+        Enter a query (available fields and operators shown below) into the input box on the <b>Advanced</b> tab of the Filter dialog box, and
+	    press the <b>Submit</b> button to submit the query. If you have also set filter criteria on any of the other tabs, they will also be
+	    included in the query, <b>AND</b>ed with the criteria that you enter in the Advanced tab.
+    </div>
+    <div style='font-weight:bold'>General form</div>
+    <div>
+        A query is made out of a collection of annotation criteria combined with operators.
+        The annotation criteria are of the form field=value where multiple fields and values can be provided separated by commas.
+        The criterion matches an annotation in which any of the specified fields have any of the specified values.
+        For example to find any annotations to terms with an isa, partof or identity relationship to GO:0005515 or GO:0005634:
+    </div>
+    <div style='font-family:monospace'>
+        identity,isa,partof=GO:0005515,GO:0005634
+    </div>
+    <div>
+        Criteria are combined with the operators below:
+    </div>
+    <table class='info'>
+        <tr class='label'><td>Operator</td><td>Purpose</td><td>Example</td><td>Explanation</td></tr>
+        <tr><td>( X )</td><td>group operators together - used for clarification</td><td>(term=GO:0005515 | evidence=IPI) &amp; tax=9606</td>
+            <td>All annotations to protein binding or using the IPI evidence code in human proteins</td></tr>
+        <tr><td>! X</td><td>not - all annotations which do not match X</td><td>!evidence=IEA</td>
+            <td>All non electronic annotations</td></tr>
+        <tr><td>X ~ Y</td><td>Like - all annotations which match X where for each protein one of them matches Y</td><td>term=GO:0005515 ~ evidence=IDA</td>
+            <td>Find all protein binding annotations where for each protein at least one of the annotations is evidence IDA</td></tr>
+        <tr><td>~ X</td><td>Like - all annotations for each protein where one of them matches X</td><td> ~ evidence=IDA</td>
+            <td>Find all annotations to all proteins where at least one of the annotations is evidence IDA</td></tr>
+        <tr><td>X &amp; Y</td><td>And - all annotations matching X and Y</td><td>term=GO:0005515 &amp; tax=9606</td>
+            <td>All human protein binding annotations</td></tr>
+        <tr><td>X | Y</td><td>Or - any annotation matching criteria X or Y</td><td>tax=9606 | tax=10090 </td>
+            <td>All annotations to human or mouse proteins</td></tr>
+    </table>
+    <div style='font-weight:bold'>Query Example:</div>
+    <div>
+        Find all ISS annotations to any proteins which are annotated to the <a class="lb-cancel" href='GTerm?id=GO:0005515'>protein binding</a> term
+        with a PubMed reference:
+    </div>
+    <div style='font-family:monospace'>
+          ~(ancestor=GO:0005515&amp;ref=PMID:*)&amp;evidence=ISS
+    </div>
+    <div>More advanced query examples are available <a class="lb-cancel" href='FAQs.html'>here</a></div>
+    <div style='font-weight:bold'>Fields</div>
+    <table class='info'>
+        <tr class='label'><td>Field name</td><td>Value</td><td>Examples</td><td>Explanation</td></tr>
+        <tr><td>db</td><td>Protein database (identifier type)</td><td>UniProtKB, UniGene, Ensembl</td>
+            <td>Annotations to proteins in these databases</td></tr>
+        <tr><td>term</td><td>GO identifier directly used in annotation</td><td>GO:0005515</td>
+            <td>Annotations to protein binding (but not to more specfic terms)</td></tr>
+        <tr><td>ancestor</td><td>GO identifiers either directly or indirectly (descendent GO identifiers) applied in annotations</td>
+            <td>GO:0002080</td><td>annotations to GO:002080 or any of its child terms: GO:0002079, GO:0002081, GO:0033282</td></tr>
+        <tr><td>identity</td><td>GO identifier directly used in annotation</td><td>GO:0005515</td>
+            <td>(is the same as the term criterion)</td></tr>
+        <tr><td>isa</td><td>GO identifiers with an IS A relation to the specified term</td><td>GO:0005634</td>
+            <td>finds annotations to terms such as: GO:0043073 <i>germ cell nucleus</i> but not to GO:0005634 <i>nucleus</i> itself</td></tr>
+        <tr><td>partof</td><td>GO identifiers with an PART OF relation to the specified term</td><td>GO:0005634</td>
+            <td>finds annotations to GO:0044428 <i>nuclear part</i> but not to GO:0005634 <i>nucleus</i> itself</td></tr>
+        <tr><td>regulates</td><td>GO identifiers with an REGULATES relation to the specified term</td><td></td><td></td></tr>
+        <tr><td>positiveregulates</td><td>GO identifiers with an POSITIVE REGULATES relation to the specified term</td><td></td><td></td></tr>
+        <tr><td>negativeregulates</td><td>GO identifiers with an NEGATIVE REGULATES relation to the specified term</td><td></td><td></td></tr>
+        <tr><td>haspart</td><td>GO identifiers with an HAS PART relation to the specified term</td><td></td><td></td></tr>
+        <tr><td>evidence</td><td>Annotation evidence code (Ev) category</td><td>IDA, IC, ISS, IEA</td>
+            <td>Annotations with  any of these evidences</td></tr>
+        <tr><td>source</td><td>Annotation provider</td><td>UniProt, HGNC</td><td></td></tr>
+        <tr><td>ref</td><td>PubMed or GO reference supporting annotation. Can refer to a specific reference identifier or category (for category level, use * after ref type)</td>
+            <td>PUBMED:*, GO_REF:0000002, 16262699 </td>
+            <td>Annotations referring to any Pubmed identifier, to the InterPro database (see
+                <a href="http://www.geneontology.org/cgi-bin/references.cgi">GO REF</a> documentation)
+                or to any identifier <a href="http://www.ncbi.nlm.nih.gov/pubmed/16262699">16262699</a></td></tr>
+        <tr><td>with</td><td>Additional supporting information supplied in IEA, ISS, IPI, IC evidenced annotations; see:
+                <a class="lb-cancel" href='http://www.geneontology.org/GO.evidence.shtml'> GO documentation </a>.
+                Can refer to a specific identifier or category (for category level, use * after with type)</td>
+            <td>EC:2.5.1.30, IPR000092, HAMAP:*</td>
+            <td>Annotations refering to this particular EC code, this InterPro entry or any HAMAP code</td>
+        </tr>
+        <tr><td>tax</td><td>NCBI taxonomic identifer of annotated protein</td><td>9606</td><td>Human annotations</td></tr>
+        <tr><td>protein</td><td>Specify a specific sequence identifier(s) or accession(s) from available database (see DB filter column)</td>
+            <td>Mm.363225, P99999</td><td>Annotations to any of these accessions</td></tr>
+    </table>
+
+    <div>Further information on operators available <a class="lb-cancel" href='reference.html'>here</a></div>
+</div>
+
+<div class="slim_all"><a name="slim_all"/><h3>Slim across all relationships</h3></div>
+<div id='slim_all'>
+    <div>
+	    <div>This option will cause annotations to be slimmed up to all ancestors of requested GO terms, using all relationship routes.</div>
+	    <br/>
+	    <div>It will use not only the is_a, part_of, regulates, positively_regulates and negatively_regulates relationships, but also undefined combinatorial relationships, such as:</div>
+	    <ul>
+			<li>part_of + regulates</li>
+			<li>part_of + negatively_regulates</li>
+			<li>part_of + positively_regulates</li>
+			<li>regulates + regulates</li>
+	    </ul>
+	    <div>For information on GO relationships, please see the <a class="lb-cancel" href="http://www.geneontology.org/GO.ontology.relations.shtml">GO Consortium documentation</a>.</div>
+    </div>
+</div>
+
+<div class="slim_custom"><a name="slim_custom"/><h3>Slim across custom relationships</h3></div>
+<div id='slim_custom'>
+	<div>
+		<table>
+			<thead>Relationship types</thead>
+			<tbody>
+				<tr><td/><td>?</td><td>(ancestor)</td></tr>
+				<tr><td/><td>=</td><td>(identity)</td></tr>
+				<tr><td/><td>I</td><td>(is_a)</td></tr>
+				<tr><td/><td>P</td><td>(part_of)</td></tr>
+				<tr><td/><td>O</td><td>(occurs_in)</td></tr>
+				<tr><td/><td>R</td><td>(regulates)</td></tr>
+				<tr><td/><td>+</td><td>(positively_regulates)</td></tr>
+				<tr><td/><td>-</td><td>(negatively_regulates)</td></tr>
+			</tbody>
+		</table>
+		<br/>
+		<div>For information on GO relationships, please see the <a class="lb-cancel" href="http://www.geneontology.org/GO.ontology.relations.shtml">GO Consortium documentation</a>.</div>
+		<br/>
+		<div>Contact goa@ebi.ac.uk if you have any queries regarding the resulting dataset.</div>
+	</div>
+</div>
+
+<div class="search_go_annotations"><a name="search_go_annotations"/><h3>Search and Filter GO annotation sets</h3></div>
+<div id="search_go_annotations">
+	<div>Use this option to view, filter and download sets of GO annotations.</div>
+	<div>QuickGO enables you to filter annotation sets with specific gene or protein identifiers, GO term identifiers, taxonomic identifiers or evidence codes.</div>
+	<div>This page also offers you the ability to map between different sequence identifier types (e.g. UniProtKB, Ensembl, RefSeq or MGI identifiers), and to download annotation data.</div>
+</div>
+
+<div class="investigate_go_slims"><a name="investigate_go_slims"/><h3>Investigate GO slims</h3></div>
+<div id="investigate_go_slims">
+	<div>Use this option to find out how QuickGO can help you create your own GO slim, or use the predefined GO Consortium GO slims to generate specific views of the ontology structure, or annotation sets.</div>
+</div>
+
+<div class="view_go_history"><a name="view_go_history"/><h3>View GO history</h3></div>
+<div id="view_go_history">
+	<div>Use this option to view the history of changes to GO, as recorded in the UniProt-GOA database.</div>
+	<div>On this page you can specify optional filters to view the changes based on a date range, set of terms and/or type of change.</div>
+</div>
+
+<div class="multiterm-choose-yourterms"><a name="multiterm-choose-yourterms"/><h3>GO Slims and GO Term Comparison - Choose Terms - Term Basket</h3></div>
+<div id="multiterm-choose-yourterms">
+	<div>This section of the Choose Terms page shows the contents of your Term Basket.</div>
+	<div>You can add a term to the list of chosen terms by clicking on its <img src="image/edit_add.png"/> icon; you can add all of your terms to the list by clicking on the <img src="image/edit_add.png"/> icon in the header row.</div>
+	<div>You can add a term to the comparison chart by clicking on its <img src="image/chart_add_button.png"/> button. When you do this, the term will be added to the chart and its list entry will be
+	highlighted in the same colour used to highlight the term in the chart. Additionally, the <img src="image/chart_add_button.png"/> button changes to <img src="image/chart_delete_button.png"/>; click on this button to remove the term from the chart.</div>
+	<div>You can add all of your terms to the comparison chart by clicking on the <img src="image/chart_add_button.png"/> button in the header row.</div>
+</div>
+
+<div class="multiterm-edit-compareterms"><a name="multiterm-edit-compareterms"/><h3>GO Slims and GO Term Comparison - Edit Terms - Compare Terms</h3></div>
+<div id="multiterm-edit-compareterms">
+	<div>This section of the Edit Terms page shows the list of GO terms that you have selected to be part of your slim. The term list is partitioned into three sections, one for each ontology.</div>
+	<div>You can remove a term from the list by clicking on its <img src="image/edit_remove_button.png"/> button. If you click on the <img src="image/edit_remove_button.png"/> button in the ontolgy header row, that will remove all of the terms in that ontology from the list.</div>
+	<div>You can add a term to the comparison chart by clicking on its <img src="image/chart_add_button.png"/> button. When you do this, the term will be added to the chart and its list entry will be
+	highlighted in the same colour used to highlight the term in the chart. Additionally, the <img src="image/chart_add_button.png"/> button changes to <img src="image/chart_delete_button.png"/>; click on this button to remove the term from the chart.</div>
+	<div>You can add all of the terms from an ontology by clicking the <img src="image/chart_add_button.png"/> button in the ontology header row.</div>
+</div>
+
+<h2>Relationship Types</h2>
+
+<div class="is_a"><a name="is_a"/><h3>IS_A</h3></div>
+<div id="is_a">
+	<div>
+		Term A is_a term B means that term A is a subtype of term B.
+		<br/>
+		For example, 'transcription' is a type of 'nucleic acid metabolic process'.
+	</div>
+</div>
+
+<div class="part_of"><a name="part_of"/><h3>PART_OF</h3></div>
+<div id="part_of">
+	<div>
+		Term A part_of term B means that term A is always a part of term B.
+		<br/>
+		For example, 'transcription' is always a part of 'gene expression'.
+	</div>
+</div>
+
+<div class="regulates"><a name="regulates"/><h3>REGULATES</h3></div>
+<div id="regulates">
+	<div>
+		Term A regulates term B means that term A regulates term B, but term B
+		may not always be regulated by term A.
+	</div>
+</div>
+
+<div class="positively_regulates"><a name="positively_regulates"/><h3>POSITIVELY_REGULATES</h3></div>
+<div id="positively_regulates">
+	<div>
+		A sub-relation of the 'regulates' relationship.
+		<br/>
+		Term A positively_regulates term B means that term B is positively regulated by term A.
+	</div>
+</div>
+
+<div class="negatively_regulates"><a name="negatively_regulates"/><h3>NEGATIVELY_REGULATES</h3></div>
+<div id="negatively_regulates">
+	<div>
+		A sub-relation of the 'regulates' relationship.
+		<br/>
+		Term A negatively_regulates term B means that term B is negatively regulated by term A.
+	</div>
+</div>
+
+<div class="has_part"><a name="has_part"/><h3>HAS_PART</h3></div>
+<div id="has_part">
+	<div>
+		has_part means that term B always has as part of it term A, but term A may exist independently of term B.
+		<br/>
+		For example, 'protein binding trancription factor activity' always has as a part of it 'protein binding' but
+		'protein binding' may occur independently of transcription factor activity.
+		<br/>
+		Note that has_part is not a transitive relationship, meaning there is NO implication that gene products annotated to term A could also be
+		correctly associated with term B or any of its parent terms.
+		<br/>
+		Has_part should be read in the opposite direction to the other relationships.
+	</div>
+</div>
+
+<div class="occurs_in"><a name="occurs_in"/><h3>OCCURS_IN</h3></div>
+<div id="occurs_in">
+	<div>
+		Documentation coming shortly...
+	</div>
+</div>
+
+<h2>Data Download Formats</h2>
+
+<div class="download_formats"><a name="download_formats"/><h3>Download formats</h3></div>
+<div id='download_formats'>
+	<div>
+		The filtered annotation sets you have created can be downloaded from QuickGO in a number of formats (see 'Tab-separated Values' below for a user-specified download format).
+		<ul>
+		    <li>Gene Association File (GAF 2.0)</li>
+		    The primary format used for annotation files by the GO Consortium. Fields are provided in a 17 column tab-delimited format. The GAF2.0 format specification is described here: http://www.geneontology.org/GO.format.gaf-2_0.shtml
+
+		    <li>Gene2GO</li>
+		    A file format using 7 tab-delimited fields supplying 'Taxon', 'Gene Product ID', 'Evidence', 'Qualifier', 'GO Term Name', 'Reference' and 'Aspect' information.
+
+		    <li>ProteinList</li>
+		    A tab-delimited list of unique proteins, as displayed in the 'Gene Product ID' field of the selected annotation set. Output includes specific protein descriptors: database (DB), identifier (ID), Symbol, Name, Synonym, Type and Taxon.
+		    N.B. the Synonym field includes both synonymous protein or gene names or symbols, International Protein Index identifiers as well as secondary UniProtKB accessions.
+
+		    <li>Fasta</li>
+		    A FASTA-formatted output, providing UniProt accession, symbol, protein name and protein sequence of the proteins selected.
+
+		    <li>Tab-separated Values</li>
+		    A tab-separated format that reflects the columns selected in the QuickGO Protein Annotation table. The default table display can be altered by adding or removing columns using the options provided in the 'Display' pop-up.
+		</ul>
+	</div>
+</div>
+
+<h2>'With' Strings</h2>
+
+<div class="with_not_supplied"><a name="with_not_supplied"/><h3>With:Not_supplied</h3></div>
+<div id="with_not_supplied">
+	<div>
+		The <a href="http://www.geneontology.org/GO.evidence.shtml#iss">GO Consortium guidelines</a> on the use of the Inferred from Sequence Similarity (ISS) evidence code recommends that the 'with' field be populated with a database identifier.
+		<br/>
+		Where the 'with' field is populated with 'With:Not_supplied', the annotation group that created the annotation did not provide any entry for this field.
+	</div>
+</div>
+
+</body>
+</html>
+

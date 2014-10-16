@@ -1,0 +1,71 @@
+<html xmlns:rq='java:uk.ac.ebi.quickgo.web.Request'
+      xmlns:use='java:uk.ac.ebi.interpro.jxbp2.render.Use'
+>
+<head>
+	<title>Automatic Annotation Post-Processing by UniProt-GOA</title>
+</head>
+<body>
+<use:use file='use/Toolbars.xhtml' name='global_toolbar'/>
+<div style="clear:both"/>
+
+<h2>Introduction</h2>
+<div class="paragraph">
+The table below describes the actions that UniProt-GOA carries out on automatic annotations supplied by the Ensembl, InterPro and UniProt groups for the UniProtKB GO annotation set.
+</div>
+<div class="paragraph">
+Conservative changes to particular annotation subsets are made by UniProt-GOA when the annotation originally supplied by the automatic annotation pipeline is incorrect for a UniProtKB protein and cannot be easily fixed by the annotation-contributing group without an unnecessarily high loss of correct annotations.
+</div>
+<div class="paragraph">
+Affected annotations are either individually filtered out of the UniProt-GOA annotation set or are conservatively changed to use an equivalent, correct GO term.
+</div>
+<div class="paragraph">
+UniProt-GOA only carries out such changes to automatic annotations sets when it is the group primarily responsible for supplying the data to the GO Consortium, and where the change to the annotation set at source is considered inappropriate. In many cases UniProt-GOA is best placed to make these changes for the UniProt annotations as it is able to consider taxonomic correctness of the annotated GO terms (e.g., for InterPro2GO annotations) or specific GO ontology requirements.
+</div>
+<div class="paragraph">
+All automatic annotations that are transformed by the UniProt-GOA processing will use a GO_REF reference that indicates to the user that such changes have occurred and which points users to this page. All of the changes described in the table below have been agreed to by the automatic annotation groups.
+</div>
+<h2>The currently active post-processing rules</h2>
+
+<rq:dataFiles xmlns:df='java:uk.ac.ebi.quickgo.web.configuration.DataFiles'>
+	<table class="quickgo-standard">
+		<tr class="column-header">
+			<td>Original GO ID</td>
+			<td>Original GO Term Name</td>
+			<td>Cleanup Action</td>
+			<td>Affected Taxonomic Group</td>
+			<td>Substituted GO ID</td>
+			<td>Substituted GO Term Name</td>
+			<td>Curator Notes</td>
+			<td>Taxon Rule</td>
+			<td>Ancestor GO ID</td>
+			<td>Ancestor GO Term Name</td>
+			<td>Relationship</td>
+			<td>Taxon Name</td>
+		</tr>
+		<df:postProcessingRules xmlns:ppr='java:uk.ac.ebi.quickgo.web.data.PostProcessingRule'>
+			<tr>
+				<td style="white-space:nowrap"><a href='Selection?id={ppr:originalGoId}'><i class="selection"><img src='image/basket_add.png'/></i></a><span> <a href='GTerm?id={ppr:originalGoId}'>{ppr:originalGoId}</a></span></td>
+				<td>{ppr:originalTerm}</td>
+				<td>{ppr:cleanupAction}</td>
+				<td>{ppr:affectedTaxGroup}</td>
+				<ppr:isTransform>
+					<td style="white-space:nowrap"><a href='Selection?id={ppr:substitutedGoId}'><i class="selection"><img src='image/basket_add.png'/></i></a><span> <a href='GTerm?id={ppr:substitutedGoId}'>{ppr:substitutedGoId}</a></span></td>
+					<td>{ppr:substitutedTerm}</td>
+				</ppr:isTransform>
+				<ppr:isDelete>
+					<td/>
+					<td/>
+				</ppr:isDelete>
+				<td>{ppr:curatorNotes}</td>
+				<td>{ppr:ruleId}</td>
+				<td style="white-space:nowrap"><a href='Selection?id={ppr:ancestorGoId}'><i class="selection"><img src='image/basket_add.png'/></i></a><span> <a href='GTerm?id={ppr:ancestorGoId}'>{ppr:ancestorGoId}</a></span></td>
+				<td>{ppr:ancestorTerm}</td>
+				<td>{ppr:relationship}</td>
+				<td>{ppr:taxonName}</td>
+			</tr>
+		</df:postProcessingRules>
+	</table>
+</rq:dataFiles>
+
+</body>
+</html>

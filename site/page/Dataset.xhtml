@@ -1,0 +1,97 @@
+<html xmlns:rq='java:uk.ac.ebi.quickgo.web.Request'
+      xmlns:use='java:uk.ac.ebi.interpro.jxbp2.render.Use'
+>
+
+<head>
+	<title>QuickGO</title>
+</head>
+
+<body>
+	<use:use file='use/Toolbars.xhtml' name='global_toolbar'/>
+	<div style="clear:both"/>
+
+	<rq:dataFiles xmlns:df='java:uk.ac.ebi.quickgo.web.configuration.DataFiles'>
+		<df:ontology  xmlns:o='java:uk.ac.ebi.quickgo.web.data.TermOntology'>
+
+			<h1>Dataset Statistics</h1>
+			<p>
+				<df:stats xmlns:summary='java:uk.ac.ebi.quickgo.web.servlets.annotation.Summary'>
+					<div>
+					<h2>GO Term Information</h2>
+						QuickGO contains information for <df:termIDs xmlns:t='java:uk.ac.ebi.interpro.exchange.compress.Table'>{t:size}</df:termIDs> GO terms, as defined in the version of the GO OBO definition file (<a href='{o:url}'>GO OBO CVS</a>), which was downloaded at: {o:timestamp}.
+						<br/>
+						You can find a history of changes to the ontology <a href="GHistory">here</a>.
+					</div>
+					<br/>
+					<div>
+					<h2>Annotation Updates</h2>
+						The annotation set was last updated on {summary:date}, and contains {summary:totalAnnotations} GO annotations to {summary:totalProteins} distinct proteins. 
+						<br/>
+						QuickGO scanned the annotations in {summary:duration} ({summary:timePerAnnotation} microseconds per annotation).
+						<br/><br/>
+						</div>
+				</df:stats>
+			</p>
+
+			<p>
+				<df:stats xmlns:summary='java:uk.ac.ebi.quickgo.web.servlets.annotation.Summary'>
+					<table class='quickgo-standard'>
+						<thead>
+							<tr class='column-header'>
+								<td>Assigned By</td>
+								<td>Annotations</td>
+								<td>Date</td>
+							</tr>
+						</thead>
+						<tbody>
+							<summary:sourceByAnnotation xmlns:cat='java:uk.ac.ebi.quickgo.web.servlets.annotation.Summary.Category'>
+								<cat:buckets xmlns:b='java:uk.ac.ebi.quickgo.web.servlets.annotation.Summary.Bucket'>
+									<tr>
+										<td>{b:code}</td>
+										<td><a href='GAnnotation?source={b:code}'>{b:count}</a></td>
+										<td>{b:date}</td>
+									</tr>
+								</cat:buckets>
+							</summary:sourceByAnnotation>
+						</tbody>
+					</table>
+				</df:stats>
+			</p>
+		</df:ontology>
+	</rq:dataFiles>
+					<br/><br/>
+					<h1>How the QuickGO Dataset is Generated</h1>
+					<p>
+					<h2>Annotation Blacklist</h2>
+						This list aims to correct annotations to UniProtKB accessions from incorrect annotations inferred from electronic annotation (IEA)
+						methods that are supplied by the UniProt-GOA project to the GO Consortium. Details of the annotation blacklist can be found <a href="AnnotationBlacklist.html">here</a>.
+						<br/><br/>
+					<h2>Annotation Post-processing</h2>
+					    UniProt-GOA will be displaying some electronic annotations that have been subject to minor post-processing to ensure taxonomic correctness of annotated GO terms. 
+					    Details of the annotation post-processing can be found <a href="AnnotationPostProcessing.html">here</a>.
+					    <br/><br/>
+					    <h2>GO Consortium Annotations</h2>
+                        GO annotations from member groups of the GO Consortium may also be viewed in the <a href='http://amigo.geneontology.org/cgi-bin/amigo/go.cgi'>AmiGO browser</a>. However, the display
+                        of annotations between QuickGO and AmiGO can vary, due to the different update frequencies of the two tools plus the fact that QuickGO provides electronic (IEA-coded) annotations for
+                        all species in UniProtKB with GO annotations, while AmiGO only supplies electronic annotations for 12 model organism species.
+                        
+                        Additionally, it should be noted that UniProt-GOA only integrates manual annotations from external groups, and external annotations can only be incorporated where external sequence identifiers
+						can be mapped to corresponding UniProtKB accession numbers and the GO identifier associated has not been made secondary.
+						<br/><br/>
+					<h2>PDB Gene Associations</h2>
+                        QuickGO does not contain the GO annotations to PDB entries from the PDB Gene Association File since the entity annotated in this file is a protein structure rather than a protein.
+                        The PDB Gene Association File can be downloaded <a href='ftp://ftp.ebi.ac.uk/pub/databases/GO/goa/PDB/gene_association.goa_pdb.gz'>here</a> 
+                        <br/><br/>
+					</p>
+
+	<h1>How to download and install your own copy of QuickGO</h1>
+	<p>
+		Instructions on how to download the QuickGO software (including the source code), plus links to the latest data sets can be found <a href='installation.html'>here</a>.
+	</p>
+<br/><br/>
+	<h1>How to cite UniProt-GOA</h1>
+	<p>
+		<a href='http://www.ebi.ac.uk/GOA/publications'>Cite UniProt-GOA</a>
+	</p>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<html xmlns:node='java:org.w3c.dom.Node'
+      xmlns:text='java:org.w3c.dom.Text'
+      xmlns:element='java:org.w3c.dom.Element'
+      xmlns:widget='java:uk.ac.ebi.interpro.jxbp2.Widgets'
+      xmlns:action='java:uk.ac.ebi.interpro.jxbp2.BindingAction'
+      xmlns:method='java:uk.ac.ebi.interpro.jxbp2.MethodAction'
+      xmlns:field='java:uk.ac.ebi.interpro.jxbp2.FieldOutputAction'
+      xmlns:attr='java:org.w3c.dom.Attr'
+      xmlns:desc='java:uk.ac.ebi.quickgo.web.servlets.Describe.NodeWalker'
+      xmlns:shred='java:uk.ac.ebi.interpro.jxbp2.RuleSet.Shredded'
+        >
+  <head>
+    <title></title>
+      <script>
+          var previous=null;
+          function wonderclick(evt) {
+              var protect=null;
+              if (evt.target.className=='nfo') {
+                  var dvs=evt.target.getElementsByTagName('div');
+                  for (var i=0;dvs.length>i;i++) {
+                      if (dvs[i].className=='pp') {
+                          protect=dvs[i];
+                      }
+                  }
+              }
+              if (previous!=protect) {
+                  if (previous!=null) previous.style.display=null;
+                  if (protect!=null) protect.style.display='block';
+                  previous=protect;
+              }
+          }
+      </script>
+      <style>
+          span.not-nfo{border:1px solid red;margin:-1px;}
+          span.nfo{background-color:#ffc;}
+          div.pp{display:none;background-color:#ccf;border:1px solid #77f;position:absolute;}
+          span.e{color:#00c;}
+      </style>
+  </head>
+  <body>
+
+  <widget:define name='action'><span class='nfo'><field:this><div class='pp'>{field:toString}</div></field:this><method:this><div class='pp'>{method:toString}</div></method:this><widget:content/></span></widget:define>
+
+  <widget:define name='nodeaction'><desc:action><widget:invoke name='action'><widget:content/></widget:invoke></desc:action><desc:noAction><widget:content/></desc:noAction></widget:define>
+
+  <widget:define name='shred'>{shred:prior}<shred:action><widget:invoke name='action'>{shred:replaced}</widget:invoke></shred:action><shred:next><widget:invoke name='shred'/></shred:next></widget:define>
+
+  <widget:define name='text'><desc:shredded><widget:invoke name='shred'/></desc:shredded></widget:define>
+
+  <widget:define name='attr'><widget:invoke name='nodeaction'><span>{attr:getNodeName}='<widget:invoke name='text'/>'</span></widget:invoke></widget:define>
+
+  <widget:define name='element'><span class='e'>&lt;<widget:invoke name='nodeaction'>{element:getNodeName}</widget:invoke><desc:attributes> <widget:invoke name='attr'/></desc:attributes>></span><desc:children><widget:invoke name='node'/></desc:children><span class='e'>&lt;/{element:getNodeName}></span></widget:define>
+
+  <widget:define name='node'><desc:element><widget:invoke name='element'/></desc:element><desc:text><widget:invoke name='text'/></desc:text></widget:define>
+
+  <div style='white-space:pre;font-family:monospace;' onclick='wonderclick(event)'>
+<desc:document><widget:invoke name='node'/></desc:document>
+  </div>
+
+  </body>
+</html>

@@ -1,0 +1,21 @@
+<html xmlns:widgets='java:uk.ac.ebi.interpro.jxbp2.Widgets'
+        xmlns:view='java:uk.ac.ebi.quickgo.web.servlets.GFeedback.View'>
+
+  <head>
+    <title>Feedback: View</title>
+  </head>
+  <body>
+
+  <view:denied>
+      <div>Access denied</div>
+  </view:denied>
+  <view:responses xmlns:response="java:uk.ac.ebi.quickgo.web.servlets.GFeedback.Response">
+      <div>{response:date} - {response:id}</div>
+      <div>
+          {response:text}
+      </div>
+      <hr/>
+  </view:responses>
+
+  </body>
+</html>

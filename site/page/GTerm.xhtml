@@ -1,0 +1,517 @@
+<html xmlns:page='java:uk.ac.ebi.quickgo.web.servlets.GTermServlet.TermPage'
+      xmlns:relation='java:uk.ac.ebi.quickgo.web.data.TermRelation'
+      xmlns:term='java:uk.ac.ebi.quickgo.web.data.Term'
+      xmlns:list='java:uk.ac.ebi.interpro.jxbp2.ListContent'
+      xmlns:rq='java:uk.ac.ebi.quickgo.web.Request'
+      xmlns:data='java:uk.ac.ebi.quickgo.web.configuration.DataFiles'
+      xmlns:tc='java:uk.ac.ebi.interpro.jxbp2.TextContent'
+      xmlns:use='java:uk.ac.ebi.interpro.jxbp2.render.Use'
+      xmlns:toh="java:uk.ac.ebi.quickgo.web.data.TermOntologyHistory"
+>
+
+    <head>
+        <title>{term:id} {term:name}</title>
+        <script src='./js/quickgoAnnotation.js'></script>
+    </head>
+
+    <body class='wide'>
+
+
+    <use:use file='use/Toolbars.xhtml' name='global_toolbar'/>
+
+    <div style="clear:both"/>
+
+    <term:obsolete>
+        <div style='border:2px solid #f00; background-color:#fcc; margin-bottom:10px'>
+	        <img src="image/exclamation.png"/> This term is obsolete.
+	        <div>{term:comment}</div>
+        </div>
+    </term:obsolete>
+
+    <div class='tabs-h2' name='term'>
+        <h2 name='info'>Term Information<a name='info'/></h2>
+
+        <table class='info'>
+	        <tr>
+		        <td class='label'>ID</td>
+		        <term:active>
+			        <td style="white-space:nowrap"><a href='Selection?id={term:id}'><i class="selection"><img src='image/basket_add.png'/></i></a><span> {term:id}</span></td>
+		        </term:active>
+		        <term:obsolete>
+			        <td style="white-space:nowrap"><img src='image/exclamation.png'/><span> {term:id}</span></td>
+		        </term:obsolete>
+	        </tr>
+            <tr>
+	            <td class='label'>Name</td>
+                <td><term:plannedChanges list:body='any'><img src="image/chat_bw.png" title="This term is located in a node of the Gene Ontology where there are active ontology discussions. Please refer to the 'GO Discussions' tab for more information."/> </term:plannedChanges>{term:name}</td>
+            </tr>
+            <tr>
+	            <td class='label'>Ontology</td>
+                <td>{term:ontology}</td>
+            </tr>
+            <tr>
+	            <td class='label'>Definition</td>
+                <td>
+                    {term:definition}
+                    <term:definitionXrefs list:body='any'>
+                        <br/>
+                        <term:definitionXrefs xmlns:xr="java:uk.ac.ebi.quickgo.web.data.Term.XRef">
+                            <span style="margin-right:5px"><a href="http://europepmc.org/abstract/MED/{xr:id}" target="_blank">{xr:db}:{xr:id}</a></span>
+                        </term:definitionXrefs>
+                    </term:definitionXrefs>
+                </td>
+            </tr>
+	        <term:isRestricted>
+				<tr>
+					<td class='label'>Restrictions</td>
+					<td>
+						<span style="background:#ff8">{term:usage}
+							<term:hasComment>
+								<span style="margin-left:5px">See comment below for further information.</span>							
+							</term:hasComment>
+						</span>
+					</td>
+				</tr>
+	        </term:isRestricted>
+	        <term:hasComment>
+		        <tr>
+			        <td class='label'>Comment</td>
+		            <td>{term:comment}</td>
+		        </tr>
+	        </term:hasComment>
+			<term:altIds list:body='any'>
+				<tr>
+					<td class='label'>Secondary IDs</td>
+				    <td>
+					    <term:altIds xmlns:xr="java:uk.ac.ebi.quickgo.web.data.Term.XRef">
+							<span style="margin-right:5px">{xr:id}</span>						    
+					    </term:altIds>
+				    </td>
+				</tr>
+			</term:altIds>
+	        <tr>
+		        <td class='label'>GONUTS</td>
+				<td><a href="{term:gonutsURL}" target="_blank">{term:id} Wiki Page</a></td>
+	        </tr>
+	        <term:credits list:body='any'>
+		        <tr>
+			        <td class="label">Acknowledgements</td>
+					<td>				       
+				        This term was created by the GO Consortium with support from
+				        <term:credits xmlns:credit="java:uk.ac.ebi.quickgo.web.data.TermCredit">
+							<a href="{credit:url}" target="_blank"><img style="vertical-align:top" src="image/{credit:code}.png" alt="{credit:code} logo"/></a>
+				        </term:credits>
+			        </td>
+		        </tr>
+	        </term:credits>
+        </table>
+
+        <div class='tabs-h3' name='info'>
+	        <term:synonyms list:body='any'>
+	            <h3>Synonyms</h3>
+				<div class='helpicon' style="float:right">
+					<div class='context-help' topic="synonym">
+						<img src="image/mb/icon_info.png" class="icon"/>
+					</div>
+				</div>
+		        <div class="text-block">
+			        Synonyms are alternative words or phrases closely related in meaning to the term name, with indication of the relationship between the name and synonym given by the synonym scope.
+			        Click on the <img src="image/mb/icon_info.png"/> icon for more details.
+		        </div>
+
+	            <table class="quickgo-standard">
+	                <tr class="column-header">
+	                    <td>Type</td>
+	                    <td>Synonym</td>
+	                </tr>
+	                <term:synonyms xmlns:synonym='java:uk.ac.ebi.quickgo.web.data.Synonym'>
+	                    <tr>
+	                        <td>{synonym:type}</td>
+	                        <td>{synonym:name}</td>
+	                    </tr>
+	                </term:synonyms>
+	            </table>
+	        </term:synonyms>
+
+	        <term:guidelines list:body='any'>
+	            <h3>Annotation Guidance</h3>
+	            <div class="text-block">Usage of this term is subject to the following annotation guidelines:</div>
+	            <table class="quickgo-standard">
+		            <tr class="column-header"><td colspan="2">Annotation Guidelines</td></tr>
+	                <term:guidelines xmlns:nu='java:uk.ac.ebi.quickgo.web.data.Term.NamedURL'>
+	                    <tr><td>{nu:title}</td><td><a href='{nu:url}' target="_blank">Link</a></td></tr>
+	                </term:guidelines>
+	            </table>
+	        </term:guidelines>
+
+	        <term:plannedChanges list:body='any'>
+	            <h3><img src="image/chat_bw.png"/> GO Discussions</h3>
+	            <div class="text-block">
+		            <div class="paragraph">The GO editorial group is intending to improve the information provided in this area of the GO.</div>
+		            <div class="paragraph">If you would like to be involved in discussions regarding this development activity, please email the <a href="mailto:go-helpdesk@geneontology.org">GO Consortium</a>.</div>
+					<div class="paragraph">Please note that it is still appropriate to use this term for curation or analysis purposes.</div>
+	            </div>
+	            <table class="quickgo-standard">
+		            <tr class="column-header"><td colspan="2">Ontology Development Project</td></tr>
+	                <term:plannedChanges xmlns:nu='java:uk.ac.ebi.quickgo.web.data.Term.NamedURL'>
+	                    <tr><td>{nu:title}</td><td><a href='{nu:url}' target="_blank">Link</a></td></tr>
+	                </term:plannedChanges>
+	            </table>
+	        </term:plannedChanges>
+
+	        <term:taxonConstraints list:body='any'>
+	            <h3>Taxon Constraints</h3>
+		        <div class="text-block">The use of this term should conform to the following taxon constraints:</div>
+		        <table class="quickgo-standard">
+					<tr class="column-header">
+						<td>Taxon Rule</td>
+						<td>Ancestor GO ID</td>
+						<td>Ancestor GO Term Name</td>
+						<td>Relationship</td>
+						<td>Taxon ID</td>
+						<td>Taxon</td>
+						<td>Reference(s)</td>
+					</tr>
+		            <term:taxonConstraints xmlns:txc='java:uk.ac.ebi.quickgo.web.data.TaxonConstraint'>
+		                <tr>
+			                <td>{txc:ruleId}</td>
+			                <td><a href='Selection?id={txc:goId}'><i class="selection"><img src='image/basket_add.png'/></i></a><span> <a href='GTerm?id={txc:goId}'>{txc:goId}</a> </span></td>
+			                <td>{txc:name}</td>
+			                <td>{txc:relationship}</td>
+			                <td>{txc:taxId}</td>
+			                <td>{txc:taxonName}</td>
+			                <td>
+				                <txc:sources list:body='any'>
+									<txc:sources xmlns:pm='java:uk.ac.ebi.quickgo.web.data.TaxonConstraint.PMID'>
+										<span style="margin-right:10px"><a href="{pm:url}" target="_blank">{pm:pmid}</a></span>
+									</txc:sources>
+			                    </txc:sources>
+			                </td>
+		                </tr>
+		            </term:taxonConstraints>
+	            </table>
+		        <div class="text-block">More information on taxon constraints in GO is available <a href="http://www.geneontology.org/cgi-bin/references.cgi#GO_REF:0000056" target="_blank">here</a></div>
+			</term:taxonConstraints>
+
+            <term:slims list:body='any'>
+                <h3>GO Slims</h3>
+                <div class="text-block">This term is present in the following GO Consortium-maintained GO slims:</div>
+                <table class="quickgo-standard">
+                    <tr class="column-header"><td> </td><td>GO slim name</td><td>Count of all terms</td></tr>
+                    <term:slims xmlns:slim='java:uk.ac.ebi.quickgo.web.data.Terms'>
+                        <tr><td style='width:10px;background-color:{slim:cssColour}'></td><td><a href='GMultiTerm?a={slim:getCompressed}'>{slim:name}</a></td><td>{slim:count}</td></tr>
+                    </term:slims>
+                </table>
+            </term:slims>
+
+            <term:replacements list:body='any'>
+                <h3>Replaced by</h3>
+                <div class="text-block">This term is obsolete - try one of these terms:</div>
+                <table class="quickgo-standard">
+	                <tr class="column-header">
+		                <td>Advice</td>
+		                <td>GO Identifier</td>
+		                <td>Ontology</td>
+		                <td>GO Term Name</td>
+	                </tr>
+                    <term:replacements>
+                        <tr>
+                            <td>
+	                            <relation:typeof xmlns:rt="java:uk.ac.ebi.quickgo.web.data.RelationType">
+		                            {rt:description}							
+	                            </relation:typeof>
+                            </td>
+                            <relation:parent>
+	                            <td style="white-space:nowrap"><a href='Selection?id={term:id}'><i class="selection"><img src='image/basket_add.png'/></i></a><span> <a href='GTerm?id={term:id}'>{term:id}</a> </span></td>
+	                            <td>{term:ontology}</td>
+	                            <td>{term:name}</td>
+                            </relation:parent>
+                        </tr>
+                    </term:replacements>
+                </table>
+            </term:replacements>
+
+	        <term:proteinComplexes list:body='any'>
+	            <h3>Protein complexes</h3>
+	            <table class="quickgo-standard">
+					<tr class="column-header">
+						<td>Database</td>
+						<td>ID</td>
+						<td>Name</td>
+					</tr>
+					<term:proteinComplexes xmlns:cmplx='java:uk.ac.ebi.quickgo.web.data.Term.ProteinComplex'>
+						<tr>
+							<td>{cmplx:db}</td>
+							<td><a href="http://www.ebi.ac.uk/intact/complex/details/{cmplx:id}" target="_blank">{cmplx:symbol}</a></td>
+							<td>{cmplx:name}</td>
+						</tr>
+					</term:proteinComplexes>
+	            </table>
+			</term:proteinComplexes>
+
+            <term:crossOntologyRelations list:body='any'>
+   	            <h3>Cross-Ontology Relations</h3>
+   	            <table class="quickgo-standard">
+   		            <tr class="column-header">
+                        <td>Relation</td>
+                        <td>Other Ontology</td>
+                        <td>ID</td>
+                        <td>Term</td>
+                    </tr>
+   	                <term:crossOntologyRelations xmlns:cor='java:uk.ac.ebi.quickgo.web.data.Term.CrossOntologyRelation'>
+   	                    <tr>
+                            <td>{cor:relation}</td>
+                            <td>{cor:otherNamespace}</td>
+                            <td><a href="{cor:url}" target="_blank">{cor:foreignID}</a></td>
+                            <td>{cor:foreignTerm}</td>
+                        </tr>
+   	                </term:crossOntologyRelations>
+   	            </table>
+   	        </term:crossOntologyRelations>
+
+            <term:xrefs list:body='any'>
+                <h3>Cross-references</h3>
+                <table class="quickgo-standard">
+                    <tr class="column-header">
+                        <td>Database</td>
+                        <td>ID</td>
+                    </tr>
+                    <term:xrefs xmlns:xr="java:uk.ac.ebi.quickgo.web.data.Term.XRef">
+                        <tr>
+                            <td>{xr:db}</td>
+                            <td>{xr:id}</td>
+                        </tr>
+                    </term:xrefs>
+                </table>
+            </term:xrefs>
+
+            <term:replaces list:body='any'>
+                <h3>Replaces</h3>
+                <div class="text-block">This term can be used instead of these obsolete terms:</div>
+                <table class="quickgo-standard">
+	                <tr class="column-header">
+		                <td>GO Identifier</td>
+		                <td>GO Term Name</td>
+		                <td>Reason</td>
+	                </tr>
+                    <term:replaces>
+                        <tr>
+							<relation:child>
+								<td style="white-space:nowrap"><a href='Selection?id={term:id}'><i class="selection"><img src='image/basket_add.png'/></i></a><span> <a href='GTerm?id={term:id}'>{term:id}</a> </span></td>
+								<td>{term:name}</td>
+							</relation:child>
+							<td>{relation:typeof} <a href='Selection?id={term:id}'><i class="selection"><img src='image/basket_add.png'/></i></a><span> <a href='GTerm?id={term:id}'>{term:id}</a> </span></td>
+                        </tr>
+                    </term:replaces>
+                </table>
+            </term:replaces>
+        </div>
+
+        <h2 name='ancchart'>Ancestor Chart<a name='ancchart'/></h2>
+		<div>
+			<div class="user-guidance">
+				<div>This chart is interactive; you can click on the term boxes and legend for more information.</div>
+			</div>
+			<i class='ancestrychart'/>
+			<div style="float:right" class="jsonly">
+				<use:use file='use/Toolbars.xhtml' name='local_toolbar'>
+
+					<div class='toolbar-button'>
+						<img src="image/mb/tool_display.png" alt="Display options"/>
+						<div>Display</div>
+					</div>
+
+				</use:use>
+			</div>
+			<div>
+			<form action="GMultiTerm">
+				<input type="hidden" name="format" value="chart"/>
+				<input type="text" name="id" value="{term:id}" class="dynamic"/>
+
+				<table>
+					<tr><td>Key</td><td><select name="chart_key"><option value="true">Show</option><option value="false">Hide</option></select></td></tr>
+					<tr><td>GO IDs</td><td><select name="chart_ids"><option value="true">Show</option><option value="false" selected="selected">Hide</option></select></td></tr>
+					<tr><td>Term box width</td><td><input type="text" name="chart_width" value="85"/></td></tr>
+					<tr><td>Term box height</td><td><input type="text" name="chart_height" value="55"/></td></tr>
+					<tr><td>Slim colours</td><td><select name="chart_slim"><option value="true">Show</option><option value="false" selected="selected">Hide</option></select></td></tr>
+					<tr><td>Show children</td><td><select name="chart_showChildren"><option value="true">Show</option><option value="false" selected="selected">Hide</option></select></td></tr>
+					<tr><td>Image size limit (in megapixels)</td><td><input type="text" name="limit" value="10"/></td></tr>
+				</table>
+				<div>
+				    Note that setting the limit too high may result in images being generated slowly; it may even cause the browser to crash. The maximum limit is 20 megapixels.
+				</div>
+				<input type="submit" value="View" class="dynamic"/>
+				
+			</form>
+			</div>
+
+			<div class="results">
+			</div>
+			<br style="clear:both"/>
+		</div>
+
+
+        <h2 name="children">Child Terms<a name='children'/></h2>
+        <div class="user-guidance">
+	        <div class="text-block">This table lists all terms that are direct descendants (child terms) of {term:id}:</div>
+        </div>
+
+        <div>
+	        <term:children list:body='any'>
+	            <table class="quickgo-standard">
+		            <thead>
+			            <tr class='column-header'>
+				            <td><a href="http://www.geneontology.org/GO.ontology.relations.shtml" target="_blank">Relationship To {term:id}</a></td>
+				            <td>Child Term</td>
+				            <td>Child Term Name</td>
+			            </tr>
+		            </thead>
+					<tbody>
+						<term:children>
+							<tr>
+								<td><relation:typeof xmlns:rt="java:uk.ac.ebi.quickgo.web.data.RelationType"><span class="context-help" topic="{rt:formalCode}">{rt:description}</span></relation:typeof></td>
+								<relation:child>
+									<td style="white-space:nowrap"><a href='Selection?id={term:id}'><i class="selection"><img src='image/basket_add.png'/></i></a> <a href='GTerm?id={term:id}'>{term:id}</a></td>
+									<td>{term:name}</td>
+								</relation:child>
+							</tr>
+						</term:children>
+					</tbody>
+	            </table>
+	        </term:children>
+
+	        <term:children list:body='none'>
+	            <div>Term has no children</div>
+	        </term:children>
+        </div>
+
+
+        <h2 name="annotation">Protein Annotation<a name='annotation'/></h2>
+
+        <div class="annotation-page">
+            <i class="auto-annotation-page"/>
+
+            <use:use file='use/Toolbars.xhtml' name='annotation_toolbar'/>
+
+            <use:use file='use/Annotation.xhtml' name='annotation'/>
+
+        </div>
+
+        <h2 name="stats">Co-occurring Terms<a name='stats'/></h2>
+        <div class="user-guidance">
+	        <div class="text-block">These tables show the number of times the term listed in the table has been co-annotated with {term:id}. The terms are listed in descending order of number of times the term has been co-annotated.</div>
+	        <div class="text-block">The table on the left is calculated using both electronic and manual-evidenced annotations, while the table on the right is calculated using only manual-evidenced annotations.</div>
+        </div>
+
+        <table class="tab-holder">
+	        <tr class="shadowbox">
+		        <td class="shadowbox">Co-occurrence statistics for {term:id} based on the entire annotation set</td>
+		        <td class="shadowbox">Co-occurrence statistics for {term:id} based on non-IEA annotations only</td>
+	        </tr>
+	        <tr>
+		        <td style="vertical-align:top">
+			        <form action="GAnnotation" class='co_occur'>
+				        <input type='submit' value='Show'/>
+				        <input type='hidden' name='format' value='compare'/>
+				        <input type='hidden' name='goid' value='{term:id}'/>
+				        <input type='hidden' name='slimTypes' value='='/>
+			        </form>
+		        </td>
+		        <td style="vertical-align:top">
+			        <form action="GAnnotation" class='co_occur'>
+				        <input type='submit' value='Show'/>
+				        <input type='hidden' name='format' value='compare'/>
+				        <input type='hidden' name='goid' value='{term:id}'/>
+				        <input type='hidden' name='slimTypes' value='='/>
+				        <input type='hidden' name='q' value='!evidence=IEA'/>
+			        </form>
+		        </td>
+	        </tr>
+        </table>
+
+
+        <h2 name="history">Change Log<a name='history'/></h2>
+
+        <term:history>
+	        <toh:auditRecords list:body='any'>
+		        <div class='tabs-h3' name='info'>
+			        <h3>All changes</h3>
+			        <table class="quickgo-standard">
+				        <use:use file="use/Common.xhtml" name="audit_header_mini"/>
+				        <toh:auditRecords>
+					        <use:use file="use/Common.xhtml" name="audit_record_mini"/>
+				        </toh:auditRecords>
+			        </table>
+
+			        <toh:historyTerms list:body='any'>
+				        <h3>Term</h3>
+				        <table class="quickgo-standard">
+					        <use:use file="use/Common.xhtml" name="audit_header_mini"/>
+					        <toh:historyTerms>
+						        <use:use file="use/Common.xhtml" name="audit_record_mini"/>
+					        </toh:historyTerms>
+				        </table>
+			        </toh:historyTerms>
+
+			        <toh:historyObsoletions list:body='any'>
+				        <h3>Obsoletions</h3>
+				        <table class="quickgo-standard">
+					        <use:use file="use/Common.xhtml" name="audit_header_mini"/>
+					        <toh:historyObsoletions>
+						        <use:use file="use/Common.xhtml" name="audit_record_mini"/>
+					        </toh:historyObsoletions>
+				        </table>
+			        </toh:historyObsoletions>
+
+			        <toh:historyDefinitions list:body='any'>
+				        <h3>Definition/synonyms</h3>
+				        <table class="quickgo-standard">
+					        <use:use file="use/Common.xhtml" name="audit_header_mini"/>
+					        <toh:historyDefinitions>
+						        <use:use file="use/Common.xhtml" name="audit_record_mini"/>
+					        </toh:historyDefinitions>
+				        </table>
+			        </toh:historyDefinitions>
+
+			        <toh:historyRelations list:body='any'>
+				        <h3>Relationships</h3>
+				        <table class="quickgo-standard">
+					        <use:use file="use/Common.xhtml" name="audit_header_mini"/>
+					        <toh:historyRelations>
+						        <use:use file="use/Common.xhtml" name="audit_record_mini"/>
+					        </toh:historyRelations>
+				        </table>
+			        </toh:historyRelations>
+
+			        <toh:historyXRefs list:body='any'>
+				        <h3>Cross-references</h3>
+				        <table class="quickgo-standard">
+					        <use:use file="use/Common.xhtml" name="audit_header_mini"/>
+					        <toh:historyXRefs>
+						        <use:use file="use/Common.xhtml" name="audit_record_mini"/>
+					        </toh:historyXRefs>
+				        </table>
+			        </toh:historyXRefs>
+
+			        <toh:historyOther list:body='any'>
+				        <h3>Other</h3>
+				        <table class="quickgo-standard">
+					        <use:use file="use/Common.xhtml" name="audit_header_mini"/>
+					        <toh:historyOther>
+						        <use:use file="use/Common.xhtml" name="audit_record_mini"/>
+					        </toh:historyOther>
+				        </table>
+			        </toh:historyOther>
+		        </div>
+	        </toh:auditRecords>
+
+	        <toh:auditRecords list:body='none'>
+	            <div>You should never see this...</div>
+	        </toh:auditRecords>
+
+        </term:history>
+    </div>
+
+</body>
+
+</html>

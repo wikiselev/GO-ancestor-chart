@@ -1,0 +1,80 @@
+<annotation_extension_relations
+		xmlns:use='java:uk.ac.ebi.interpro.jxbp2.render.Use'
+		xmlns:rels='java:uk.ac.ebi.quickgo.web.data.AnnotationExtensionRelationSet'
+		xmlns:list='java:uk.ac.ebi.interpro.jxbp2.ListContent'
+		xmlns:rel='java:uk.ac.ebi.quickgo.web.data.AnnotationExtensionRelationSet.AnnotationExtensionRelation'
+        xmlns:ent='java:uk.ac.ebi.quickgo.web.data.AnnotationExtensionRelationSet.Entity'
+        xmlns:eset='java:uk.ac.ebi.quickgo.web.data.AnnotationExtensionRelationSet.EntitySet'
+        xmlns:trm='java:uk.ac.ebi.quickgo.web.data.Term'
+		xmlns:ems='java:uk.ac.ebi.quickgo.web.data.AnnotationExtensionRelationSet.EntityMatcherSet'
+		xmlns:em='java:uk.ac.ebi.quickgo.web.data.AnnotationExtensionRelationSet.EntityMatcher'
+        xmlns:str='java:java.lang.String'
+		>
+<use:define name='entity-matchers'>
+	<ems:entityMatchers list:body='any'>
+		<ems:entityMatchers>
+			<syntax namespace='{em:namespace}' idSyntax='{em:idSyntax}' regExp ='{em:regExp}'/>
+		</ems:entityMatchers>
+	</ems:entityMatchers>
+</use:define>
+
+	<relations>
+		<rels:annExtRelations>
+			<relation name="{rel:name}">
+				{rel:usage}
+				<rel:parents list:body='any'>
+					<parents>
+						<rel:parents>
+							<parent>{rel:name}</parent>
+						</rel:parents>
+					</parents>
+				</rel:parents>
+				<rel:secondaries list:body='any'>
+					<secondaries>
+						<rel:secondaries>
+							<secondary>{str:toString}</secondary>
+						</rel:secondaries>
+					</secondaries>
+				</rel:secondaries>
+				<rel:subsets list:body='any'>
+					<subsets>
+						<rel:subsets xmlns:sbst='java:uk.ac.ebi.quickgo.web.data.AnnotationExtensionRelationSet.AERSubset'>
+							<subset>{sbst:name}</subset>
+						</rel:subsets>
+					</subsets>
+				</rel:subsets>
+				<rel:domains>
+					<eset:entities list:body='any'>
+						<domain>
+							<eset:entities>
+								<option entity='{ent:name}'>
+									<ent:matchers>
+										<use:use name='entity-matchers'/>
+									</ent:matchers>
+								</option>
+							</eset:entities>
+						</domain>
+					</eset:entities>
+				</rel:domains>
+				<rel:ranges>
+					<eset:entities list:body='any'>
+						<range>
+							<eset:entities>
+								<option entity='{ent:name}'>
+									<ent:matchers>
+										<use:use name='entity-matchers'/>
+									</ent:matchers>
+								</option>
+							</eset:entities>
+						</range>
+					</eset:entities>
+				</rel:ranges>
+			</relation>
+		</rels:annExtRelations>
+	</relations>
+	<rels:rangeDefaults>
+		<default_options>
+			<use:use name='entity-matchers'/>
+		</default_options>
+	</rels:rangeDefaults>
+</annotation_extension_relations>

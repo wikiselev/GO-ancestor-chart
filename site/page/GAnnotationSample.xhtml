@@ -1,0 +1,89 @@
+<html xmlns:widgets='java:uk.ac.ebi.interpro.jxbp2.Widgets'
+      xmlns:sample='java:uk.ac.ebi.quickgo.web.servlets.annotation.GAnnotationServlet.SampleAnnotation'
+      xmlns:ann='java:uk.ac.ebi.quickgo.web.servlets.annotation.Annotation'
+      xmlns:c='java:uk.ac.ebi.quickgo.web.servlets.annotation.GAnnotationServlet.Column'      
+      xmlns:para='java:uk.ac.ebi.quickgo.web.servlets.annotation.GAnnotationServlet.AnnotationParameters'
+      xmlns:ref='java:uk.ac.ebi.quickgo.web.servlets.annotation.XRef'
+      xmlns:term='java:uk.ac.ebi.quickgo.web.data.Term'>
+
+<head>
+	<title>Annotation sample</title>
+</head>
+
+<body>
+	<widgets:define name='group' xmlns:group='java:uk.ac.ebi.quickgo.web.servlets.annotation.GAnnotationServlet.Group'>
+		<group:groups xmlns:key='java:uk.ac.ebi.quickgo.web.servlets.annotation.GAnnotationServlet.Key'>
+			<tr class='data'>
+				<td class='label'></td>
+				<td class='label' colspan='{para:columnCount}'>
+					<div style='font-weight:bold;text-align:center;'>{key:name}</div>
+				</td>
+			</tr>
+			<widgets:invoke name='group'/>
+		</group:groups>
+
+		<group:annotation>
+			<tr class='data'>
+				<td class='label'>
+				</td>
+				<para:columns>
+					<td>
+						<div class='content'>
+							<c:proteinDB>{ann:db}</c:proteinDB>
+							<c:proteinID><a href='GProtein?ac={ann:proteinAc}'>{ann:proteinAc}</a></c:proteinID>
+							<c:splice>{ann:splice}</c:splice>
+							<c:proteinSymbol>{ann:symbol}</c:proteinSymbol>
+							<c:qualifier>{ann:qualifier}</c:qualifier>
+							<c:goID><ann:term><a href='GTerm?id={term:id}'>{term:id}</a></ann:term></c:goID>
+                            <c:originalTermID><ann:originalTerm><a href='GTerm?id={term:id}'>{term:id}</a></ann:originalTerm></c:originalTermID>
+							<c:ref><ann:ref>{ref:displayString}</ann:ref></c:ref>
+							<c:evidence>{ann:evidence}</c:evidence>
+							<c:with><ann:with>{ref:displayString}</ann:with></c:with>
+							<c:aspect><ann:term><term:aspect xmlns:aspect='java:uk.ac.ebi.quickgo.web.data.Term.Ontology'>{aspect:name}</term:aspect></ann:term></c:aspect>
+							<c:proteinName>{ann:name}</c:proteinName>
+							<c:proteinSynonym>{ann:synonym}</c:proteinSynonym>
+							<c:proteinType>protein</c:proteinType>
+							<c:proteinTaxon>{ann:taxId}<ann:hasExtraTax>|{ann:extraTaxId}</ann:hasExtraTax></c:proteinTaxon>
+							<c:date>{ann:date}</c:date>
+							<c:from>{ann:source}</c:from>
+							<c:goName><ann:term>{term:name}</ann:term></c:goName>
+							<c:rowId>{ann:rowId}</c:rowId>
+							<c:sequence>{ann:sequence}</c:sequence>
+							<c:pubmed><ann:ref><ref:is type='PUBMED'>{ref:id}</ref:is></ann:ref></c:pubmed>
+						</div>
+					</td>
+				</para:columns>
+			</tr>
+		</group:annotation>
+	</widgets:define>
+
+	<table class='annotation' id='results'>
+		<sample:parseException xmlns:exception='java:uk.ac.ebi.quickgo.web.servlets.annotation.AdvancedRequest.ParseException'>
+			<tr class='data'>
+				<td class='label'></td>
+				<td class='label' colspan='{para:columnCount}'>
+					<div style='background-color:#fcc'>Error: {exception:error}</div>
+					<div>{exception:prefix}<span style='background-color:#fcc'>{exception:postfix}</span></div>
+				</td>
+			</tr>
+		</sample:parseException>
+
+		<tr class='data'>
+			<td class='label'></td>
+			<td colspan='{para:columnCount}'>
+				<sample:previous><a href='{para:url}&amp;start={sample:prior}&amp;format=sample'>&lt;-</a></sample:previous>
+				{sample:begin}-{sample:end}
+				<sample:more><a href='{para:url}&amp;start={sample:end}&amp;format=sample'>-&gt;</a></sample:more>
+				<para:url/>
+				<sample:none>
+					No annotation found matching the specified criteria
+				</sample:none>
+			</td>
+		</tr>
+
+		<sample:root>
+			<widgets:invoke name='group'/>
+		</sample:root>
+	</table>
+</body>
+</html>

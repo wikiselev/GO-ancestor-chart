@@ -1,0 +1,40 @@
+<html xmlns:widgets='java:uk.ac.ebi.interpro.jxbp2.Widgets'
+      xmlns:page='java:uk.ac.ebi.quickgo.web.servlets.GMultiTermServlet.TermPage'>
+
+
+  <head>
+    <title>Proteins</title>
+  </head>
+
+  <body class='wide'>
+
+  <form method='POST' action='GProteinTerm'>
+      <input type='hidden' name='id' value='{t:id}'/>
+      <table onclick='tableclick("protein")'>
+          <tr><td>AC</td><td>Description</td></tr>
+
+      <page:proteins xmlns:p='java:uk.ac.ebi.quickgo.web.data.Protein'>
+          <tr>
+              <td>
+                  {p:ac}
+              </td>
+              <td>
+                  {p:name}
+              </td>
+          </tr>
+      </page:proteins>
+      </table>
+      <textarea name='aclist'>
+          <page:proteins xmlns:p='java:uk.ac.ebi.quickgo.web.data.Protein'>{p:ac} </page:proteins>
+      </textarea>      
+      <a href='{page:url}'>Bookmark</a>
+  </form>
+
+  <div id='protein'>
+      <div><a href='GProtein?ac=%1'>%1</a></div>
+      <div onclick='note("%1")'>Select</div>
+  </div>
+
+
+  </body>
+</html>

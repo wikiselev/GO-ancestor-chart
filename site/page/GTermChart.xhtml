@@ -1,0 +1,34 @@
+<html
+	xmlns:widgets='java:uk.ac.ebi.interpro.jxbp2.Widgets'
+	xmlns:page='java:uk.ac.ebi.quickgo.web.servlets.GMultiTermServlet.TermPage'
+	xmlns:hi='java:uk.ac.ebi.quickgo.web.graphics.HierarchyImage'
+	xmlns:tn='java:uk.ac.ebi.quickgo.web.graphics.TermGraphNode'
+	xmlns:term='java:uk.ac.ebi.quickgo.web.data.Term'
+	xmlns:rl='java:uk.ac.ebi.quickgo.web.graphics.HierarchyImage.RelationLabel'
+	xmlns:kn='java:uk.ac.ebi.quickgo.web.graphics.HierarchyImage.KeyNode'
+>
+
+    <head>
+        <title>Term comparison</title>
+    </head>
+
+    <body class='wide'>
+        <div id='results'>
+            <input type="hidden" class="width" value="{hi:width}"/>
+            <input type="hidden" class="height" value="{hi:height}"/>
+            <img id='himg_{hi:id}' usemap='#hmap_{hi:id}' src='{hi:src}' width='{hi:width}' height='{hi:height}' style='border:none;' onclick='popupClick(this,null,event)'/>
+            <map name='hmap_{hi:id}'>
+                <hi:terms>
+	                <tn:term>
+                        <area type="term" href='GTerm?id={term:id}' class='popup' shape="rect" coords="{tn:left},{tn:top} {tn:right},{tn:bottom}"/>
+                    </tn:term>
+                </hi:terms>
+	            <hi:legend>
+                    <area type="legend" topic="{kn:topic}" class='popup' shape="rect" coords="{kn:left},{kn:top} {kn:right},{kn:bottom}"/>
+	            </hi:legend>
+            </map>
+            <div><a href='{page:url}'>{page:url}</a></div>
+            <hi:errorMessage><div class="error">{hi:errorMessage}</div></hi:errorMessage>
+        </div>
+    </body>
+</html>

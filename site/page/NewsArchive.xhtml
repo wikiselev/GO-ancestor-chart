@@ -1,0 +1,38 @@
+<html xmlns:use='java:uk.ac.ebi.interpro.jxbp2.render.Use'>
+
+<head>
+	<title>QuickGO</title>
+</head>
+
+<body>
+	<use:use file='use/Toolbars.xhtml' name='global_toolbar'/>
+	<div style="clear:both"/>
+
+
+	<h2>QuickGO News Archive</h2>
+	<div style="font-weight:bold">04 March 2011</div>
+	<div style="padding:10px">
+		The 'Your Terms' basket now contains a 'clear' button to quickly and easily remove all terms from your selection.
+	</div>
+	<div style="padding:10px">
+		There is now the option, within the Ancestor Chart, to show the direct child terms of the term being viewed. When viewing your chosen term in the Ancestor Chart display, click on 'Display' on the right of the page and change the 'show children' option from the default 'Hide' to 'Show', click on OK and the Ancestor Chart will display all of the direct child terms for the term you are viewing.
+	</div>
+    <div style="padding:10px">
+		The display of the has_part relationship in the Ancestor Chart has been adjusted to highlight that this relationship should be read in the opposite direction to the other relationships. For example, when viewing the Ancestor Chart for <a href="http://www.ebi.ac.uk/QuickGO/GTerm?id=GO:0042802#term=ancchart">'identical protein binding'</a>, you will see that the term 'protein binding trancription factor activity' has a has_part relationship to 'protein binding', indicated by a dotted purple arrow. This should be read as 'protein binding trancription factor activity' always has 'protein binding' as a part, but 'protein binding' may occur without being part of transcription factor activity. Has_part is not a transitive relationship, meaning there is NO implication that gene products annotated to 'protein binding' or 'identical protein binding', in this example, could also be correctly associated with the term 'protein binding trancription factor activity' or any of its parent terms.
+    </div>
+    <div style="padding:10px">
+		QuickGO now provides links to the IntAct interaction database from GO protein complex term pages. For example, see <a href="http://www.ebi.ac.uk/QuickGO/GTerm?id=GO:0031105#info=2">'septin complex'</a> which links out to the curated protein complex in IntAct.
+    </div>
+	<div style="font-weight:bold">01 February 2011</div>
+	<div style="padding:10px">
+		We would like to alert users to the following changes that we intend to make to QuickGO:
+		<ol>
+			<li>We intend to remove the ancestor table view from the GO term page, (see <a href="http://www.ebi.ac.uk/QuickGO/GTerm?id=GO:0006350#term=anctable">example</a>) as we feel this is a confusing view of the ancestry of a GO term and can sometimes be inaccurate in its representation. The ancestor chart view will remain.</li>
+			<br/>
+			<li>We intend to remove the 'goslim_goa' predefined GO term set, which is currently visible from <a href="http://www.ebi.ac.uk/QuickGO/GMultiTerm">this page</a>. It is felt that this term set now provides an inadequate top-level representation of the GO ontologies that could provide users with misleading results. A good alternative GO term set to use is the 'goslim_generic', which has recently been updated and refined to give a good coverage of general biological features within the Biological Process and Cellular Component ontologies.</li>
+		</ol>
+		<div>If you have any objections to either of these changes, please email <a href="mailto:goa@ebi.ac.uk?subject=Proposed QuickGO Changes">goa@ebi.ac.uk</a> with details by 28th February 2011; we intend to make the changes shortly after this date.</div>
+	</div>
+
+</body>
+</html>

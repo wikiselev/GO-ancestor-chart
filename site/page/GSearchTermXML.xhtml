@@ -1,0 +1,26 @@
+<quickgo
+        xmlns:sp='java:uk.ac.ebi.quickgo.web.servlets.GSearchServlet.SearchPage'
+        xmlns:sq='java:uk.ac.ebi.quickgo.web.servlets.GSearchServlet.Query'
+        xmlns:h='java:uk.ac.ebi.quickgo.web.servlets.GSearchServlet.SearchHit'
+        xmlns:t='java:uk.ac.ebi.quickgo.web.servlets.GSearchServlet.Text'
+        xmlns:r='java:uk.ac.ebi.quickgo.web.servlets.GSearchServlet.Reason'
+        xmlns:tl='java:uk.ac.ebi.quickgo.web.servlets.GSearchServlet.TextList'
+        xmlns:tab='java:uk.ac.ebi.quickgo.web.servlets.GSearchServlet.SearchTab'>
+    <sp:termTabs>
+		<ul>
+			<tab:hits>
+				<h:term xmlns:st='java:uk.ac.ebi.quickgo.web.servlets.GSearchServlet.SearchTerm'>
+					<li>
+						<a href='http://www.ebi.ac.uk/QuickGO/GTerm?id={st:id}'>{st:id}</a>
+						<st:name>
+							<tl:components>
+								<t:hilite><span style='background-color:{t:colour}'>{t:text}</span></t:hilite>
+								<t:plain>{t:text}</t:plain>
+							</tl:components>
+						</st:name>
+					</li>
+				</h:term>
+			</tab:hits>
+		</ul>
+    </sp:termTabs>
+</quickgo>
